@@ -1218,7 +1218,6 @@
         <!-- Referral Banner -->
         <div class="referral-banner">
             <div class="referral-text">
-                <span class="icon">🚀</span>
                 <span>New to Hyperliquid? Get <span class="referral-highlight">fee discounts</span> when you sign up with our referral</span>
             </div>
             <a href="https://app.hyperliquid.xyz/join/STRUBE" target="_blank" class="referral-btn">
@@ -1233,15 +1232,15 @@
             </div>
             <p class="subtitle">Independent model for estimating potential Hyperliquid Season 3 allocations</p>
             <div class="disclaimer-banner">
-                ⚠️ Speculative model only. Actual S3 mechanics are unknown. Not financial advice.
+                Speculative model only. Actual S3 mechanics are unknown. Not financial advice.
             </div>
         </header>
 
         <!-- Navigation Tabs -->
         <div class="nav-tabs">
-            <button class="nav-tab active" data-tab="calculator">📊 Calculator</button>
+            <button class="nav-tab active" data-tab="calculator">Calculator</button>
             <button class="nav-tab" data-tab="methodology">
-                📚 Methodology
+                Full S3 Methodology
                 <span class="premium-badge" id="premiumBadge">Premium</span>
             </button>
         </div>
@@ -1253,9 +1252,9 @@
                 <div class="input-section">
                     <div class="card">
                         <h2 class="card-title">
-                            <span class="icon">📊</span>
-                            Your Activity (Enter volume for each category)
+                            Your Activity
                         </h2>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">Enter your volume for each category</p>
 
                         <div class="activity-grid">
                             <!-- Unit Spot -->
@@ -1362,7 +1361,6 @@
                     <div class="card" style="margin-top: 1rem;">
                         <div class="collapsible-header" id="paramsHeader">
                             <h2 class="card-title" style="margin-bottom: 0;">
-                                <span class="icon">⚙️</span>
                                 Model Parameters
                             </h2>
                             <span class="arrow">▼</span>
@@ -1428,8 +1426,7 @@
                 <div class="results-section">
                     <div class="card results-card">
                         <h2 class="card-title">
-                            <span class="icon">💰</span>
-                            Total Estimated Allocation
+                            Estimated Allocation
                         </h2>
 
                         <div class="result-main">
@@ -1493,7 +1490,7 @@
                         <div class="results-cta">
                             <p>Don't have a Hyperliquid account yet? Start earning towards S3:</p>
                             <a href="https://app.hyperliquid.xyz/join/STRUBE" target="_blank">
-                                🚀 Join Hyperliquid with Fee Discount
+                                Join Hyperliquid with Fee Discount →
                             </a>
                         </div>
                     </div>
@@ -1501,7 +1498,6 @@
                     <!-- Scenario Table -->
                     <div class="card scenario-card">
                         <h2 class="card-title">
-                            <span class="icon">📈</span>
                             Scenarios
                         </h2>
                         <table class="scenario-table">
@@ -1525,7 +1521,7 @@
         <div class="tab-content" id="methodology-tab">
             <!-- Paywall -->
             <div id="paywall" class="paywall-container">
-                <div class="paywall-icon">🔒</div>
+                <div class="paywall-icon" style="font-size: 3rem; color: var(--accent-green);">◈</div>
                 <h2 class="paywall-title">Unlock Full Methodology</h2>
                 <p class="paywall-subtitle">
                     Get access to the complete model breakdown including tokenomics analysis, 
@@ -1555,7 +1551,7 @@
 
                 <div class="payment-options">
                     <a href="https://app.hyperliquid.xyz/join/STRUBE" target="_blank" class="payment-btn secondary">
-                        🎁 Free Access: Sign up with referral & DM proof
+                        Free Access: Sign up with referral & DM proof
                     </a>
                 </div>
 
@@ -1564,7 +1560,7 @@
                     <div class="wallet-box">
                         <div class="wallet-info">
                             <div class="wallet-label">Send $30 USDC to:</div>
-                            <div class="wallet-address" id="walletAddress">0x94533c39757184b81b8c2a85a41200befb71cfc9</div>
+                            <div class="wallet-address" id="walletAddress">0x885145521348c8d15c6e07a3e0b2982c00839f38</div>
                         </div>
                         <button class="copy-btn" id="copyBtn" onclick="copyAddress()">Copy</button>
                     </div>
@@ -1587,7 +1583,7 @@
             <div id="methodologyContent" class="methodology-page" style="display: none;">
                 <!-- Full methodology content here -->
                 <div class="card">
-                    <h2>📋 Model Overview</h2>
+                    <h2>Model Overview</h2>
                     <p>This calculator provides an independent estimate of potential Hyperliquid Season 3 (S3) airdrop allocations. The model is based on analysis of the Genesis airdrop precedent, current platform metrics, game theory, and incentive design principles.</p>
                     
                     <div class="warning-box">
@@ -1601,7 +1597,7 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                 </div>
 
                 <div class="card">
-                    <h2>🪙 HYPE Tokenomics</h2>
+                    <h2>HYPE Tokenomics</h2>
                     <p>Understanding the token distribution is critical for estimating S3 size.</p>
                     
                     <table class="data-table">
@@ -1653,7 +1649,7 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                 </div>
 
                 <div class="card">
-                    <h2>📊 S3 Size Estimation</h2>
+                    <h2>S3 Size Estimation</h2>
                     <p>We estimate S3 will be 5-9% of total supply, with 7% as the base case.</p>
 
                     <h3>Reasoning</h3>
@@ -1684,7 +1680,7 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                 </div>
 
                 <div class="card">
-                    <h2>🗂️ Category Breakdown</h2>
+                    <h2>Category Breakdown</h2>
                     <p>S3 allocations will likely be split across multiple activity categories.</p>
 
                     <table class="data-table">
@@ -1750,7 +1746,7 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                 </div>
 
                 <div class="card">
-                    <h2>🏆 Tier Multipliers</h2>
+                    <h2>Tier Multipliers</h2>
                     <p>Based on Genesis precedent, allocations are likely tiered by percentile ranking.</p>
 
                     <table class="data-table">
@@ -1798,7 +1794,7 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                 </div>
 
                 <div class="card">
-                    <h2>⭐ Category Premiums & Bonuses</h2>
+                    <h2>Category Premiums & Bonuses</h2>
                     
                     <h3>Unit Spot Premium: 1.5x</h3>
                     <p>Unit spot volume is weighted higher than native spot because:</p>
@@ -1823,7 +1819,7 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                 </div>
 
                 <div class="card">
-                    <h2>🧹 Wash Trading Filters</h2>
+                    <h2>Wash Trading Filters</h2>
                     <p>Hyperliquid will likely filter significant portions of volume as wash trading, based on Genesis precedent.</p>
 
                     <table class="data-table">
@@ -1870,7 +1866,7 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                 </div>
 
                 <div class="card">
-                    <h2>📈 Pool Volume Estimates</h2>
+                    <h2>Pool Volume Estimates</h2>
                     <p>These are the estimated qualified volumes after wash trading filters.</p>
 
                     <div class="info-grid">
@@ -1898,7 +1894,7 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                 </div>
 
                 <div class="card">
-                    <h2>🎲 S3 Probability Assessment</h2>
+                    <h2>S3 Probability Assessment</h2>
                     
                     <h3>Will S3 Happen?</h3>
                     <p><strong>Estimated probability: 70-80% by Q1 2026</strong></p>
@@ -1921,7 +1917,7 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                 </div>
 
                 <div class="card">
-                    <h2>⚠️ Key Uncertainties</h2>
+                    <h2>Key Uncertainties</h2>
                     <table class="data-table">
                         <thead>
                             <tr>
@@ -1960,7 +1956,7 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                 </div>
 
                 <div class="card">
-                    <h2>📊 Data Sources</h2>
+                    <h2>Data Sources</h2>
                     <ul>
                         <li><a href="https://unit.hyperdash.info" target="_blank" style="color: var(--accent-green);">unit.hyperdash.info</a> - Unit spot volume tracking</li>
                         <li><a href="https://app.artemis.xyz" target="_blank" style="color: var(--accent-green);">Artemis</a> - Cross-platform volume comparison</li>
@@ -1969,7 +1965,7 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                 </div>
 
                 <div class="card">
-                    <h2>ℹ️ About This Model</h2>
+                    <h2>About This Model</h2>
                     <p>This calculator was developed by <a href="https://twitter.com/0xStrube" target="_blank" style="color: var(--accent-green);">@0xStrube</a> through independent analysis of Genesis airdrop patterns, platform metrics, tokenomics, competitive landscape, and game theory principles.</p>
                     <p><strong>Not affiliated with Hyperliquid.</strong> This is an independent community tool for educational purposes.</p>
                     <p>Last updated: November 2025</p>
