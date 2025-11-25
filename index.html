@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperliquid S3 Airdrop Estimator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e14;
+            --bg-secondary: #111820;
+            --bg-tertiary: #1a2332;
+            --bg-card: #151d2a;
+            --border-color: #2a3a4d;
+            --border-active: #3d5a80;
+            --text-primary: #e8edf5;
+            --text-secondary: #8b9bb4;
+            --text-muted: #5a6a7d;
+            --accent-green: #00d992;
+            --accent-green-dim: rgba(0, 217, 146, 0.15);
+            --accent-green-medium: rgba(0, 217, 146, 0.3);
+            --accent-red: #ff4757;
+            --accent-blue: #4da3ff;
+            --accent-purple: #a855f7;
+            --accent-yellow: #fbbf24;
+            --accent-orange: #f97316;
+            --glow-green: 0 0 30px rgba(0, 217, 146, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0, 217, 146, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 217, 146, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 2rem 0 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--accent-green), #00b37a);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            box-shadow: var(--glow-green);
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-top: 0.35rem;
+        }
+
+        .disclaimer-banner {
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--accent-red);
+            display: inline-block;
+        }
+
+        /* Main Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1000px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.25rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title .icon {
+            font-size: 1.1rem;
+        }
+
+        /* Activity Input Grid */
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 700px) {
+            .activity-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .activity-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem;
+            transition: all 0.2s;
+        }
+
+        .activity-card:hover {
+            border-color: var(--border-active);
+        }
+
+        .activity-card.has-value {
+            border-color: var(--accent-green);
+            background: linear-gradient(135deg, var(--bg-tertiary), rgba(0, 217, 146, 0.05));
+        }
+
+        .activity-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .activity-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .activity-icon.unit { background: rgba(0, 217, 146, 0.2); }
+        .activity-icon.native { background: rgba(168, 85, 247, 0.2); }
+        .activity-icon.perps { background: rgba(77, 163, 255, 0.2); }
+        .activity-icon.evm { background: rgba(249, 115, 22, 0.2); }
+
+        .activity-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .activity-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .activity-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .input-row label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            min-width: 55px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            flex: 1;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.5rem 0.75rem;
+            padding-right: 2.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            transition: all 0.2s;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 2px var(--accent-green-dim);
+        }
+
+        .input-suffix {
+            position: absolute;
+            right: 0.6rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button {
+            opacity: 0;
+        }
+
+        /* Tier and Settings */
+        .settings-row {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .setting-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .setting-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .toggle-group {
+            display: flex;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+        }
+
+        .toggle-btn {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.4rem 0.7rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .toggle-btn:hover {
+            border-color: var(--accent-green);
+        }
+
+        .toggle-btn.active {
+            background: var(--accent-green-dim);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem 0;
+        }
+
+        .checkbox-label input {
+            accent-color: var(--accent-green);
+        }
+
+        /* Model Parameters */
+        .params-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 500px) {
+            .params-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .range-container {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 0.75rem;
+        }
+
+        .range-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.4rem;
+        }
+
+        .range-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .range-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 4px;
+            background: var(--bg-primary);
+            border-radius: 2px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 217, 146, 0.4);
+        }
+
+        /* Results Section */
+        .results-section {
+            position: sticky;
+            top: 1.5rem;
+        }
+
+        .results-card {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-tertiary));
+            border: 1px solid var(--accent-green);
+            box-shadow: var(--glow-green);
+        }
+
+        .result-main {
+            text-align: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        .result-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.35rem;
+        }
+
+        .result-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            text-shadow: 0 0 30px rgba(0, 217, 146, 0.4);
+        }
+
+        .result-hype {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-top: 0.2rem;
+        }
+
+        /* Category Breakdown */
+        .breakdown-section {
+            margin-bottom: 1rem;
+        }
+
+        .breakdown-title {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .breakdown-cat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .breakdown-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .breakdown-dot.unit { background: var(--accent-green); }
+        .breakdown-dot.native { background: var(--accent-purple); }
+        .breakdown-dot.perps { background: var(--accent-blue); }
+        .breakdown-dot.evm { background: var(--accent-orange); }
+
+        .breakdown-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .breakdown-value.zero {
+            color: var(--text-muted);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 0.75rem;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .stat-value.green { color: var(--accent-green); }
+        .stat-value.blue { color: var(--accent-blue); }
+        .stat-value.purple { color: var(--accent-purple); }
+        .stat-value.yellow { color: var(--accent-yellow); }
+
+        /* Scenario Table */
+        .scenario-card {
+            margin-top: 1rem;
+        }
+
+        .scenario-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        .scenario-table th {
+            text-align: left;
+            padding: 0.5rem;
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .scenario-table td {
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
+
+        .scenario-table tr:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .scenario-table tr.highlight {
+            background: var(--accent-green-dim);
+        }
+
+        .scenario-table tr.highlight td {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .tag.bear { background: rgba(255, 71, 87, 0.2); color: var(--accent-red); }
+        .tag.base { background: var(--accent-green-dim); color: var(--accent-green); }
+        .tag.bull { background: rgba(77, 163, 255, 0.2); color: var(--accent-blue); }
+
+        /* Methodology */
+        .methodology {
+            margin-top: 1.5rem;
+        }
+
+        .methodology-card {
+            background: var(--bg-secondary);
+        }
+
+        .methodology-content {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .methodology-content h3 {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            margin: 1rem 0 0.4rem;
+        }
+
+        .methodology-content h3:first-child {
+            margin-top: 0;
+        }
+
+        .formula-box {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin: 0.75rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            overflow-x: auto;
+        }
+
+        .pool-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.5rem;
+            margin: 0.75rem 0;
+        }
+
+        .pool-item {
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            padding: 0.6rem;
+            text-align: center;
+        }
+
+        .pool-name {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 0.15rem;
+        }
+
+        .pool-vol {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-green);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: var(--accent-green);
+            text-decoration: none;
+        }
+
+        /* Collapsible */
+        .collapsible-header {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .collapsible-header .arrow {
+            transition: transform 0.2s;
+        }
+
+        .collapsible-header.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-content {
+            display: none;
+            padding-top: 1rem;
+        }
+
+        .collapsible-content.open {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">HL</div>
+                <h1>S3 Airdrop Estimator</h1>
+            </div>
+            <p class="subtitle">Independent model for estimating potential Hyperliquid Season 3 allocations</p>
+            <div class="disclaimer-banner">
+                ⚠️ Speculative model only. Actual S3 mechanics are unknown. Not financial advice.
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="card">
+                    <h2 class="card-title">
+                        <span class="icon">📊</span>
+                        Your Activity (Enter volume for each category)
+                    </h2>
+
+                    <div class="activity-grid">
+                        <!-- Unit Spot -->
+                        <div class="activity-card" id="unitSpotCard">
+                            <div class="activity-header">
+                                <div class="activity-icon unit">🔗</div>
+                                <div>
+                                    <div class="activity-name">Unit Spot</div>
+                                    <div class="activity-desc">BTC, ETH, SOL via Unit bridge</div>
+                                </div>
+                            </div>
+                            <div class="activity-inputs">
+                                <div class="input-row">
+                                    <label>Volume</label>
+                                    <div class="input-wrapper">
+                                        <input type="number" id="unitVolume" value="0" min="0" step="1000000" data-category="unit">
+                                        <span class="input-suffix">USD</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Native Spot -->
+                        <div class="activity-card" id="nativeSpotCard">
+                            <div class="activity-header">
+                                <div class="activity-icon native">💎</div>
+                                <div>
+                                    <div class="activity-name">Native Spot</div>
+                                    <div class="activity-desc">HYPE, PURR, HIP-1 tokens</div>
+                                </div>
+                            </div>
+                            <div class="activity-inputs">
+                                <div class="input-row">
+                                    <label>Volume</label>
+                                    <div class="input-wrapper">
+                                        <input type="number" id="nativeVolume" value="0" min="0" step="1000000" data-category="native">
+                                        <span class="input-suffix">USD</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Perps -->
+                        <div class="activity-card" id="perpsCard">
+                            <div class="activity-header">
+                                <div class="activity-icon perps">📈</div>
+                                <div>
+                                    <div class="activity-name">Perps Trading</div>
+                                    <div class="activity-desc">Perpetual futures volume</div>
+                                </div>
+                            </div>
+                            <div class="activity-inputs">
+                                <div class="input-row">
+                                    <label>Volume</label>
+                                    <div class="input-wrapper">
+                                        <input type="number" id="perpsVolume" value="0" min="0" step="1000000" data-category="perps">
+                                        <span class="input-suffix">USD</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- HyperEVM -->
+                        <div class="activity-card" id="evmCard">
+                            <div class="activity-header">
+                                <div class="activity-icon evm">⚡</div>
+                                <div>
+                                    <div class="activity-name">HyperEVM</div>
+                                    <div class="activity-desc">DeFi activity, TVL contribution</div>
+                                </div>
+                            </div>
+                            <div class="activity-inputs">
+                                <div class="input-row">
+                                    <label>TVL</label>
+                                    <div class="input-wrapper">
+                                        <input type="number" id="evmTVL" value="0" min="0" step="1000" data-category="evm">
+                                        <span class="input-suffix">USD</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-row">
+                        <div class="setting-group">
+                            <span class="setting-label">Your Estimated Tier</span>
+                            <div class="toggle-group" id="tierToggle">
+                                <button class="toggle-btn" data-value="S">S (0.5%)</button>
+                                <button class="toggle-btn active" data-value="A">A (2%)</button>
+                                <button class="toggle-btn" data-value="B">B (10%)</button>
+                                <button class="toggle-btn" data-value="C">C (50%)</button>
+                            </div>
+                        </div>
+                        <div class="setting-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="infraBonus" checked>
+                                Infrastructure Bonus (UETH/USDC critical pair)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Model Parameters -->
+                <div class="card" style="margin-top: 1rem;">
+                    <div class="collapsible-header" id="paramsHeader">
+                        <h2 class="card-title" style="margin-bottom: 0;">
+                            <span class="icon">⚙️</span>
+                            Model Parameters
+                        </h2>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="collapsible-content" id="paramsContent">
+                        <div class="params-grid">
+                            <div class="range-container">
+                                <div class="range-header">
+                                    <span class="range-label">S3 Total Size</span>
+                                    <span class="range-value" id="s3SizeValue">7%</span>
+                                </div>
+                                <input type="range" id="s3Size" min="4" max="12" value="7" step="0.5">
+                            </div>
+
+                            <div class="range-container">
+                                <div class="range-header">
+                                    <span class="range-label">Spot % of S3</span>
+                                    <span class="range-value" id="spotAllocValue">16%</span>
+                                </div>
+                                <input type="range" id="spotAlloc" min="8" max="28" value="16" step="1">
+                            </div>
+
+                            <div class="range-container">
+                                <div class="range-header">
+                                    <span class="range-label">Unit % of Spot</span>
+                                    <span class="range-value" id="unitShareValue">55%</span>
+                                </div>
+                                <input type="range" id="unitShare" min="40" max="70" value="55" step="5">
+                            </div>
+
+                            <div class="range-container">
+                                <div class="range-header">
+                                    <span class="range-label">HYPE Price</span>
+                                    <span class="range-value" id="hypePriceValue">$35</span>
+                                </div>
+                                <input type="range" id="hypePrice" min="15" max="80" value="35" step="1">
+                            </div>
+                        </div>
+
+                        <div class="pool-info" style="margin-top: 1rem;">
+                            <div class="pool-item">
+                                <div class="pool-name">Unit Pool (filtered)</div>
+                                <div class="pool-vol">$30B</div>
+                            </div>
+                            <div class="pool-item">
+                                <div class="pool-name">Native Pool (filtered)</div>
+                                <div class="pool-vol">$15B</div>
+                            </div>
+                            <div class="pool-item">
+                                <div class="pool-name">Perps Pool (filtered)</div>
+                                <div class="pool-vol">$2.5T</div>
+                            </div>
+                            <div class="pool-item">
+                                <div class="pool-name">EVM TVL</div>
+                                <div class="pool-vol">$2B</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Methodology (Collapsed by default) -->
+                <div class="card methodology" style="margin-top: 1rem;">
+                    <div class="collapsible-header" id="methodHeader">
+                        <h2 class="card-title" style="margin-bottom: 0;">
+                            <span class="icon">🔬</span>
+                            Model Methodology
+                        </h2>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="collapsible-content" id="methodContent">
+                        <div class="methodology-content">
+                            <h3>Core Formula (per category)</h3>
+                            <div class="formula-box">
+HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier × Bonuses
+                            </div>
+
+                            <h3>Tier Multipliers</h3>
+                            <div class="formula-box">
+S (Top 0.5%): 1.75x | A (Top 2%): 1.40x | B (Top 10%): 1.15x | C (Top 50%): 1.00x
+                            </div>
+
+                            <h3>Category Premiums</h3>
+                            <p>Unit Spot: 1.5x (infrastructure critical) | Infrastructure Bonus: 1.2x (UETH/USDC)</p>
+
+                            <h3>Wash Trading Filters</h3>
+                            <div class="formula-box">
+HYPE/USDC: 50-70% filtered | Native: 30-50% | Unit: 10-20% | Perps: 15-25%
+                            </div>
+
+                            <h3>S3 Category Split (Base Case)</h3>
+                            <p>Perps: 48% | Spot: 16% (Unit 55%, Native 45%) | EVM: 14% | Staking: 10% | HIP-3: 7% | HLP: 5%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section">
+                <div class="card results-card">
+                    <h2 class="card-title">
+                        <span class="icon">💰</span>
+                        Total Estimated Allocation
+                    </h2>
+
+                    <div class="result-main">
+                        <div class="result-label">Combined Value</div>
+                        <div class="result-value" id="totalUSD">$0</div>
+                        <div class="result-hype" id="totalHYPE">~0 HYPE</div>
+                    </div>
+
+                    <div class="breakdown-section">
+                        <div class="breakdown-title">Breakdown by Category</div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-cat">
+                                <span class="breakdown-dot unit"></span>
+                                Unit Spot
+                            </div>
+                            <div class="breakdown-value" id="unitResult">$0</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-cat">
+                                <span class="breakdown-dot native"></span>
+                                Native Spot
+                            </div>
+                            <div class="breakdown-value" id="nativeResult">$0</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-cat">
+                                <span class="breakdown-dot perps"></span>
+                                Perps
+                            </div>
+                            <div class="breakdown-value" id="perpsResult">$0</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-cat">
+                                <span class="breakdown-dot evm"></span>
+                                HyperEVM
+                            </div>
+                            <div class="breakdown-value" id="evmResult">$0</div>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-label">Total HYPE</div>
+                            <div class="stat-value green" id="statHype">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Tier Multiplier</div>
+                            <div class="stat-value blue" id="statTier">1.4x</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Est. Fees Paid</div>
+                            <div class="stat-value purple" id="statFees">$0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">ROI</div>
+                            <div class="stat-value yellow" id="statROI">0x</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scenario Table -->
+                <div class="card scenario-card">
+                    <h2 class="card-title">
+                        <span class="icon">📈</span>
+                        Scenarios
+                    </h2>
+                    <table class="scenario-table">
+                        <thead>
+                            <tr>
+                                <th>Scenario</th>
+                                <th>S3</th>
+                                <th>Price</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scenarioBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Independent model based on Genesis precedent, platform data, and game theory analysis.</p>
+            <p style="margin-top: 0.5rem;">Not affiliated with Hyperliquid. Educational purposes only.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Constants
+        const TOTAL_SUPPLY = 1_000_000_000;
+        
+        const TIER_MULTIPLIERS = { 'S': 1.75, 'A': 1.40, 'B': 1.15, 'C': 1.00 };
+
+        const POOL_VOLUMES = {
+            unit: 30_000_000_000,      // $30B after wash filter
+            native: 15_000_000_000,    // $15B after heavy filtering
+            perps: 2_500_000_000_000,  // $2.5T
+            evm: 2_000_000_000         // $2B TVL
+        };
+
+        const FEE_RATES = {
+            unit: 0.001,    // 0.1%
+            native: 0.001,  // 0.1%
+            perps: 0.00035, // 0.035%
+            evm: 0          // No fees for TVL
+        };
+
+        const SCENARIOS = [
+            { name: 'Ultra Bear', tag: 'bear', s3: 10, price: 20 },
+            { name: 'Bear', tag: 'bear', s3: 8, price: 25 },
+            { name: 'Base', tag: 'base', s3: 7, price: 35, highlight: true },
+            { name: 'Bull', tag: 'bull', s3: 6, price: 50 },
+            { name: 'Ultra Bull', tag: 'bull', s3: 5, price: 60 }
+        ];
+
+        // State
+        let state = {
+            unitVolume: 0,
+            nativeVolume: 0,
+            perpsVolume: 0,
+            evmTVL: 0,
+            tier: 'A',
+            infraBonus: true,
+            s3Size: 7,
+            spotAlloc: 16,
+            unitShare: 55,
+            hypePrice: 35
+        };
+
+        // DOM
+        const $ = id => document.getElementById(id);
+
+        // Utility
+        function formatUSD(num) {
+            if (num >= 1_000_000) return '$' + (num / 1_000_000).toFixed(2) + 'M';
+            if (num >= 1_000) return '$' + (num / 1_000).toFixed(0) + 'K';
+            return '$' + num.toFixed(0);
+        }
+
+        function formatHYPE(num) {
+            if (num >= 1_000_000) return (num / 1_000_000).toFixed(2) + 'M';
+            if (num >= 1_000) return num.toLocaleString('en-US', { maximumFractionDigits: 0 });
+            return num.toFixed(0);
+        }
+
+        // Calculations
+        function calculateCategory(category, volume, params) {
+            if (volume <= 0) return { hype: 0, usd: 0, fees: 0 };
+
+            const s3Total = TOTAL_SUPPLY * (params.s3Size / 100);
+            const tierMult = TIER_MULTIPLIERS[params.tier];
+            
+            let categoryPool, premium = 1, infraMult = 1;
+
+            if (category === 'unit') {
+                const spotPool = s3Total * (params.spotAlloc / 100);
+                categoryPool = spotPool * (params.unitShare / 100);
+                premium = 1.5; // Unit premium
+                if (params.infraBonus) infraMult = 1.2;
+            } else if (category === 'native') {
+                const spotPool = s3Total * (params.spotAlloc / 100);
+                categoryPool = spotPool * ((100 - params.unitShare) / 100);
+            } else if (category === 'perps') {
+                categoryPool = s3Total * 0.48;
+            } else if (category === 'evm') {
+                categoryPool = s3Total * 0.14;
+            }
+
+            const poolVol = POOL_VOLUMES[category];
+            const share = volume / poolVol;
+            const combinedMult = tierMult * premium * infraMult;
+            const hype = categoryPool * share * combinedMult;
+            const usd = hype * params.hypePrice;
+            const fees = volume * FEE_RATES[category];
+
+            return { hype, usd, fees, share, combinedMult };
+        }
+
+        function calculateAll(params) {
+            const unit = calculateCategory('unit', params.unitVolume, params);
+            const native = calculateCategory('native', params.nativeVolume, params);
+            const perps = calculateCategory('perps', params.perpsVolume, params);
+            const evm = calculateCategory('evm', params.evmTVL, params);
+
+            const totalHype = unit.hype + native.hype + perps.hype + evm.hype;
+            const totalUsd = unit.usd + native.usd + perps.usd + evm.usd;
+            const totalFees = unit.fees + native.fees + perps.fees + evm.fees;
+            const roi = totalFees > 0 ? totalUsd / totalFees : 0;
+
+            return { unit, native, perps, evm, totalHype, totalUsd, totalFees, roi };
+        }
+
+        function updateResults() {
+            const result = calculateAll(state);
+
+            // Main totals
+            $('totalUSD').textContent = formatUSD(result.totalUsd);
+            $('totalHYPE').textContent = '~' + formatHYPE(result.totalHype) + ' HYPE';
+
+            // Breakdown
+            $('unitResult').textContent = formatUSD(result.unit.usd);
+            $('unitResult').classList.toggle('zero', result.unit.usd === 0);
+            
+            $('nativeResult').textContent = formatUSD(result.native.usd);
+            $('nativeResult').classList.toggle('zero', result.native.usd === 0);
+            
+            $('perpsResult').textContent = formatUSD(result.perps.usd);
+            $('perpsResult').classList.toggle('zero', result.perps.usd === 0);
+            
+            $('evmResult').textContent = formatUSD(result.evm.usd);
+            $('evmResult').classList.toggle('zero', result.evm.usd === 0);
+
+            // Stats
+            $('statHype').textContent = formatHYPE(result.totalHype);
+            $('statTier').textContent = TIER_MULTIPLIERS[state.tier] + 'x';
+            $('statFees').textContent = formatUSD(result.totalFees);
+            $('statROI').textContent = result.roi > 0 ? '~' + Math.round(result.roi) + 'x' : '-';
+
+            // Activity card highlighting
+            $('unitSpotCard').classList.toggle('has-value', state.unitVolume > 0);
+            $('nativeSpotCard').classList.toggle('has-value', state.nativeVolume > 0);
+            $('perpsCard').classList.toggle('has-value', state.perpsVolume > 0);
+            $('evmCard').classList.toggle('has-value', state.evmTVL > 0);
+
+            // Scenarios
+            updateScenarios();
+        }
+
+        function updateScenarios() {
+            const tbody = $('scenarioBody');
+            tbody.innerHTML = SCENARIOS.map(s => {
+                const params = { ...state, s3Size: s.s3, hypePrice: s.price };
+                const result = calculateAll(params);
+                return `
+                    <tr class="${s.highlight ? 'highlight' : ''}">
+                        <td><span class="tag ${s.tag}">${s.name}</span></td>
+                        <td>${s.s3}%</td>
+                        <td>$${s.price}</td>
+                        <td>${formatUSD(result.totalUsd)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Event Setup
+        function init() {
+            // Volume inputs
+            ['unitVolume', 'nativeVolume', 'perpsVolume', 'evmTVL'].forEach(id => {
+                const el = $(id.replace('Volume', 'Volume').replace('TVL', 'TVL'));
+                if (!el) return;
+                const realId = id === 'evmTVL' ? 'evmTVL' : id;
+                $(realId === 'evmTVL' ? 'evmTVL' : id)?.addEventListener('input', e => {
+                    state[id] = parseFloat(e.target.value) || 0;
+                    updateResults();
+                });
+            });
+
+            $('unitVolume').addEventListener('input', e => { state.unitVolume = parseFloat(e.target.value) || 0; updateResults(); });
+            $('nativeVolume').addEventListener('input', e => { state.nativeVolume = parseFloat(e.target.value) || 0; updateResults(); });
+            $('perpsVolume').addEventListener('input', e => { state.perpsVolume = parseFloat(e.target.value) || 0; updateResults(); });
+            $('evmTVL').addEventListener('input', e => { state.evmTVL = parseFloat(e.target.value) || 0; updateResults(); });
+
+            // Tier toggle
+            $('tierToggle').querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    $('tierToggle').querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    state.tier = btn.dataset.value;
+                    updateResults();
+                });
+            });
+
+            // Infrastructure bonus
+            $('infraBonus').addEventListener('change', e => {
+                state.infraBonus = e.target.checked;
+                updateResults();
+            });
+
+            // Range sliders
+            const ranges = [
+                { id: 's3Size', key: 's3Size', suffix: '%' },
+                { id: 'spotAlloc', key: 'spotAlloc', suffix: '%' },
+                { id: 'unitShare', key: 'unitShare', suffix: '%' },
+                { id: 'hypePrice', key: 'hypePrice', prefix: '$' }
+            ];
+
+            ranges.forEach(r => {
+                $(r.id).addEventListener('input', e => {
+                    state[r.key] = parseFloat(e.target.value);
+                    $(r.id + 'Value').textContent = (r.prefix || '') + e.target.value + (r.suffix || '');
+                    updateResults();
+                });
+            });
+
+            // Collapsibles
+            ['params', 'method'].forEach(section => {
+                $(section + 'Header').addEventListener('click', () => {
+                    $(section + 'Header').classList.toggle('open');
+                    $(section + 'Content').classList.toggle('open');
+                });
+            });
+
+            updateResults();
+        }
+
+        init();
+    </script>
+</body>
+</html>
