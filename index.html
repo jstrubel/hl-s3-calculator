@@ -65,6 +65,58 @@
             padding: 1.5rem;
         }
 
+        /* Referral Banner */
+        .referral-banner {
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-card));
+            border: 1px solid var(--accent-green);
+            border-radius: 10px;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .referral-text {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .referral-text .icon {
+            font-size: 1.1rem;
+        }
+
+        .referral-highlight {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .referral-btn {
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .referral-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 217, 146, 0.3);
+        }
+
         /* Navigation Tabs */
         .nav-tabs {
             display: flex;
@@ -85,6 +137,9 @@
             color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
         .nav-tab:hover {
@@ -96,6 +151,20 @@
             background: var(--accent-green-dim);
             border-color: var(--accent-green);
             color: var(--accent-green);
+        }
+
+        .nav-tab .lock-icon {
+            font-size: 0.8rem;
+        }
+
+        .nav-tab .premium-badge {
+            background: var(--accent-yellow);
+            color: var(--bg-primary);
+            font-size: 0.65rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         .tab-content {
@@ -475,6 +544,41 @@
             margin-top: 0.2rem;
         }
 
+        /* CTA in results */
+        .results-cta {
+            background: var(--bg-tertiary);
+            border: 1px dashed var(--accent-green);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .results-cta p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .results-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            padding: 0.6rem 1.25rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .results-cta a:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 217, 146, 0.3);
+        }
+
         /* Category Breakdown */
         .breakdown-section {
             margin-bottom: 1rem;
@@ -616,7 +720,264 @@
         .tag.base { background: var(--accent-green-dim); color: var(--accent-green); }
         .tag.bull { background: rgba(77, 163, 255, 0.2); color: var(--accent-blue); }
 
-        /* Methodology Page Styles */
+        /* Paywall Styles */
+        .paywall-container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 3rem 1.5rem;
+        }
+
+        .paywall-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .paywall-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .paywall-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .paywall-features {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .paywall-features h3 {
+            font-size: 1rem;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .feature-list .check {
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .paywall-pricing {
+            margin-bottom: 2rem;
+        }
+
+        .price-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 0.25rem;
+        }
+
+        .price-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .payment-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            min-width: 280px;
+        }
+
+        .payment-btn.primary {
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            border: none;
+        }
+
+        .payment-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 217, 146, 0.4);
+        }
+
+        .payment-btn.secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .payment-btn.secondary:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .wallet-address-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .wallet-address-section h4 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .wallet-box {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .wallet-info {
+            text-align: left;
+        }
+
+        .wallet-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .wallet-address {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .copy-btn.copied {
+            background: var(--accent-green-dim);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .unlock-instructions {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(77, 163, 255, 0.1);
+            border: 1px solid rgba(77, 163, 255, 0.3);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+        }
+
+        /* Access Code Input */
+        .access-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .access-section h4 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .access-input-row {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .access-input-row input {
+            flex: 1;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .access-input-row input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+        }
+
+        .access-input-row button {
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .access-input-row button:hover {
+            transform: translateY(-1px);
+        }
+
+        .access-error {
+            color: var(--accent-red);
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+
+        /* Methodology Page Styles (when unlocked) */
         .methodology-page {
             max-width: 900px;
             margin: 0 auto;
@@ -821,10 +1182,50 @@
             color: var(--accent-green);
             text-decoration: none;
         }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            .referral-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .paywall-container {
+                padding: 2rem 1rem;
+            }
+            
+            .price-tag {
+                font-size: 2.5rem;
+            }
+            
+            .payment-btn {
+                min-width: 100%;
+            }
+            
+            .wallet-box {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .wallet-info {
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Referral Banner -->
+        <div class="referral-banner">
+            <div class="referral-text">
+                <span class="icon">🚀</span>
+                <span>New to Hyperliquid? Get <span class="referral-highlight">fee discounts</span> when you sign up with our referral</span>
+            </div>
+            <a href="https://app.hyperliquid.xyz/join/STRUBE" target="_blank" class="referral-btn">
+                Join Hyperliquid →
+            </a>
+        </div>
+
         <header>
             <div class="logo">
                 <div class="logo-icon">HL</div>
@@ -839,7 +1240,10 @@
         <!-- Navigation Tabs -->
         <div class="nav-tabs">
             <button class="nav-tab active" data-tab="calculator">📊 Calculator</button>
-            <button class="nav-tab" data-tab="methodology">📚 Methodology</button>
+            <button class="nav-tab" data-tab="methodology">
+                📚 Methodology
+                <span class="premium-badge" id="premiumBadge">Premium</span>
+            </button>
         </div>
 
         <!-- Calculator Tab -->
@@ -1084,6 +1488,14 @@
                                 <div class="stat-value yellow" id="statROI">0x</div>
                             </div>
                         </div>
+
+                        <!-- CTA -->
+                        <div class="results-cta">
+                            <p>Don't have a Hyperliquid account yet? Start earning towards S3:</p>
+                            <a href="https://app.hyperliquid.xyz/join/STRUBE" target="_blank">
+                                🚀 Join Hyperliquid with Fee Discount
+                            </a>
+                        </div>
                     </div>
 
                     <!-- Scenario Table -->
@@ -1109,11 +1521,71 @@
             </div>
         </div>
 
-        <!-- Methodology Tab -->
+        <!-- Methodology Tab (with paywall) -->
         <div class="tab-content" id="methodology-tab">
-            <div class="methodology-page">
-                
-                <!-- Overview -->
+            <!-- Paywall -->
+            <div id="paywall" class="paywall-container">
+                <div class="paywall-icon">🔒</div>
+                <h2 class="paywall-title">Unlock Full Methodology</h2>
+                <p class="paywall-subtitle">
+                    Get access to the complete model breakdown including tokenomics analysis, 
+                    tier multiplier calculations, wash trading filter estimates, and probability assessments.
+                </p>
+
+                <div class="paywall-features">
+                    <h3>What's Included:</h3>
+                    <ul class="feature-list">
+                        <li><span class="check">✓</span> Complete HYPE tokenomics breakdown</li>
+                        <li><span class="check">✓</span> S3 size estimation methodology</li>
+                        <li><span class="check">✓</span> Category allocation rationale</li>
+                        <li><span class="check">✓</span> Tier multiplier calculations</li>
+                        <li><span class="check">✓</span> Unit vs Native spot premium analysis</li>
+                        <li><span class="check">✓</span> Wash trading filter estimates</li>
+                        <li><span class="check">✓</span> Pool volume data sources</li>
+                        <li><span class="check">✓</span> S3 probability & timing assessment</li>
+                        <li><span class="check">✓</span> Key uncertainties & risk factors</li>
+                        <li><span class="check">✓</span> Future updates as new data emerges</li>
+                    </ul>
+                </div>
+
+                <div class="paywall-pricing">
+                    <div class="price-tag">$30</div>
+                    <div class="price-note">One-time payment • Lifetime access</div>
+                </div>
+
+                <div class="payment-options">
+                    <a href="https://app.hyperliquid.xyz/join/STRUBE" target="_blank" class="payment-btn secondary">
+                        🎁 Free Access: Sign up with referral & DM proof
+                    </a>
+                </div>
+
+                <div class="wallet-address-section">
+                    <h4>Pay with Crypto (USDC on Arbitrum)</h4>
+                    <div class="wallet-box">
+                        <div class="wallet-info">
+                            <div class="wallet-label">Send $30 USDC to:</div>
+                            <div class="wallet-address" id="walletAddress">0x94533c39757184b81b8c2a85a41200befb71cfc9</div>
+                        </div>
+                        <button class="copy-btn" id="copyBtn" onclick="copyAddress()">Copy</button>
+                    </div>
+                    <div class="unlock-instructions">
+                        <strong>After payment:</strong> Send your transaction hash to <strong>@strube</strong> on Twitter/X or Telegram to receive your access code.
+                    </div>
+                </div>
+
+                <div class="access-section">
+                    <h4>Already have an access code?</h4>
+                    <div class="access-input-row">
+                        <input type="text" id="accessCode" placeholder="Enter access code">
+                        <button onclick="checkAccessCode()">Unlock</button>
+                    </div>
+                    <div class="access-error" id="accessError"></div>
+                </div>
+            </div>
+
+            <!-- Unlocked Content (hidden by default) -->
+            <div id="methodologyContent" class="methodology-page" style="display: none;">
+                <!-- Full methodology content here -->
                 <div class="card">
                     <h2>📋 Model Overview</h2>
                     <p>This calculator provides an independent estimate of potential Hyperliquid Season 3 (S3) airdrop allocations. The model is based on analysis of the Genesis airdrop precedent, current platform metrics, game theory, and incentive design principles.</p>
@@ -1128,7 +1600,6 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                     </div>
                 </div>
 
-                <!-- Tokenomics -->
                 <div class="card">
                     <h2>🪙 HYPE Tokenomics</h2>
                     <p>Understanding the token distribution is critical for estimating S3 size.</p>
@@ -1181,7 +1652,6 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                     </div>
                 </div>
 
-                <!-- S3 Size Estimation -->
                 <div class="card">
                     <h2>📊 S3 Size Estimation</h2>
                     <p>We estimate S3 will be 5-9% of total supply, with 7% as the base case.</p>
@@ -1213,7 +1683,6 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                     </table>
                 </div>
 
-                <!-- Category Breakdown -->
                 <div class="card">
                     <h2>🗂️ Category Breakdown</h2>
                     <p>S3 allocations will likely be split across multiple activity categories.</p>
@@ -1280,7 +1749,6 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                     </ul>
                 </div>
 
-                <!-- Tier Multipliers -->
                 <div class="card">
                     <h2>🏆 Tier Multipliers</h2>
                     <p>Based on Genesis precedent, allocations are likely tiered by percentile ranking.</p>
@@ -1329,7 +1797,6 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                     </table>
                 </div>
 
-                <!-- Category Premiums -->
                 <div class="card">
                     <h2>⭐ Category Premiums & Bonuses</h2>
                     
@@ -1355,7 +1822,6 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                     </div>
                 </div>
 
-                <!-- Wash Trading -->
                 <div class="card">
                     <h2>🧹 Wash Trading Filters</h2>
                     <p>Hyperliquid will likely filter significant portions of volume as wash trading, based on Genesis precedent.</p>
@@ -1401,18 +1867,8 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                         <li>Timing pattern analysis</li>
                         <li>Linked wallet clustering</li>
                     </ul>
-
-                    <h3>Legitimacy Signals</h3>
-                    <ul>
-                        <li>High maker volume ratio (providing liquidity, not taking)</li>
-                        <li>Real PNL variance (losses indicate genuine counterparties)</li>
-                        <li>Consistent activity over time (not flash farming)</li>
-                        <li>Reasonable spreads and order book depth</li>
-                        <li>Fees paid proportional to volume</li>
-                    </ul>
                 </div>
 
-                <!-- Pool Volumes -->
                 <div class="card">
                     <h2>📈 Pool Volume Estimates</h2>
                     <p>These are the estimated qualified volumes after wash trading filters.</p>
@@ -1439,38 +1895,13 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                             <div class="info-card-note">Time-weighted average</div>
                         </div>
                     </div>
-
-                    <h3>Data Sources</h3>
-                    <ul>
-                        <li><a href="https://hyperdash.info" target="_blank">hyperdash.info</a> - Unit spot volume tracking</li>
-                        <li><a href="https://artemis.xyz" target="_blank">Artemis</a> - Cross-platform volume comparison</li>
-                        <li><a href="https://stats.hyperliquid.xyz" target="_blank">Hyperliquid Stats</a> - Official platform metrics</li>
-                    </ul>
                 </div>
 
-                <!-- Probability Assessment -->
                 <div class="card">
                     <h2>🎲 S3 Probability Assessment</h2>
                     
                     <h3>Will S3 Happen?</h3>
                     <p><strong>Estimated probability: 70-80% by Q1 2026</strong></p>
-
-                    <h3>Supporting Factors</h3>
-                    <ul>
-                        <li>38.888% community allocation remaining (substantial runway)</li>
-                        <li>Genesis precedent set expectations for ongoing rewards</li>
-                        <li>Competitive pressure from Jupiter, dYdX, Binance incentive programs</li>
-                        <li>HIP-3 launch needs deployer and liquidity incentives</li>
-                        <li>HyperEVM ecosystem expansion requires user acquisition</li>
-                    </ul>
-
-                    <h3>Risk Factors</h3>
-                    <ul>
-                        <li>Nov 2025 team unlock creates dilution concerns</li>
-                        <li>HYPE price down ~45% from ATH may affect timing</li>
-                        <li>Could restructure as continuous emissions vs discrete drop</li>
-                        <li>HyperEVM might get separate airdrop (splitting allocations)</li>
-                    </ul>
 
                     <h3>Timing Estimate</h3>
                     <table class="data-table">
@@ -1489,11 +1920,8 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                     </table>
                 </div>
 
-                <!-- Key Uncertainties -->
                 <div class="card">
                     <h2>⚠️ Key Uncertainties</h2>
-                    <p>This model contains significant uncertainty. The following factors have the highest impact on accuracy:</p>
-
                     <table class="data-table">
                         <thead>
                             <tr>
@@ -1514,11 +1942,6 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                                 <td>Could be 10-25% of S3</td>
                             </tr>
                             <tr>
-                                <td>Unit vs Native split</td>
-                                <td>Medium</td>
-                                <td>May not be separated at all</td>
-                            </tr>
-                            <tr>
                                 <td>Unit premium existence</td>
                                 <td>High</td>
                                 <td>Speculative - may be 1.0-2.0x</td>
@@ -1528,71 +1951,48 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                                 <td>Medium</td>
                                 <td>Methodology unknown</td>
                             </tr>
-                            <tr>
-                                <td>Tier multiplier structure</td>
-                                <td>Medium</td>
-                                <td>May differ from Genesis</td>
-                            </tr>
-                            <tr>
-                                <td>Vesting requirements</td>
-                                <td>Low (value)</td>
-                                <td>Likely 30% upfront, 70% vested</td>
-                            </tr>
                         </tbody>
                     </table>
 
                     <div class="warning-box">
-                        <p><strong>Confidence Range:</strong> For any individual estimate, the actual outcome could realistically be 0.3x to 3x the calculated value. Use this tool for directional guidance, not precise predictions.</p>
+                        <p><strong>Confidence Range:</strong> For any individual estimate, the actual outcome could realistically be 0.3x to 3x the calculated value.</p>
                     </div>
                 </div>
 
-                <!-- About -->
                 <div class="card">
-                    <h2>ℹ️ About This Model</h2>
-                    <p>This calculator was developed through independent analysis of:</p>
+                    <h2>📊 Data Sources</h2>
                     <ul>
-                        <li>Genesis airdrop distribution patterns and mechanics</li>
-                        <li>Platform growth metrics and trading volume data</li>
-                        <li>HYPE tokenomics and emission schedules</li>
-                        <li>Competitive landscape (Jupiter, dYdX, other DEX incentives)</li>
-                        <li>Game theory and incentive design principles</li>
-                        <li>Community research and third-party models</li>
+                        <li><a href="https://unit.hyperdash.info" target="_blank" style="color: var(--accent-green);">unit.hyperdash.info</a> - Unit spot volume tracking</li>
+                        <li><a href="https://app.artemis.xyz" target="_blank" style="color: var(--accent-green);">Artemis</a> - Cross-platform volume comparison</li>
+                        <li><a href="https://stats.hyperliquid.xyz" target="_blank" style="color: var(--accent-green);">Hyperliquid Stats</a> - Official platform metrics</li>
                     </ul>
-
-                    <p><strong>Not affiliated with Hyperliquid.</strong> This is an independent community tool for educational purposes.</p>
-
-                    <p>Last updated: November 2025</p>
                 </div>
 
+                <div class="card">
+                    <h2>ℹ️ About This Model</h2>
+                    <p>This calculator was developed by <a href="https://twitter.com/0xStrube" target="_blank" style="color: var(--accent-green);">@0xStrube</a> through independent analysis of Genesis airdrop patterns, platform metrics, tokenomics, competitive landscape, and game theory principles.</p>
+                    <p><strong>Not affiliated with Hyperliquid.</strong> This is an independent community tool for educational purposes.</p>
+                    <p>Last updated: November 2025</p>
+                    <p style="margin-top: 1rem;">Questions or feedback? DM <a href="https://twitter.com/0xStrube" target="_blank" style="color: var(--accent-green);">@0xStrube</a> on Twitter/X.</p>
+                </div>
             </div>
         </div>
 
         <footer>
-            <p>Independent model based on Genesis precedent, platform data, and game theory analysis.</p>
-            <p style="margin-top: 0.5rem;">Not affiliated with Hyperliquid. Educational purposes only.</p>
+            <p>Built by <a href="https://twitter.com/0xStrube" target="_blank">@0xStrube</a> • Independent model based on Genesis precedent, platform data, and game theory analysis.</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="https://app.hyperliquid.xyz/join/STRUBE" target="_blank">Join Hyperliquid</a> • 
+                Not affiliated with Hyperliquid • Educational purposes only
+            </p>
         </footer>
     </div>
 
     <script>
         // Constants
         const TOTAL_SUPPLY = 1_000_000_000;
-        
         const TIER_MULTIPLIERS = { 'S': 1.75, 'A': 1.40, 'B': 1.15, 'C': 1.00 };
-
-        const POOL_VOLUMES = {
-            unit: 30_000_000_000,
-            native: 15_000_000_000,
-            perps: 2_500_000_000_000,
-            evm: 2_000_000_000
-        };
-
-        const FEE_RATES = {
-            unit: 0.001,
-            native: 0.001,
-            perps: 0.00035,
-            evm: 0
-        };
-
+        const POOL_VOLUMES = { unit: 30e9, native: 15e9, perps: 2.5e12, evm: 2e9 };
+        const FEE_RATES = { unit: 0.001, native: 0.001, perps: 0.00035, evm: 0 };
         const SCENARIOS = [
             { name: 'Ultra Bear', tag: 'bear', s3: 10, price: 20 },
             { name: 'Bear', tag: 'bear', s3: 8, price: 25 },
@@ -1601,67 +2001,88 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
             { name: 'Ultra Bull', tag: 'bull', s3: 5, price: 60 }
         ];
 
+        // Valid access codes (you would manage these)
+        const VALID_CODES = ['S3ALPHA2025', 'EARLYBIRD', 'METHODOLOGY'];
+
         // State
         let state = {
-            unitVolume: 0,
-            nativeVolume: 0,
-            perpsVolume: 0,
-            evmTVL: 0,
-            tier: 'A',
-            infraBonus: true,
-            s3Size: 7,
-            spotAlloc: 16,
-            unitShare: 55,
-            hypePrice: 35
+            unitVolume: 0, nativeVolume: 0, perpsVolume: 0, evmTVL: 0,
+            tier: 'A', infraBonus: true, s3Size: 7, spotAlloc: 16, unitShare: 55, hypePrice: 35
         };
 
-        // DOM
         const $ = id => document.getElementById(id);
+
+        // Check if unlocked
+        function checkUnlocked() {
+            return localStorage.getItem('methodologyUnlocked') === 'true';
+        }
+
+        function unlockMethodology() {
+            localStorage.setItem('methodologyUnlocked', 'true');
+            $('paywall').style.display = 'none';
+            $('methodologyContent').style.display = 'block';
+            $('premiumBadge').style.display = 'none';
+        }
+
+        function checkAccessCode() {
+            const code = $('accessCode').value.trim().toUpperCase();
+            if (VALID_CODES.includes(code)) {
+                unlockMethodology();
+                $('accessError').textContent = '';
+            } else {
+                $('accessError').textContent = 'Invalid access code. Please check and try again.';
+            }
+        }
+
+        // Copy wallet address
+        function copyAddress() {
+            const address = $('walletAddress').textContent;
+            navigator.clipboard.writeText(address).then(() => {
+                const btn = $('copyBtn');
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
 
         // Utility
         function formatUSD(num) {
-            if (num >= 1_000_000) return '$' + (num / 1_000_000).toFixed(2) + 'M';
-            if (num >= 1_000) return '$' + (num / 1_000).toFixed(0) + 'K';
+            if (num >= 1e6) return '$' + (num / 1e6).toFixed(2) + 'M';
+            if (num >= 1e3) return '$' + (num / 1e3).toFixed(0) + 'K';
             return '$' + num.toFixed(0);
         }
 
         function formatHYPE(num) {
-            if (num >= 1_000_000) return (num / 1_000_000).toFixed(2) + 'M';
-            if (num >= 1_000) return num.toLocaleString('en-US', { maximumFractionDigits: 0 });
+            if (num >= 1e6) return (num / 1e6).toFixed(2) + 'M';
+            if (num >= 1e3) return num.toLocaleString('en-US', { maximumFractionDigits: 0 });
             return num.toFixed(0);
         }
 
         // Calculations
         function calculateCategory(category, volume, params) {
             if (volume <= 0) return { hype: 0, usd: 0, fees: 0 };
-
             const s3Total = TOTAL_SUPPLY * (params.s3Size / 100);
             const tierMult = TIER_MULTIPLIERS[params.tier];
-            
             let categoryPool, premium = 1, infraMult = 1;
 
             if (category === 'unit') {
-                const spotPool = s3Total * (params.spotAlloc / 100);
-                categoryPool = spotPool * (params.unitShare / 100);
+                categoryPool = s3Total * (params.spotAlloc / 100) * (params.unitShare / 100);
                 premium = 1.5;
                 if (params.infraBonus) infraMult = 1.2;
             } else if (category === 'native') {
-                const spotPool = s3Total * (params.spotAlloc / 100);
-                categoryPool = spotPool * ((100 - params.unitShare) / 100);
+                categoryPool = s3Total * (params.spotAlloc / 100) * ((100 - params.unitShare) / 100);
             } else if (category === 'perps') {
                 categoryPool = s3Total * 0.48;
-            } else if (category === 'evm') {
+            } else {
                 categoryPool = s3Total * 0.14;
             }
 
-            const poolVol = POOL_VOLUMES[category];
-            const share = volume / poolVol;
-            const combinedMult = tierMult * premium * infraMult;
-            const hype = categoryPool * share * combinedMult;
-            const usd = hype * params.hypePrice;
-            const fees = volume * FEE_RATES[category];
-
-            return { hype, usd, fees, share, combinedMult };
+            const share = volume / POOL_VOLUMES[category];
+            const hype = categoryPool * share * tierMult * premium * infraMult;
+            return { hype, usd: hype * params.hypePrice, fees: volume * FEE_RATES[category] };
         }
 
         function calculateAll(params) {
@@ -1669,64 +2090,51 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
             const native = calculateCategory('native', params.nativeVolume, params);
             const perps = calculateCategory('perps', params.perpsVolume, params);
             const evm = calculateCategory('evm', params.evmTVL, params);
-
             const totalHype = unit.hype + native.hype + perps.hype + evm.hype;
             const totalUsd = unit.usd + native.usd + perps.usd + evm.usd;
             const totalFees = unit.fees + native.fees + perps.fees + evm.fees;
-            const roi = totalFees > 0 ? totalUsd / totalFees : 0;
-
-            return { unit, native, perps, evm, totalHype, totalUsd, totalFees, roi };
+            return { unit, native, perps, evm, totalHype, totalUsd, totalFees, roi: totalFees > 0 ? totalUsd / totalFees : 0 };
         }
 
         function updateResults() {
-            const result = calculateAll(state);
-
-            $('totalUSD').textContent = formatUSD(result.totalUsd);
-            $('totalHYPE').textContent = '~' + formatHYPE(result.totalHype) + ' HYPE';
-
-            $('unitResult').textContent = formatUSD(result.unit.usd);
-            $('unitResult').classList.toggle('zero', result.unit.usd === 0);
-            
-            $('nativeResult').textContent = formatUSD(result.native.usd);
-            $('nativeResult').classList.toggle('zero', result.native.usd === 0);
-            
-            $('perpsResult').textContent = formatUSD(result.perps.usd);
-            $('perpsResult').classList.toggle('zero', result.perps.usd === 0);
-            
-            $('evmResult').textContent = formatUSD(result.evm.usd);
-            $('evmResult').classList.toggle('zero', result.evm.usd === 0);
-
-            $('statHype').textContent = formatHYPE(result.totalHype);
+            const r = calculateAll(state);
+            $('totalUSD').textContent = formatUSD(r.totalUsd);
+            $('totalHYPE').textContent = '~' + formatHYPE(r.totalHype) + ' HYPE';
+            $('unitResult').textContent = formatUSD(r.unit.usd);
+            $('nativeResult').textContent = formatUSD(r.native.usd);
+            $('perpsResult').textContent = formatUSD(r.perps.usd);
+            $('evmResult').textContent = formatUSD(r.evm.usd);
+            ['unitResult', 'nativeResult', 'perpsResult', 'evmResult'].forEach(id => {
+                $(id).classList.toggle('zero', parseFloat($(id).textContent.replace(/[$,KM]/g, '')) === 0);
+            });
+            $('statHype').textContent = formatHYPE(r.totalHype);
             $('statTier').textContent = TIER_MULTIPLIERS[state.tier] + 'x';
-            $('statFees').textContent = formatUSD(result.totalFees);
-            $('statROI').textContent = result.roi > 0 ? '~' + Math.round(result.roi) + 'x' : '-';
-
-            $('unitSpotCard').classList.toggle('has-value', state.unitVolume > 0);
-            $('nativeSpotCard').classList.toggle('has-value', state.nativeVolume > 0);
-            $('perpsCard').classList.toggle('has-value', state.perpsVolume > 0);
-            $('evmCard').classList.toggle('has-value', state.evmTVL > 0);
-
+            $('statFees').textContent = formatUSD(r.totalFees);
+            $('statROI').textContent = r.roi > 0 ? '~' + Math.round(r.roi) + 'x' : '-';
+            ['unitSpotCard', 'nativeSpotCard', 'perpsCard', 'evmCard'].forEach((id, i) => {
+                const vals = [state.unitVolume, state.nativeVolume, state.perpsVolume, state.evmTVL];
+                $(id).classList.toggle('has-value', vals[i] > 0);
+            });
             updateScenarios();
         }
 
         function updateScenarios() {
-            const tbody = $('scenarioBody');
-            tbody.innerHTML = SCENARIOS.map(s => {
-                const params = { ...state, s3Size: s.s3, hypePrice: s.price };
-                const result = calculateAll(params);
-                return `
-                    <tr class="${s.highlight ? 'highlight' : ''}">
-                        <td><span class="tag ${s.tag}">${s.name}</span></td>
-                        <td>${s.s3}%</td>
-                        <td>$${s.price}</td>
-                        <td>${formatUSD(result.totalUsd)}</td>
-                    </tr>
-                `;
+            $('scenarioBody').innerHTML = SCENARIOS.map(s => {
+                const r = calculateAll({ ...state, s3Size: s.s3, hypePrice: s.price });
+                return `<tr class="${s.highlight ? 'highlight' : ''}">
+                    <td><span class="tag ${s.tag}">${s.name}</span></td>
+                    <td>${s.s3}%</td><td>$${s.price}</td><td>${formatUSD(r.totalUsd)}</td></tr>`;
             }).join('');
         }
 
-        // Event Setup
         function init() {
+            // Check unlock status
+            if (checkUnlocked()) {
+                $('paywall').style.display = 'none';
+                $('methodologyContent').style.display = 'block';
+                $('premiumBadge').style.display = 'none';
+            }
+
             // Tab navigation
             document.querySelectorAll('.nav-tab').forEach(tab => {
                 tab.addEventListener('click', () => {
@@ -1737,13 +2145,12 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                 });
             });
 
-            // Volume inputs
-            $('unitVolume').addEventListener('input', e => { state.unitVolume = parseFloat(e.target.value) || 0; updateResults(); });
-            $('nativeVolume').addEventListener('input', e => { state.nativeVolume = parseFloat(e.target.value) || 0; updateResults(); });
-            $('perpsVolume').addEventListener('input', e => { state.perpsVolume = parseFloat(e.target.value) || 0; updateResults(); });
-            $('evmTVL').addEventListener('input', e => { state.evmTVL = parseFloat(e.target.value) || 0; updateResults(); });
+            // Inputs
+            ['unitVolume', 'nativeVolume', 'perpsVolume', 'evmTVL'].forEach(id => {
+                $(id).addEventListener('input', e => { state[id] = parseFloat(e.target.value) || 0; updateResults(); });
+            });
 
-            // Tier toggle
+            // Tier
             $('tierToggle').querySelectorAll('.toggle-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     $('tierToggle').querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
@@ -1753,35 +2160,26 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                 });
             });
 
-            // Infrastructure bonus
-            $('infraBonus').addEventListener('change', e => {
-                state.infraBonus = e.target.checked;
-                updateResults();
-            });
+            // Checkbox
+            $('infraBonus').addEventListener('change', e => { state.infraBonus = e.target.checked; updateResults(); });
 
-            // Range sliders
-            const ranges = [
-                { id: 's3Size', key: 's3Size', suffix: '%' },
-                { id: 'spotAlloc', key: 'spotAlloc', suffix: '%' },
-                { id: 'unitShare', key: 'unitShare', suffix: '%' },
-                { id: 'hypePrice', key: 'hypePrice', prefix: '$' }
-            ];
-
-            ranges.forEach(r => {
-                $(r.id).addEventListener('input', e => {
-                    state[r.key] = parseFloat(e.target.value);
-                    $(r.id + 'Value').textContent = (r.prefix || '') + e.target.value + (r.suffix || '');
+            // Ranges
+            [['s3Size', '%'], ['spotAlloc', '%'], ['unitShare', '%'], ['hypePrice', '$']].forEach(([id, sfx]) => {
+                $(id).addEventListener('input', e => {
+                    state[id] = parseFloat(e.target.value);
+                    $(id + 'Value').textContent = (sfx === '$' ? '$' : '') + e.target.value + (sfx === '%' ? '%' : '');
                     updateResults();
                 });
             });
 
-            // Collapsibles
-            ['params'].forEach(section => {
-                $(section + 'Header').addEventListener('click', () => {
-                    $(section + 'Header').classList.toggle('open');
-                    $(section + 'Content').classList.toggle('open');
-                });
+            // Collapsible
+            $('paramsHeader').addEventListener('click', () => {
+                $('paramsHeader').classList.toggle('open');
+                $('paramsContent').classList.toggle('open');
             });
+
+            // Enter key for access code
+            $('accessCode').addEventListener('keypress', e => { if (e.key === 'Enter') checkAccessCode(); });
 
             updateResults();
         }
