@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hyperliquid S3 Airdrop Estimator</title>
+    <meta name="description" content="Independent model for estimating potential Hyperliquid Season 3 airdrop allocations based on trading activity.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -62,6 +63,47 @@
             max-width: 1300px;
             margin: 0 auto;
             padding: 1.5rem;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .nav-tab {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.6rem 1.25rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-tab:hover {
+            border-color: var(--accent-green);
+            color: var(--text-primary);
+        }
+
+        .nav-tab.active {
+            background: var(--accent-green-dim);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         /* Header */
@@ -574,42 +616,171 @@
         .tag.base { background: var(--accent-green-dim); color: var(--accent-green); }
         .tag.bull { background: rgba(77, 163, 255, 0.2); color: var(--accent-blue); }
 
-        /* Methodology */
-        .methodology {
-            margin-top: 1.5rem;
+        /* Methodology Page Styles */
+        .methodology-page {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .methodology-card {
-            background: var(--bg-secondary);
+        .methodology-page .card {
+            margin-bottom: 1.5rem;
         }
 
-        .methodology-content {
-            font-size: 0.85rem;
+        .methodology-page h2 {
+            color: var(--accent-green);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .methodology-page h3 {
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin: 1.25rem 0 0.5rem;
+        }
+
+        .methodology-page p {
             color: var(--text-secondary);
+            margin-bottom: 0.75rem;
             line-height: 1.7;
         }
 
-        .methodology-content h3 {
-            color: var(--text-primary);
-            font-size: 0.95rem;
-            margin: 1rem 0 0.4rem;
+        .methodology-page ul {
+            color: var(--text-secondary);
+            margin: 0.75rem 0;
+            padding-left: 1.5rem;
         }
 
-        .methodology-content h3:first-child {
-            margin-top: 0;
+        .methodology-page li {
+            margin-bottom: 0.5rem;
         }
 
         .formula-box {
             background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 0.75rem;
-            margin: 0.75rem 0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             overflow-x: auto;
+            color: var(--accent-green);
         }
 
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+
+        .data-table th {
+            background: var(--bg-tertiary);
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .data-table tr:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .highlight-box {
+            background: var(--accent-green-dim);
+            border: 1px solid var(--accent-green);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .highlight-box p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .warning-box {
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .warning-box p {
+            color: var(--accent-red);
+            margin: 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .info-card {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .info-card-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-card-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        .info-card-note {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Collapsible */
+        .collapsible-header {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .collapsible-header .arrow {
+            transition: transform 0.2s;
+        }
+
+        .collapsible-header.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-content {
+            display: none;
+            padding-top: 1rem;
+        }
+
+        .collapsible-content.open {
+            display: block;
+        }
+
+        /* Pool info */
         .pool-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -650,31 +821,6 @@
             color: var(--accent-green);
             text-decoration: none;
         }
-
-        /* Collapsible */
-        .collapsible-header {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .collapsible-header .arrow {
-            transition: transform 0.2s;
-        }
-
-        .collapsible-header.open .arrow {
-            transform: rotate(180deg);
-        }
-
-        .collapsible-content {
-            display: none;
-            padding-top: 1rem;
-        }
-
-        .collapsible-content.open {
-            display: block;
-        }
     </style>
 </head>
 <body>
@@ -690,302 +836,734 @@
             </div>
         </header>
 
-        <div class="main-grid">
-            <!-- Input Section -->
-            <div class="input-section">
-                <div class="card">
-                    <h2 class="card-title">
-                        <span class="icon">📊</span>
-                        Your Activity (Enter volume for each category)
-                    </h2>
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="calculator">📊 Calculator</button>
+            <button class="nav-tab" data-tab="methodology">📚 Methodology</button>
+        </div>
 
-                    <div class="activity-grid">
-                        <!-- Unit Spot -->
-                        <div class="activity-card" id="unitSpotCard">
-                            <div class="activity-header">
-                                <div class="activity-icon unit">🔗</div>
-                                <div>
-                                    <div class="activity-name">Unit Spot</div>
-                                    <div class="activity-desc">BTC, ETH, SOL via Unit bridge</div>
+        <!-- Calculator Tab -->
+        <div class="tab-content active" id="calculator-tab">
+            <div class="main-grid">
+                <!-- Input Section -->
+                <div class="input-section">
+                    <div class="card">
+                        <h2 class="card-title">
+                            <span class="icon">📊</span>
+                            Your Activity (Enter volume for each category)
+                        </h2>
+
+                        <div class="activity-grid">
+                            <!-- Unit Spot -->
+                            <div class="activity-card" id="unitSpotCard">
+                                <div class="activity-header">
+                                    <div class="activity-icon unit">🔗</div>
+                                    <div>
+                                        <div class="activity-name">Unit Spot</div>
+                                        <div class="activity-desc">BTC, ETH, SOL via Unit bridge</div>
+                                    </div>
+                                </div>
+                                <div class="activity-inputs">
+                                    <div class="input-row">
+                                        <label>Volume</label>
+                                        <div class="input-wrapper">
+                                            <input type="number" id="unitVolume" value="0" min="0" step="1000000">
+                                            <span class="input-suffix">USD</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="activity-inputs">
-                                <div class="input-row">
-                                    <label>Volume</label>
-                                    <div class="input-wrapper">
-                                        <input type="number" id="unitVolume" value="0" min="0" step="1000000" data-category="unit">
-                                        <span class="input-suffix">USD</span>
+
+                            <!-- Native Spot -->
+                            <div class="activity-card" id="nativeSpotCard">
+                                <div class="activity-header">
+                                    <div class="activity-icon native">💎</div>
+                                    <div>
+                                        <div class="activity-name">Native Spot</div>
+                                        <div class="activity-desc">HYPE, PURR, HIP-1 tokens</div>
+                                    </div>
+                                </div>
+                                <div class="activity-inputs">
+                                    <div class="input-row">
+                                        <label>Volume</label>
+                                        <div class="input-wrapper">
+                                            <input type="number" id="nativeVolume" value="0" min="0" step="1000000">
+                                            <span class="input-suffix">USD</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Perps -->
+                            <div class="activity-card" id="perpsCard">
+                                <div class="activity-header">
+                                    <div class="activity-icon perps">📈</div>
+                                    <div>
+                                        <div class="activity-name">Perps Trading</div>
+                                        <div class="activity-desc">Perpetual futures volume</div>
+                                    </div>
+                                </div>
+                                <div class="activity-inputs">
+                                    <div class="input-row">
+                                        <label>Volume</label>
+                                        <div class="input-wrapper">
+                                            <input type="number" id="perpsVolume" value="0" min="0" step="1000000">
+                                            <span class="input-suffix">USD</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- HyperEVM -->
+                            <div class="activity-card" id="evmCard">
+                                <div class="activity-header">
+                                    <div class="activity-icon evm">⚡</div>
+                                    <div>
+                                        <div class="activity-name">HyperEVM</div>
+                                        <div class="activity-desc">DeFi activity, TVL contribution</div>
+                                    </div>
+                                </div>
+                                <div class="activity-inputs">
+                                    <div class="input-row">
+                                        <label>TVL</label>
+                                        <div class="input-wrapper">
+                                            <input type="number" id="evmTVL" value="0" min="0" step="1000">
+                                            <span class="input-suffix">USD</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Native Spot -->
-                        <div class="activity-card" id="nativeSpotCard">
-                            <div class="activity-header">
-                                <div class="activity-icon native">💎</div>
-                                <div>
-                                    <div class="activity-name">Native Spot</div>
-                                    <div class="activity-desc">HYPE, PURR, HIP-1 tokens</div>
+                        <div class="settings-row">
+                            <div class="setting-group">
+                                <span class="setting-label">Your Estimated Tier</span>
+                                <div class="toggle-group" id="tierToggle">
+                                    <button class="toggle-btn" data-value="S">S (0.5%)</button>
+                                    <button class="toggle-btn active" data-value="A">A (2%)</button>
+                                    <button class="toggle-btn" data-value="B">B (10%)</button>
+                                    <button class="toggle-btn" data-value="C">C (50%)</button>
                                 </div>
                             </div>
-                            <div class="activity-inputs">
-                                <div class="input-row">
-                                    <label>Volume</label>
-                                    <div class="input-wrapper">
-                                        <input type="number" id="nativeVolume" value="0" min="0" step="1000000" data-category="native">
-                                        <span class="input-suffix">USD</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Perps -->
-                        <div class="activity-card" id="perpsCard">
-                            <div class="activity-header">
-                                <div class="activity-icon perps">📈</div>
-                                <div>
-                                    <div class="activity-name">Perps Trading</div>
-                                    <div class="activity-desc">Perpetual futures volume</div>
-                                </div>
-                            </div>
-                            <div class="activity-inputs">
-                                <div class="input-row">
-                                    <label>Volume</label>
-                                    <div class="input-wrapper">
-                                        <input type="number" id="perpsVolume" value="0" min="0" step="1000000" data-category="perps">
-                                        <span class="input-suffix">USD</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- HyperEVM -->
-                        <div class="activity-card" id="evmCard">
-                            <div class="activity-header">
-                                <div class="activity-icon evm">⚡</div>
-                                <div>
-                                    <div class="activity-name">HyperEVM</div>
-                                    <div class="activity-desc">DeFi activity, TVL contribution</div>
-                                </div>
-                            </div>
-                            <div class="activity-inputs">
-                                <div class="input-row">
-                                    <label>TVL</label>
-                                    <div class="input-wrapper">
-                                        <input type="number" id="evmTVL" value="0" min="0" step="1000" data-category="evm">
-                                        <span class="input-suffix">USD</span>
-                                    </div>
-                                </div>
+                            <div class="setting-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="infraBonus" checked>
+                                    Infrastructure Bonus (UETH/USDC critical pair)
+                                </label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="settings-row">
-                        <div class="setting-group">
-                            <span class="setting-label">Your Estimated Tier</span>
-                            <div class="toggle-group" id="tierToggle">
-                                <button class="toggle-btn" data-value="S">S (0.5%)</button>
-                                <button class="toggle-btn active" data-value="A">A (2%)</button>
-                                <button class="toggle-btn" data-value="B">B (10%)</button>
-                                <button class="toggle-btn" data-value="C">C (50%)</button>
-                            </div>
+                    <!-- Model Parameters -->
+                    <div class="card" style="margin-top: 1rem;">
+                        <div class="collapsible-header" id="paramsHeader">
+                            <h2 class="card-title" style="margin-bottom: 0;">
+                                <span class="icon">⚙️</span>
+                                Model Parameters
+                            </h2>
+                            <span class="arrow">▼</span>
                         </div>
-                        <div class="setting-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="infraBonus" checked>
-                                Infrastructure Bonus (UETH/USDC critical pair)
-                            </label>
+                        <div class="collapsible-content" id="paramsContent">
+                            <div class="params-grid">
+                                <div class="range-container">
+                                    <div class="range-header">
+                                        <span class="range-label">S3 Total Size</span>
+                                        <span class="range-value" id="s3SizeValue">7%</span>
+                                    </div>
+                                    <input type="range" id="s3Size" min="4" max="12" value="7" step="0.5">
+                                </div>
+
+                                <div class="range-container">
+                                    <div class="range-header">
+                                        <span class="range-label">Spot % of S3</span>
+                                        <span class="range-value" id="spotAllocValue">16%</span>
+                                    </div>
+                                    <input type="range" id="spotAlloc" min="8" max="28" value="16" step="1">
+                                </div>
+
+                                <div class="range-container">
+                                    <div class="range-header">
+                                        <span class="range-label">Unit % of Spot</span>
+                                        <span class="range-value" id="unitShareValue">55%</span>
+                                    </div>
+                                    <input type="range" id="unitShare" min="40" max="70" value="55" step="5">
+                                </div>
+
+                                <div class="range-container">
+                                    <div class="range-header">
+                                        <span class="range-label">HYPE Price</span>
+                                        <span class="range-value" id="hypePriceValue">$35</span>
+                                    </div>
+                                    <input type="range" id="hypePrice" min="15" max="80" value="35" step="1">
+                                </div>
+                            </div>
+
+                            <div class="pool-info" style="margin-top: 1rem;">
+                                <div class="pool-item">
+                                    <div class="pool-name">Unit Pool (filtered)</div>
+                                    <div class="pool-vol">$30B</div>
+                                </div>
+                                <div class="pool-item">
+                                    <div class="pool-name">Native Pool (filtered)</div>
+                                    <div class="pool-vol">$15B</div>
+                                </div>
+                                <div class="pool-item">
+                                    <div class="pool-name">Perps Pool (filtered)</div>
+                                    <div class="pool-vol">$2.5T</div>
+                                </div>
+                                <div class="pool-item">
+                                    <div class="pool-name">EVM TVL</div>
+                                    <div class="pool-vol">$2B</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Model Parameters -->
-                <div class="card" style="margin-top: 1rem;">
-                    <div class="collapsible-header" id="paramsHeader">
-                        <h2 class="card-title" style="margin-bottom: 0;">
-                            <span class="icon">⚙️</span>
-                            Model Parameters
+                <!-- Results Section -->
+                <div class="results-section">
+                    <div class="card results-card">
+                        <h2 class="card-title">
+                            <span class="icon">💰</span>
+                            Total Estimated Allocation
                         </h2>
-                        <span class="arrow">▼</span>
-                    </div>
-                    <div class="collapsible-content" id="paramsContent">
-                        <div class="params-grid">
-                            <div class="range-container">
-                                <div class="range-header">
-                                    <span class="range-label">S3 Total Size</span>
-                                    <span class="range-value" id="s3SizeValue">7%</span>
-                                </div>
-                                <input type="range" id="s3Size" min="4" max="12" value="7" step="0.5">
-                            </div>
 
-                            <div class="range-container">
-                                <div class="range-header">
-                                    <span class="range-label">Spot % of S3</span>
-                                    <span class="range-value" id="spotAllocValue">16%</span>
-                                </div>
-                                <input type="range" id="spotAlloc" min="8" max="28" value="16" step="1">
-                            </div>
+                        <div class="result-main">
+                            <div class="result-label">Combined Value</div>
+                            <div class="result-value" id="totalUSD">$0</div>
+                            <div class="result-hype" id="totalHYPE">~0 HYPE</div>
+                        </div>
 
-                            <div class="range-container">
-                                <div class="range-header">
-                                    <span class="range-label">Unit % of Spot</span>
-                                    <span class="range-value" id="unitShareValue">55%</span>
+                        <div class="breakdown-section">
+                            <div class="breakdown-title">Breakdown by Category</div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-cat">
+                                    <span class="breakdown-dot unit"></span>
+                                    Unit Spot
                                 </div>
-                                <input type="range" id="unitShare" min="40" max="70" value="55" step="5">
+                                <div class="breakdown-value" id="unitResult">$0</div>
                             </div>
-
-                            <div class="range-container">
-                                <div class="range-header">
-                                    <span class="range-label">HYPE Price</span>
-                                    <span class="range-value" id="hypePriceValue">$35</span>
+                            <div class="breakdown-item">
+                                <div class="breakdown-cat">
+                                    <span class="breakdown-dot native"></span>
+                                    Native Spot
                                 </div>
-                                <input type="range" id="hypePrice" min="15" max="80" value="35" step="1">
+                                <div class="breakdown-value" id="nativeResult">$0</div>
+                            </div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-cat">
+                                    <span class="breakdown-dot perps"></span>
+                                    Perps
+                                </div>
+                                <div class="breakdown-value" id="perpsResult">$0</div>
+                            </div>
+                            <div class="breakdown-item">
+                                <div class="breakdown-cat">
+                                    <span class="breakdown-dot evm"></span>
+                                    HyperEVM
+                                </div>
+                                <div class="breakdown-value" id="evmResult">$0</div>
                             </div>
                         </div>
 
-                        <div class="pool-info" style="margin-top: 1rem;">
-                            <div class="pool-item">
-                                <div class="pool-name">Unit Pool (filtered)</div>
-                                <div class="pool-vol">$30B</div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-label">Total HYPE</div>
+                                <div class="stat-value green" id="statHype">0</div>
                             </div>
-                            <div class="pool-item">
-                                <div class="pool-name">Native Pool (filtered)</div>
-                                <div class="pool-vol">$15B</div>
+                            <div class="stat-item">
+                                <div class="stat-label">Tier Multiplier</div>
+                                <div class="stat-value blue" id="statTier">1.4x</div>
                             </div>
-                            <div class="pool-item">
-                                <div class="pool-name">Perps Pool (filtered)</div>
-                                <div class="pool-vol">$2.5T</div>
+                            <div class="stat-item">
+                                <div class="stat-label">Est. Fees Paid</div>
+                                <div class="stat-value purple" id="statFees">$0</div>
                             </div>
-                            <div class="pool-item">
-                                <div class="pool-name">EVM TVL</div>
-                                <div class="pool-vol">$2B</div>
+                            <div class="stat-item">
+                                <div class="stat-label">ROI</div>
+                                <div class="stat-value yellow" id="statROI">0x</div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Methodology (Collapsed by default) -->
-                <div class="card methodology" style="margin-top: 1rem;">
-                    <div class="collapsible-header" id="methodHeader">
-                        <h2 class="card-title" style="margin-bottom: 0;">
-                            <span class="icon">🔬</span>
-                            Model Methodology
+                    <!-- Scenario Table -->
+                    <div class="card scenario-card">
+                        <h2 class="card-title">
+                            <span class="icon">📈</span>
+                            Scenarios
                         </h2>
-                        <span class="arrow">▼</span>
-                    </div>
-                    <div class="collapsible-content" id="methodContent">
-                        <div class="methodology-content">
-                            <h3>Core Formula (per category)</h3>
-                            <div class="formula-box">
-HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier × Bonuses
-                            </div>
-
-                            <h3>Tier Multipliers</h3>
-                            <div class="formula-box">
-S (Top 0.5%): 1.75x | A (Top 2%): 1.40x | B (Top 10%): 1.15x | C (Top 50%): 1.00x
-                            </div>
-
-                            <h3>Category Premiums</h3>
-                            <p>Unit Spot: 1.5x (infrastructure critical) | Infrastructure Bonus: 1.2x (UETH/USDC)</p>
-
-                            <h3>Wash Trading Filters</h3>
-                            <div class="formula-box">
-HYPE/USDC: 50-70% filtered | Native: 30-50% | Unit: 10-20% | Perps: 15-25%
-                            </div>
-
-                            <h3>S3 Category Split (Base Case)</h3>
-                            <p>Perps: 48% | Spot: 16% (Unit 55%, Native 45%) | EVM: 14% | Staking: 10% | HIP-3: 7% | HLP: 5%</p>
-                        </div>
+                        <table class="scenario-table">
+                            <thead>
+                                <tr>
+                                    <th>Scenario</th>
+                                    <th>S3</th>
+                                    <th>Price</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody id="scenarioBody">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Results Section -->
-            <div class="results-section">
-                <div class="card results-card">
-                    <h2 class="card-title">
-                        <span class="icon">💰</span>
-                        Total Estimated Allocation
-                    </h2>
-
-                    <div class="result-main">
-                        <div class="result-label">Combined Value</div>
-                        <div class="result-value" id="totalUSD">$0</div>
-                        <div class="result-hype" id="totalHYPE">~0 HYPE</div>
+        <!-- Methodology Tab -->
+        <div class="tab-content" id="methodology-tab">
+            <div class="methodology-page">
+                
+                <!-- Overview -->
+                <div class="card">
+                    <h2>📋 Model Overview</h2>
+                    <p>This calculator provides an independent estimate of potential Hyperliquid Season 3 (S3) airdrop allocations. The model is based on analysis of the Genesis airdrop precedent, current platform metrics, game theory, and incentive design principles.</p>
+                    
+                    <div class="warning-box">
+                        <p><strong>Important:</strong> This is a speculative model. Actual S3 mechanics are unknown and may differ significantly from these estimates. This is not financial advice.</p>
                     </div>
 
-                    <div class="breakdown-section">
-                        <div class="breakdown-title">Breakdown by Category</div>
-                        <div class="breakdown-item">
-                            <div class="breakdown-cat">
-                                <span class="breakdown-dot unit"></span>
-                                Unit Spot
-                            </div>
-                            <div class="breakdown-value" id="unitResult">$0</div>
-                        </div>
-                        <div class="breakdown-item">
-                            <div class="breakdown-cat">
-                                <span class="breakdown-dot native"></span>
-                                Native Spot
-                            </div>
-                            <div class="breakdown-value" id="nativeResult">$0</div>
-                        </div>
-                        <div class="breakdown-item">
-                            <div class="breakdown-cat">
-                                <span class="breakdown-dot perps"></span>
-                                Perps
-                            </div>
-                            <div class="breakdown-value" id="perpsResult">$0</div>
-                        </div>
-                        <div class="breakdown-item">
-                            <div class="breakdown-cat">
-                                <span class="breakdown-dot evm"></span>
-                                HyperEVM
-                            </div>
-                            <div class="breakdown-value" id="evmResult">$0</div>
-                        </div>
-                    </div>
-
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-label">Total HYPE</div>
-                            <div class="stat-value green" id="statHype">0</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-label">Tier Multiplier</div>
-                            <div class="stat-value blue" id="statTier">1.4x</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-label">Est. Fees Paid</div>
-                            <div class="stat-value purple" id="statFees">$0</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-label">ROI</div>
-                            <div class="stat-value yellow" id="statROI">0x</div>
-                        </div>
+                    <h3>Core Formula</h3>
+                    <div class="formula-box">
+Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) × Tier Multiplier × Category Premium × Infrastructure Bonus
                     </div>
                 </div>
 
-                <!-- Scenario Table -->
-                <div class="card scenario-card">
-                    <h2 class="card-title">
-                        <span class="icon">📈</span>
-                        Scenarios
-                    </h2>
-                    <table class="scenario-table">
+                <!-- Tokenomics -->
+                <div class="card">
+                    <h2>🪙 HYPE Tokenomics</h2>
+                    <p>Understanding the token distribution is critical for estimating S3 size.</p>
+                    
+                    <table class="data-table">
                         <thead>
                             <tr>
-                                <th>Scenario</th>
-                                <th>S3</th>
-                                <th>Price</th>
-                                <th>Value</th>
+                                <th>Allocation</th>
+                                <th>Amount</th>
+                                <th>% of Supply</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody id="scenarioBody">
+                        <tbody>
+                            <tr>
+                                <td>Future Emissions & Community</td>
+                                <td>388,880,000 HYPE</td>
+                                <td>38.888%</td>
+                                <td>Available for S3+</td>
+                            </tr>
+                            <tr>
+                                <td>Genesis Distribution</td>
+                                <td>310,000,000 HYPE</td>
+                                <td>31.0%</td>
+                                <td>Distributed Nov 29, 2024</td>
+                            </tr>
+                            <tr>
+                                <td>Core Contributors</td>
+                                <td>238,000,000 HYPE</td>
+                                <td>23.8%</td>
+                                <td>Locked until Nov 2025, then 24mo vest</td>
+                            </tr>
+                            <tr>
+                                <td>Hyper Foundation</td>
+                                <td>60,000,000 HYPE</td>
+                                <td>6.0%</td>
+                                <td>Foundation treasury</td>
+                            </tr>
+                            <tr>
+                                <td>Community Grants</td>
+                                <td>3,000,000 HYPE</td>
+                                <td>0.3%</td>
+                                <td>Ongoing</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="highlight-box">
+                        <p><strong>Key Insight:</strong> With 388.88M HYPE available for community emissions, Hyperliquid has substantial runway for S3 and future seasons. At 7% for S3, they would still retain ~32% for S4, S5, etc.</p>
+                    </div>
+                </div>
+
+                <!-- S3 Size Estimation -->
+                <div class="card">
+                    <h2>📊 S3 Size Estimation</h2>
+                    <p>We estimate S3 will be 5-9% of total supply, with 7% as the base case.</p>
+
+                    <h3>Reasoning</h3>
+                    <ul>
+                        <li><strong>Competitive positioning:</strong> Jupiter S2 was ~$700M, dYdX genesis was ~$500M. Hyperliquid needs to remain competitive.</li>
+                        <li><strong>Team unlock timing:</strong> Nov 2025 team unlock creates sell pressure. A meaningful S3 can offset this narrative.</li>
+                        <li><strong>Dynamic sizing:</strong> Hyperliquid likely targets a notional USD value (~$2-3B) rather than fixed token amount.</li>
+                    </ul>
+
+                    <h3>Dynamic Pricing Model</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>HYPE Price</th>
+                                <th>Target Notional</th>
+                                <th>Implied S3 %</th>
+                                <th>HYPE Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>$20</td><td>$2.5B</td><td>12.5%</td><td>125M</td></tr>
+                            <tr><td>$25</td><td>$2.5B</td><td>10%</td><td>100M</td></tr>
+                            <tr><td>$30</td><td>$2.5B</td><td>8.3%</td><td>83M</td></tr>
+                            <tr><td>$35</td><td>$2.5B</td><td>7.1%</td><td>71M</td></tr>
+                            <tr><td>$50</td><td>$2.5B</td><td>5%</td><td>50M</td></tr>
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Category Breakdown -->
+                <div class="card">
+                    <h2>🗂️ Category Breakdown</h2>
+                    <p>S3 allocations will likely be split across multiple activity categories.</p>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>% of S3</th>
+                                <th>Rationale</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Perps Trading</td>
+                                <td>45-50%</td>
+                                <td>Core revenue driver, largest user base</td>
+                            </tr>
+                            <tr>
+                                <td>Spot Trading (Total)</td>
+                                <td>15-18%</td>
+                                <td>Strategic priority, infrastructure for HIP-3</td>
+                            </tr>
+                            <tr>
+                                <td>→ Unit Spot</td>
+                                <td>55% of spot</td>
+                                <td>Cross-chain infrastructure, collateral backbone</td>
+                            </tr>
+                            <tr>
+                                <td>→ Native Spot</td>
+                                <td>45% of spot</td>
+                                <td>HYPE/PURR ecosystem engagement</td>
+                            </tr>
+                            <tr>
+                                <td>HyperEVM Activity</td>
+                                <td>12-15%</td>
+                                <td>Future growth vector, ecosystem expansion</td>
+                            </tr>
+                            <tr>
+                                <td>Staking/Loyalty</td>
+                                <td>8-10%</td>
+                                <td>Decentralization, long-term holders</td>
+                            </tr>
+                            <tr>
+                                <td>HIP-3 Deployers</td>
+                                <td>5-8%</td>
+                                <td>Bootstrap permissionless markets</td>
+                            </tr>
+                            <tr>
+                                <td>HLP Providers</td>
+                                <td>4-6%</td>
+                                <td>Core liquidity infrastructure</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Why Spot Gets 15-18% (vs ~5% of Revenue)</h3>
+                    <p>While spot trading generates only 5-10% of platform revenue, there are strategic reasons to over-index:</p>
+                    <ul>
+                        <li><strong>Infrastructure dependency:</strong> HIP-3 requires deep spot for hedging and settlement</li>
+                        <li><strong>Collateral integrity:</strong> Thin spot books = liquidation cascade risk</li>
+                        <li><strong>Marginal utility:</strong> Additional spot liquidity has higher marginal value than additional perps liquidity</li>
+                        <li><strong>Capital opportunity cost:</strong> Spot LPs lock real capital without leverage, requiring compensation</li>
+                    </ul>
+                </div>
+
+                <!-- Tier Multipliers -->
+                <div class="card">
+                    <h2>🏆 Tier Multipliers</h2>
+                    <p>Based on Genesis precedent, allocations are likely tiered by percentile ranking.</p>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Tier</th>
+                                <th>Percentile</th>
+                                <th>Multiplier</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>S</strong></td>
+                                <td>Top 0.5%</td>
+                                <td>1.75x</td>
+                                <td>Institutional MMs, mega-whales</td>
+                            </tr>
+                            <tr>
+                                <td><strong>A</strong></td>
+                                <td>Top 2%</td>
+                                <td>1.40x</td>
+                                <td>High-volume consistent traders</td>
+                            </tr>
+                            <tr>
+                                <td><strong>B</strong></td>
+                                <td>Top 10%</td>
+                                <td>1.15x</td>
+                                <td>Active power users</td>
+                            </tr>
+                            <tr>
+                                <td><strong>C</strong></td>
+                                <td>Top 50%</td>
+                                <td>1.00x</td>
+                                <td>Regular users (baseline)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>D</strong></td>
+                                <td>Bottom 50%</td>
+                                <td>0.75x</td>
+                                <td>Casual/minimal users</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Category Premiums -->
+                <div class="card">
+                    <h2>⭐ Category Premiums & Bonuses</h2>
+                    
+                    <h3>Unit Spot Premium: 1.5x</h3>
+                    <p>Unit spot volume is weighted higher than native spot because:</p>
+                    <ul>
+                        <li>Enables cross-chain deposits (BTC, ETH, SOL without wrapping)</li>
+                        <li>Critical for HIP-3 hedging and delta management</li>
+                        <li>Backbone of unified-margin collateral system</li>
+                        <li>Lower farming/wash trading rates than native spot</li>
+                    </ul>
+
+                    <h3>Infrastructure Bonus: 1.2x</h3>
+                    <p>Applies to critical infrastructure pairs like UETH/USDC:</p>
+                    <ul>
+                        <li>Primary hedging venue for HIP-3 synthetic positions</li>
+                        <li>Essential for liquidation safety with $15B+ perps OI</li>
+                        <li>Consistent uptime and tight spreads rewarded</li>
+                    </ul>
+
+                    <div class="formula-box">
+Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) = 2.52x for top Unit spot MMs
+                    </div>
+                </div>
+
+                <!-- Wash Trading -->
+                <div class="card">
+                    <h2>🧹 Wash Trading Filters</h2>
+                    <p>Hyperliquid will likely filter significant portions of volume as wash trading, based on Genesis precedent.</p>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Estimated Filter Rate</th>
+                                <th>Rationale</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>HYPE/USDC</td>
+                                <td>50-70%</td>
+                                <td>Highest farming target, easy to self-trade</td>
+                            </tr>
+                            <tr>
+                                <td>Native Spot (other)</td>
+                                <td>30-50%</td>
+                                <td>Moderate farming, smaller token pairs</td>
+                            </tr>
+                            <tr>
+                                <td>Unit Spot</td>
+                                <td>10-20%</td>
+                                <td>Requires real capital, higher barrier</td>
+                            </tr>
+                            <tr>
+                                <td>Perps</td>
+                                <td>15-25%</td>
+                                <td>Some self-trading, but riskier to farm</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Detection Methods</h3>
+                    <ul>
+                        <li>Self-matching detection (same wallet both sides)</li>
+                        <li>Circular trading patterns (A→B→C→A loops)</li>
+                        <li>Abnormal maker/taker ratios</li>
+                        <li>Fee-to-volume anomalies</li>
+                        <li>Timing pattern analysis</li>
+                        <li>Linked wallet clustering</li>
+                    </ul>
+
+                    <h3>Legitimacy Signals</h3>
+                    <ul>
+                        <li>High maker volume ratio (providing liquidity, not taking)</li>
+                        <li>Real PNL variance (losses indicate genuine counterparties)</li>
+                        <li>Consistent activity over time (not flash farming)</li>
+                        <li>Reasonable spreads and order book depth</li>
+                        <li>Fees paid proportional to volume</li>
+                    </ul>
+                </div>
+
+                <!-- Pool Volumes -->
+                <div class="card">
+                    <h2>📈 Pool Volume Estimates</h2>
+                    <p>These are the estimated qualified volumes after wash trading filters.</p>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <div class="info-card-label">Unit Spot Pool</div>
+                            <div class="info-card-value">$30B</div>
+                            <div class="info-card-note">~$34B raw, 10-15% filtered</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-label">Native Spot Pool</div>
+                            <div class="info-card-value">$15B</div>
+                            <div class="info-card-note">~$90B raw, 50-70% filtered</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-label">Perps Pool</div>
+                            <div class="info-card-value">$2.5T</div>
+                            <div class="info-card-note">~$3.3T raw, 20% filtered</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-label">HyperEVM TVL</div>
+                            <div class="info-card-value">$2B</div>
+                            <div class="info-card-note">Time-weighted average</div>
+                        </div>
+                    </div>
+
+                    <h3>Data Sources</h3>
+                    <ul>
+                        <li><a href="https://hyperdash.info" target="_blank">hyperdash.info</a> - Unit spot volume tracking</li>
+                        <li><a href="https://artemis.xyz" target="_blank">Artemis</a> - Cross-platform volume comparison</li>
+                        <li><a href="https://stats.hyperliquid.xyz" target="_blank">Hyperliquid Stats</a> - Official platform metrics</li>
+                    </ul>
+                </div>
+
+                <!-- Probability Assessment -->
+                <div class="card">
+                    <h2>🎲 S3 Probability Assessment</h2>
+                    
+                    <h3>Will S3 Happen?</h3>
+                    <p><strong>Estimated probability: 70-80% by Q1 2026</strong></p>
+
+                    <h3>Supporting Factors</h3>
+                    <ul>
+                        <li>38.888% community allocation remaining (substantial runway)</li>
+                        <li>Genesis precedent set expectations for ongoing rewards</li>
+                        <li>Competitive pressure from Jupiter, dYdX, Binance incentive programs</li>
+                        <li>HIP-3 launch needs deployer and liquidity incentives</li>
+                        <li>HyperEVM ecosystem expansion requires user acquisition</li>
+                    </ul>
+
+                    <h3>Risk Factors</h3>
+                    <ul>
+                        <li>Nov 2025 team unlock creates dilution concerns</li>
+                        <li>HYPE price down ~45% from ATH may affect timing</li>
+                        <li>Could restructure as continuous emissions vs discrete drop</li>
+                        <li>HyperEVM might get separate airdrop (splitting allocations)</li>
+                    </ul>
+
+                    <h3>Timing Estimate</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Timing</th>
+                                <th>Probability</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Q4 2025 snapshot, Q1 2026 claim</td><td>50%</td></tr>
+                            <tr><td>Q1 2026 snapshot, Q2 2026 claim</td><td>25%</td></tr>
+                            <tr><td>Delayed to H2 2026</td><td>20%</td></tr>
+                            <tr><td>Restructured (continuous emissions)</td><td>5%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Key Uncertainties -->
+                <div class="card">
+                    <h2>⚠️ Key Uncertainties</h2>
+                    <p>This model contains significant uncertainty. The following factors have the highest impact on accuracy:</p>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Factor</th>
+                                <th>Impact</th>
+                                <th>Uncertainty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>S3 total size</td>
+                                <td>Very High</td>
+                                <td>Could be 4-12% of supply</td>
+                            </tr>
+                            <tr>
+                                <td>Spot allocation %</td>
+                                <td>High</td>
+                                <td>Could be 10-25% of S3</td>
+                            </tr>
+                            <tr>
+                                <td>Unit vs Native split</td>
+                                <td>Medium</td>
+                                <td>May not be separated at all</td>
+                            </tr>
+                            <tr>
+                                <td>Unit premium existence</td>
+                                <td>High</td>
+                                <td>Speculative - may be 1.0-2.0x</td>
+                            </tr>
+                            <tr>
+                                <td>Wash trading filter rates</td>
+                                <td>Medium</td>
+                                <td>Methodology unknown</td>
+                            </tr>
+                            <tr>
+                                <td>Tier multiplier structure</td>
+                                <td>Medium</td>
+                                <td>May differ from Genesis</td>
+                            </tr>
+                            <tr>
+                                <td>Vesting requirements</td>
+                                <td>Low (value)</td>
+                                <td>Likely 30% upfront, 70% vested</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="warning-box">
+                        <p><strong>Confidence Range:</strong> For any individual estimate, the actual outcome could realistically be 0.3x to 3x the calculated value. Use this tool for directional guidance, not precise predictions.</p>
+                    </div>
+                </div>
+
+                <!-- About -->
+                <div class="card">
+                    <h2>ℹ️ About This Model</h2>
+                    <p>This calculator was developed through independent analysis of:</p>
+                    <ul>
+                        <li>Genesis airdrop distribution patterns and mechanics</li>
+                        <li>Platform growth metrics and trading volume data</li>
+                        <li>HYPE tokenomics and emission schedules</li>
+                        <li>Competitive landscape (Jupiter, dYdX, other DEX incentives)</li>
+                        <li>Game theory and incentive design principles</li>
+                        <li>Community research and third-party models</li>
+                    </ul>
+
+                    <p><strong>Not affiliated with Hyperliquid.</strong> This is an independent community tool for educational purposes.</p>
+
+                    <p>Last updated: November 2025</p>
+                </div>
+
             </div>
         </div>
 
@@ -1002,17 +1580,17 @@ HYPE/USDC: 50-70% filtered | Native: 30-50% | Unit: 10-20% | Perps: 15-25%
         const TIER_MULTIPLIERS = { 'S': 1.75, 'A': 1.40, 'B': 1.15, 'C': 1.00 };
 
         const POOL_VOLUMES = {
-            unit: 30_000_000_000,      // $30B after wash filter
-            native: 15_000_000_000,    // $15B after heavy filtering
-            perps: 2_500_000_000_000,  // $2.5T
-            evm: 2_000_000_000         // $2B TVL
+            unit: 30_000_000_000,
+            native: 15_000_000_000,
+            perps: 2_500_000_000_000,
+            evm: 2_000_000_000
         };
 
         const FEE_RATES = {
-            unit: 0.001,    // 0.1%
-            native: 0.001,  // 0.1%
-            perps: 0.00035, // 0.035%
-            evm: 0          // No fees for TVL
+            unit: 0.001,
+            native: 0.001,
+            perps: 0.00035,
+            evm: 0
         };
 
         const SCENARIOS = [
@@ -1065,7 +1643,7 @@ HYPE/USDC: 50-70% filtered | Native: 30-50% | Unit: 10-20% | Perps: 15-25%
             if (category === 'unit') {
                 const spotPool = s3Total * (params.spotAlloc / 100);
                 categoryPool = spotPool * (params.unitShare / 100);
-                premium = 1.5; // Unit premium
+                premium = 1.5;
                 if (params.infraBonus) infraMult = 1.2;
             } else if (category === 'native') {
                 const spotPool = s3Total * (params.spotAlloc / 100);
@@ -1103,11 +1681,9 @@ HYPE/USDC: 50-70% filtered | Native: 30-50% | Unit: 10-20% | Perps: 15-25%
         function updateResults() {
             const result = calculateAll(state);
 
-            // Main totals
             $('totalUSD').textContent = formatUSD(result.totalUsd);
             $('totalHYPE').textContent = '~' + formatHYPE(result.totalHype) + ' HYPE';
 
-            // Breakdown
             $('unitResult').textContent = formatUSD(result.unit.usd);
             $('unitResult').classList.toggle('zero', result.unit.usd === 0);
             
@@ -1120,19 +1696,16 @@ HYPE/USDC: 50-70% filtered | Native: 30-50% | Unit: 10-20% | Perps: 15-25%
             $('evmResult').textContent = formatUSD(result.evm.usd);
             $('evmResult').classList.toggle('zero', result.evm.usd === 0);
 
-            // Stats
             $('statHype').textContent = formatHYPE(result.totalHype);
             $('statTier').textContent = TIER_MULTIPLIERS[state.tier] + 'x';
             $('statFees').textContent = formatUSD(result.totalFees);
             $('statROI').textContent = result.roi > 0 ? '~' + Math.round(result.roi) + 'x' : '-';
 
-            // Activity card highlighting
             $('unitSpotCard').classList.toggle('has-value', state.unitVolume > 0);
             $('nativeSpotCard').classList.toggle('has-value', state.nativeVolume > 0);
             $('perpsCard').classList.toggle('has-value', state.perpsVolume > 0);
             $('evmCard').classList.toggle('has-value', state.evmTVL > 0);
 
-            // Scenarios
             updateScenarios();
         }
 
@@ -1154,17 +1727,17 @@ HYPE/USDC: 50-70% filtered | Native: 30-50% | Unit: 10-20% | Perps: 15-25%
 
         // Event Setup
         function init() {
-            // Volume inputs
-            ['unitVolume', 'nativeVolume', 'perpsVolume', 'evmTVL'].forEach(id => {
-                const el = $(id.replace('Volume', 'Volume').replace('TVL', 'TVL'));
-                if (!el) return;
-                const realId = id === 'evmTVL' ? 'evmTVL' : id;
-                $(realId === 'evmTVL' ? 'evmTVL' : id)?.addEventListener('input', e => {
-                    state[id] = parseFloat(e.target.value) || 0;
-                    updateResults();
+            // Tab navigation
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    tab.classList.add('active');
+                    $(tab.dataset.tab + '-tab').classList.add('active');
                 });
             });
 
+            // Volume inputs
             $('unitVolume').addEventListener('input', e => { state.unitVolume = parseFloat(e.target.value) || 0; updateResults(); });
             $('nativeVolume').addEventListener('input', e => { state.nativeVolume = parseFloat(e.target.value) || 0; updateResults(); });
             $('perpsVolume').addEventListener('input', e => { state.perpsVolume = parseFloat(e.target.value) || 0; updateResults(); });
@@ -1203,7 +1776,7 @@ HYPE/USDC: 50-70% filtered | Native: 30-50% | Unit: 10-20% | Perps: 15-25%
             });
 
             // Collapsibles
-            ['params', 'method'].forEach(section => {
+            ['params'].forEach(section => {
                 $(section + 'Header').addEventListener('click', () => {
                     $(section + 'Header').classList.toggle('open');
                     $(section + 'Content').classList.toggle('open');
