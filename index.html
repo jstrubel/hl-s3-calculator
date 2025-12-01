@@ -86,10 +86,6 @@
             font-size: 0.9rem;
         }
 
-        .referral-text .icon {
-            font-size: 1.1rem;
-        }
-
         .referral-highlight {
             color: var(--accent-green);
             font-weight: 600;
@@ -151,20 +147,6 @@
             background: var(--accent-green-dim);
             border-color: var(--accent-green);
             color: var(--accent-green);
-        }
-
-        .nav-tab .lock-icon {
-            font-size: 0.8rem;
-        }
-
-        .nav-tab .premium-badge {
-            background: var(--accent-yellow);
-            color: var(--bg-primary);
-            font-size: 0.65rem;
-            padding: 0.15rem 0.4rem;
-            border-radius: 4px;
-            font-weight: 700;
-            text-transform: uppercase;
         }
 
         .tab-content {
@@ -259,10 +241,6 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }
-
-        .card-title .icon {
-            font-size: 1.1rem;
         }
 
         /* Activity Input Grid */
@@ -720,148 +698,33 @@
         .tag.base { background: var(--accent-green-dim); color: var(--accent-green); }
         .tag.bull { background: rgba(77, 163, 255, 0.2); color: var(--accent-blue); }
 
-        /* Paywall Styles */
-        .paywall-container {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 3rem 1.5rem;
-        }
-
-        .paywall-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .paywall-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-        }
-
-        .paywall-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .paywall-features {
-            background: var(--bg-card);
+        /* Donation Box */
+        .donation-box {
+            background: var(--bg-tertiary);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-
-        .paywall-features h3 {
-            font-size: 1rem;
-            color: var(--accent-green);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .feature-list {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 0.75rem;
-        }
-
-        .feature-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .feature-list .check {
-            color: var(--accent-green);
-            font-weight: bold;
-        }
-
-        .paywall-pricing {
-            margin-bottom: 2rem;
-        }
-
-        .price-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--accent-green);
-            margin-bottom: 0.25rem;
-        }
-
-        .price-note {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .payment-options {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .payment-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
             border-radius: 10px;
-            font-family: 'Space Grotesk', sans-serif;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .donation-box h3 {
             font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-            min-width: 280px;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
         }
 
-        .payment-btn.primary {
-            background: var(--accent-green);
-            color: var(--bg-primary);
-            border: none;
-        }
-
-        .payment-btn.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 217, 146, 0.4);
-        }
-
-        .payment-btn.secondary {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
-        }
-
-        .payment-btn.secondary:hover {
-            border-color: var(--accent-green);
-            color: var(--accent-green);
-        }
-
-        .wallet-address-section {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .wallet-address-section h4 {
-            font-size: 0.9rem;
+        .donation-box p {
+            font-size: 0.85rem;
             color: var(--text-secondary);
             margin-bottom: 1rem;
         }
 
         .wallet-box {
-            background: var(--bg-tertiary);
+            background: var(--bg-primary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 1rem;
+            padding: 0.75rem 1rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -874,14 +737,14 @@
         }
 
         .wallet-label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.15rem;
         }
 
         .wallet-address {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--accent-green);
             word-break: break-all;
         }
@@ -890,9 +753,9 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.75rem;
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.2s;
@@ -909,75 +772,7 @@
             color: var(--accent-green);
         }
 
-        .unlock-instructions {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: rgba(77, 163, 255, 0.1);
-            border: 1px solid rgba(77, 163, 255, 0.3);
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: var(--accent-blue);
-        }
-
-        /* Access Code Input */
-        .access-section {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .access-section h4 {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .access-input-row {
-            display: flex;
-            gap: 0.75rem;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .access-input-row input {
-            flex: 1;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--text-primary);
-        }
-
-        .access-input-row input:focus {
-            outline: none;
-            border-color: var(--accent-green);
-        }
-
-        .access-input-row button {
-            background: var(--accent-green);
-            color: var(--bg-primary);
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem 1.5rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .access-input-row button:hover {
-            transform: translateY(-1px);
-        }
-
-        .access-error {
-            color: var(--accent-red);
-            font-size: 0.85rem;
-            margin-top: 0.75rem;
-        }
-
-        /* Methodology Page Styles (when unlocked) */
+        /* Methodology Page Styles */
         .methodology-page {
             max-width: 900px;
             margin: 0 auto;
@@ -1190,18 +985,6 @@
                 text-align: center;
             }
             
-            .paywall-container {
-                padding: 2rem 1rem;
-            }
-            
-            .price-tag {
-                font-size: 2.5rem;
-            }
-            
-            .payment-btn {
-                min-width: 100%;
-            }
-            
             .wallet-box {
                 flex-direction: column;
                 text-align: center;
@@ -1239,10 +1022,7 @@
         <!-- Navigation Tabs -->
         <div class="nav-tabs">
             <button class="nav-tab active" data-tab="calculator">Calculator</button>
-            <button class="nav-tab" data-tab="methodology">
-                Full S3 Methodology
-                <span class="premium-badge" id="premiumBadge">Premium</span>
-            </button>
+            <button class="nav-tab" data-tab="methodology">Full S3 Methodology</button>
         </div>
 
         <!-- Calculator Tab -->
@@ -1260,7 +1040,7 @@
                             <!-- Unit Spot -->
                             <div class="activity-card" id="unitSpotCard">
                                 <div class="activity-header">
-                                    <div class="activity-icon unit">🔗</div>
+                                    <div class="activity-icon unit">U</div>
                                     <div>
                                         <div class="activity-name">Unit Spot</div>
                                         <div class="activity-desc">BTC, ETH, SOL via Unit bridge</div>
@@ -1280,7 +1060,7 @@
                             <!-- Native Spot -->
                             <div class="activity-card" id="nativeSpotCard">
                                 <div class="activity-header">
-                                    <div class="activity-icon native">💎</div>
+                                    <div class="activity-icon native">N</div>
                                     <div>
                                         <div class="activity-name">Native Spot</div>
                                         <div class="activity-desc">HYPE, PURR, HIP-1 tokens</div>
@@ -1300,7 +1080,7 @@
                             <!-- Perps -->
                             <div class="activity-card" id="perpsCard">
                                 <div class="activity-header">
-                                    <div class="activity-icon perps">📈</div>
+                                    <div class="activity-icon perps">P</div>
                                     <div>
                                         <div class="activity-name">Perps Trading</div>
                                         <div class="activity-desc">Perpetual futures volume</div>
@@ -1320,21 +1100,22 @@
                             <!-- HyperEVM -->
                             <div class="activity-card" id="evmCard">
                                 <div class="activity-header">
-                                    <div class="activity-icon evm">⚡</div>
+                                    <div class="activity-icon evm">E</div>
                                     <div>
                                         <div class="activity-name">HyperEVM</div>
-                                        <div class="activity-desc">DeFi activity, TVL contribution</div>
+                                        <div class="activity-desc">Time-weighted average TVL</div>
                                     </div>
                                 </div>
                                 <div class="activity-inputs">
                                     <div class="input-row">
-                                        <label>TVL</label>
+                                        <label>Avg TVL</label>
                                         <div class="input-wrapper">
                                             <input type="number" id="evmTVL" value="0" min="0" step="1000">
                                             <span class="input-suffix">USD</span>
                                         </div>
                                     </div>
                                 </div>
+                                <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem;">Note: EVM allocation methodology is highly uncertain. See methodology for details.</p>
                             </div>
                         </div>
 
@@ -1350,8 +1131,8 @@
                             </div>
                             <div class="setting-group">
                                 <label class="checkbox-label">
-                                    <input type="checkbox" id="infraBonus" checked>
-                                    Infrastructure Bonus (UETH/USDC critical pair)
+                                    <input type="checkbox" id="infraBonus">
+                                    Infrastructure Bonus (speculative, see methodology)
                                 </label>
                             </div>
                         </div>
@@ -1414,7 +1195,7 @@
                                     <div class="pool-vol">$2.5T</div>
                                 </div>
                                 <div class="pool-item">
-                                    <div class="pool-name">EVM TVL</div>
+                                    <div class="pool-name">EVM Avg TVL</div>
                                     <div class="pool-vol">$2B</div>
                                 </div>
                             </div>
@@ -1517,71 +1298,22 @@
             </div>
         </div>
 
-        <!-- Methodology Tab (with paywall) -->
+        <!-- Methodology Tab (now fully visible) -->
         <div class="tab-content" id="methodology-tab">
-            <!-- Paywall -->
-            <div id="paywall" class="paywall-container">
-                <div class="paywall-icon" style="font-size: 3rem; color: var(--accent-green);">◈</div>
-                <h2 class="paywall-title">Unlock Full Methodology</h2>
-                <p class="paywall-subtitle">
-                    Get access to the complete model breakdown including tokenomics analysis, 
-                    tier multiplier calculations, wash trading filter estimates, and probability assessments.
-                </p>
-
-                <div class="paywall-features">
-                    <h3>What's Included:</h3>
-                    <ul class="feature-list">
-                        <li><span class="check">✓</span> Complete HYPE tokenomics breakdown</li>
-                        <li><span class="check">✓</span> S3 size estimation methodology</li>
-                        <li><span class="check">✓</span> Category allocation rationale</li>
-                        <li><span class="check">✓</span> Tier multiplier calculations</li>
-                        <li><span class="check">✓</span> Unit vs Native spot premium analysis</li>
-                        <li><span class="check">✓</span> Wash trading filter estimates</li>
-                        <li><span class="check">✓</span> Pool volume data sources</li>
-                        <li><span class="check">✓</span> S3 probability & timing assessment</li>
-                        <li><span class="check">✓</span> Key uncertainties & risk factors</li>
-                        <li><span class="check">✓</span> Future updates as new data emerges</li>
-                    </ul>
-                </div>
-
-                <div class="paywall-pricing">
-                    <div class="price-tag">$30</div>
-                    <div class="price-note">One-time payment • Lifetime access</div>
-                </div>
-
-                <div class="payment-options">
-                    <a href="https://app.hyperliquid.xyz/join/STRUBE" target="_blank" class="payment-btn secondary">
-                        Free Access: Sign up with referral & DM proof
-                    </a>
-                </div>
-
-                <div class="wallet-address-section">
-                    <h4>Pay with Crypto (USDC on Arbitrum)</h4>
+            <div class="methodology-page">
+                <!-- Donation box at top -->
+                <div class="donation-box">
+                    <h3>Found this useful?</h3>
+                    <p>This model took significant research to build. If it helped you, consider supporting future updates.</p>
                     <div class="wallet-box">
                         <div class="wallet-info">
-                            <div class="wallet-label">Send $30 USDC to:</div>
+                            <div class="wallet-label">USDC on Arbitrum / HyperEVM</div>
                             <div class="wallet-address" id="walletAddress">0x885145521348c8d15c6e07a3e0b2982c00839f38</div>
                         </div>
                         <button class="copy-btn" id="copyBtn" onclick="copyAddress()">Copy</button>
                     </div>
-                    <div class="unlock-instructions">
-                        <strong>After payment:</strong> Send your transaction hash to <strong>@strube</strong> on Twitter/X or Telegram to receive your access code.
-                    </div>
                 </div>
 
-                <div class="access-section">
-                    <h4>Already have an access code?</h4>
-                    <div class="access-input-row">
-                        <input type="text" id="accessCode" placeholder="Enter access code">
-                        <button onclick="checkAccessCode()">Unlock</button>
-                    </div>
-                    <div class="access-error" id="accessError"></div>
-                </div>
-            </div>
-
-            <!-- Unlocked Content (hidden by default) -->
-            <div id="methodologyContent" class="methodology-page" style="display: none;">
-                <!-- Full methodology content here -->
                 <div class="card">
                     <h2>Model Overview</h2>
                     <p>This calculator provides an independent estimate of potential Hyperliquid Season 3 (S3) airdrop allocations. The model is based on analysis of the Genesis airdrop precedent, current platform metrics, game theory, and incentive design principles.</p>
@@ -1794,27 +1526,28 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                 </div>
 
                 <div class="card">
-                    <h2>Category Premiums & Bonuses</h2>
+                    <h2>Category Premiums & Bonuses (Speculative)</h2>
                     
-                    <h3>Unit Spot Premium: 1.5x</h3>
-                    <p>Unit spot volume is weighted higher than native spot because:</p>
+                    <div class="warning-box">
+                        <p><strong>Note:</strong> The following premiums are speculative extrapolations based on game theory, not confirmed by Hyperliquid. They may not exist at all. Use conservatively.</p>
+                    </div>
+                    
+                    <h3>Unit Spot Premium: 1.0-1.5x (speculative)</h3>
+                    <p>Unit spot volume <em>may</em> be weighted higher than native spot because:</p>
                     <ul>
                         <li>Enables cross-chain deposits (BTC, ETH, SOL without wrapping)</li>
                         <li>Critical for HIP-3 hedging and delta management</li>
                         <li>Backbone of unified-margin collateral system</li>
                         <li>Lower farming/wash trading rates than native spot</li>
                     </ul>
+                    <p>However, there is no evidence this premium exists. Conservative estimates should use 1.0x.</p>
 
-                    <h3>Infrastructure Bonus: 1.2x</h3>
-                    <p>Applies to critical infrastructure pairs like UETH/USDC:</p>
-                    <ul>
-                        <li>Primary hedging venue for HIP-3 synthetic positions</li>
-                        <li>Essential for liquidation safety with $15B+ perps OI</li>
-                        <li>Consistent uptime and tight spreads rewarded</li>
-                    </ul>
+                    <h3>Infrastructure Bonus: 1.0-1.2x (speculative)</h3>
+                    <p>May apply to critical infrastructure pairs like UETH/USDC, but again - this is not confirmed.</p>
 
                     <div class="formula-box">
-Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) = 2.52x for top Unit spot MMs
+Optimistic Combined: Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) = 2.52x
+Conservative Combined: Tier (1.25x) × No Premium (1.0x) × No Bonus (1.0x) = 1.25x
                     </div>
                 </div>
 
@@ -1854,7 +1587,7 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                         </tbody>
                     </table>
 
-                    <h3>Detection Methods</h3>
+                    <h3>Detection Methods (Likely)</h3>
                     <ul>
                         <li>Self-matching detection (same wallet both sides)</li>
                         <li>Circular trading patterns (A→B→C→A loops)</li>
@@ -1863,6 +1596,39 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                         <li>Timing pattern analysis</li>
                         <li>Linked wallet clustering</li>
                     </ul>
+
+                    <h3>Legitimacy Signals (What Helps You)</h3>
+                    <ul>
+                        <li>Real PNL variance (losses prove real counterparties)</li>
+                        <li>Consistent activity over time (not flash farming)</li>
+                        <li>High maker % with real spread capture</li>
+                        <li>Trading on infrastructure-critical pairs</li>
+                        <li>Reasonable spreads (not predatory)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2>HyperEVM Allocation (High Uncertainty)</h2>
+                    
+                    <div class="warning-box">
+                        <p><strong>Important:</strong> The HyperEVM allocation methodology is the most uncertain part of this model. Unlike trading volume (a flow), TVL is a stock (point-in-time). The approach below is speculative.</p>
+                    </div>
+
+                    <h3>Current Model Approach</h3>
+                    <p>The calculator uses time-weighted average TVL as the metric, with your share = (Your Avg TVL / Total EVM TVL). This is a rough approximation.</p>
+
+                    <h3>Alternative Approaches Hyperliquid Might Use</h3>
+                    <ul>
+                        <li><strong>Transaction count:</strong> Number of EVM transactions</li>
+                        <li><strong>Gas consumed:</strong> Total gas used across transactions</li>
+                        <li><strong>Protocol-specific:</strong> Activity in key dApps (KittenSwap, HyperLend, etc.)</li>
+                        <li><strong>NFT/domain holding:</strong> Hypers, .hl domains, etc.</li>
+                        <li><strong>Liquidity provision:</strong> LP positions across EVM DEXs</li>
+                        <li><strong>Staking derivatives:</strong> kHYPE, stHYPE positions</li>
+                    </ul>
+
+                    <h3>Why This Matters</h3>
+                    <p>If you're primarily an EVM user, your allocation estimate has much wider confidence intervals than spot/perps users. The 12-15% allocation to EVM is also speculative - it could be higher (if they want to bootstrap EVM) or lower (if they focus on core trading).</p>
                 </div>
 
                 <div class="card">
@@ -1878,7 +1644,7 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                         <div class="info-card">
                             <div class="info-card-label">Native Spot Pool</div>
                             <div class="info-card-value">$15B</div>
-                            <div class="info-card-note">~$90B raw, 50-70% filtered</div>
+                            <div class="info-card-note">~$30-50B raw, 50-70% filtered</div>
                         </div>
                         <div class="info-card">
                             <div class="info-card-label">Perps Pool</div>
@@ -1940,12 +1706,22 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                             <tr>
                                 <td>Unit premium existence</td>
                                 <td>High</td>
-                                <td>Speculative - may be 1.0-2.0x</td>
+                                <td>Speculative - may be 1.0-2.0x or not exist</td>
                             </tr>
                             <tr>
                                 <td>Wash trading filter rates</td>
                                 <td>Medium</td>
                                 <td>Methodology unknown</td>
+                            </tr>
+                            <tr>
+                                <td>EVM allocation methodology</td>
+                                <td>High</td>
+                                <td>TVL vs transactions vs other metrics</td>
+                            </tr>
+                            <tr>
+                                <td>Tier multiplier magnitude</td>
+                                <td>Medium</td>
+                                <td>Could be flatter or steeper than modeled</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1970,6 +1746,19 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                     <p><strong>Not affiliated with Hyperliquid.</strong> This is an independent community tool for educational purposes.</p>
                     <p>Last updated: November 2025</p>
                     <p style="margin-top: 1rem;">Questions or feedback? DM <a href="https://twitter.com/0xStrube" target="_blank" style="color: var(--accent-green);">@0xStrube</a> on Twitter/X.</p>
+                </div>
+
+                <!-- Donation box at bottom -->
+                <div class="donation-box">
+                    <h3>Support This Project</h3>
+                    <p>If this model helped inform your strategy, consider a donation to support continued research and updates.</p>
+                    <div class="wallet-box">
+                        <div class="wallet-info">
+                            <div class="wallet-label">USDC on Arbitrum / HyperEVM</div>
+                            <div class="wallet-address">0x885145521348c8d15c6e07a3e0b2982c00839f38</div>
+                        </div>
+                        <button class="copy-btn" onclick="copyAddress()">Copy</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1997,50 +1786,26 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
             { name: 'Ultra Bull', tag: 'bull', s3: 5, price: 60 }
         ];
 
-        // Valid access codes (you would manage these)
-        const VALID_CODES = ['S3ALPHA2025', 'EARLYBIRD', 'METHODOLOGY'];
-
-        // State
+        // State - note infraBonus defaults to false now (more conservative)
         let state = {
             unitVolume: 0, nativeVolume: 0, perpsVolume: 0, evmTVL: 0,
-            tier: 'A', infraBonus: true, s3Size: 7, spotAlloc: 16, unitShare: 55, hypePrice: 35
+            tier: 'A', infraBonus: false, s3Size: 7, spotAlloc: 16, unitShare: 55, hypePrice: 35
         };
 
         const $ = id => document.getElementById(id);
 
-        // Check if unlocked
-        function checkUnlocked() {
-            return localStorage.getItem('methodologyUnlocked') === 'true';
-        }
-
-        function unlockMethodology() {
-            localStorage.setItem('methodologyUnlocked', 'true');
-            $('paywall').style.display = 'none';
-            $('methodologyContent').style.display = 'block';
-            $('premiumBadge').style.display = 'none';
-        }
-
-        function checkAccessCode() {
-            const code = $('accessCode').value.trim().toUpperCase();
-            if (VALID_CODES.includes(code)) {
-                unlockMethodology();
-                $('accessError').textContent = '';
-            } else {
-                $('accessError').textContent = 'Invalid access code. Please check and try again.';
-            }
-        }
-
         // Copy wallet address
         function copyAddress() {
-            const address = $('walletAddress').textContent;
+            const address = '0x885145521348c8d15c6e07a3e0b2982c00839f38';
             navigator.clipboard.writeText(address).then(() => {
-                const btn = $('copyBtn');
-                btn.textContent = 'Copied!';
-                btn.classList.add('copied');
-                setTimeout(() => {
-                    btn.textContent = 'Copy';
-                    btn.classList.remove('copied');
-                }, 2000);
+                document.querySelectorAll('.copy-btn').forEach(btn => {
+                    btn.textContent = 'Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.textContent = 'Copy';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
             });
         }
 
@@ -2066,13 +1831,16 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
 
             if (category === 'unit') {
                 categoryPool = s3Total * (params.spotAlloc / 100) * (params.unitShare / 100);
-                premium = 1.5;
-                if (params.infraBonus) infraMult = 1.2;
+                // More conservative: only apply 1.25x unit premium instead of 1.5x
+                premium = 1.25;
+                if (params.infraBonus) infraMult = 1.15; // Reduced from 1.2x
             } else if (category === 'native') {
                 categoryPool = s3Total * (params.spotAlloc / 100) * ((100 - params.unitShare) / 100);
             } else if (category === 'perps') {
                 categoryPool = s3Total * 0.48;
             } else {
+                // EVM: 14% of S3, using TVL-based share
+                // Note: This is highly speculative - TVL isn't a perfect metric
                 categoryPool = s3Total * 0.14;
             }
 
@@ -2124,13 +1892,6 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
         }
 
         function init() {
-            // Check unlock status
-            if (checkUnlocked()) {
-                $('paywall').style.display = 'none';
-                $('methodologyContent').style.display = 'block';
-                $('premiumBadge').style.display = 'none';
-            }
-
             // Tab navigation
             document.querySelectorAll('.nav-tab').forEach(tab => {
                 tab.addEventListener('click', () => {
@@ -2173,9 +1934,6 @@ Combined Multiplier = Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) =
                 $('paramsHeader').classList.toggle('open');
                 $('paramsContent').classList.toggle('open');
             });
-
-            // Enter key for access code
-            $('accessCode').addEventListener('keypress', e => { if (e.key === 'Enter') checkAccessCode(); });
 
             updateResults();
         }
