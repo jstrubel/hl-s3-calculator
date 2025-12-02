@@ -1777,7 +1777,36 @@ Conservative Combined: Tier (1.25x) × No Premium (1.0x) × No Bonus (1.0x) = 1.
         const TOTAL_SUPPLY = 1_000_000_000;
         const TIER_MULTIPLIERS = { 'S': 1.75, 'A': 1.40, 'B': 1.15, 'C': 1.00 };
         const POOL_VOLUMES = { unit: 30e9, native: 30e9, perps: 2.5e12, evm: 2e9 };
-        const FEE_RATES = { unit: 0.001, native: 0.001, perps: 0.00035, evm: 0 };
+        // Fee tier thresholds and rates (maker rates, assuming most high-volume users are makers)
+// Based on Hyperliquid fee schedule - rates shown are WITHOUT staking discount
+const SPOT_FEE_TIERS = [
+    { maxVol: 10e6, rate: 0.0004 },      // Tier 0: ≤$10M -> 0.04% maker
+    { maxVol: 100e6, rate: 0.0003 },     // Tier 1: $10M-$100M -> 0.03% maker  
+    { maxVol: 500e6, rate: 0.0002 },     // Tier 2: $100M-$500M -> 0.02% maker
+    { maxVol: Infinity, rate: 0.0001 }   // Tier 3+: >$500M -> 0.01% maker
+];
+
+const PERPS_FEE_TIERS = [
+    { maxVol: 10e6, rate: 0.00015 },     // Tier 0: ≤$10M -> 0.015% maker
+    { maxVol: 100e6, rate: 0.00012 },    // Tier 1: $10M-$100M -> 0.012% maker
+    { maxVol: 500e6, rate: 0.00008 },    // Tier 2: $100M-$500M -> 0.008% maker
+    { maxVol: Infinity, rate: 0.00004 }  // Tier 3+: >$500M -> 0.004% maker
+];
+
+// Get fee rate based on volume
+function getSpotFeeRate(volume) {
+    for (const tier of SPOT_FEE_TIERS) {
+        if (volume <= tier.maxVol) return tier.rate;
+    }
+    return SPOT_FEE_TIERS[SPOT_FEE_TIERS.length - 1].rate;
+}
+
+function getPerpsFeeRate(volume) {
+    for (const tier of PERPS_FEE_TIERS) {
+        if (volume <= tier.maxVol) return tier.rate;
+    }
+    return PERPS_FEE_TIERS[PERPS_FEE_TIERS.length - 1].rate;
+}
         const SCENARIOS = [
             { name: 'Ultra Bear', tag: 'bear', s3: 10, price: 20 },
             { name: 'Bear', tag: 'bear', s3: 8, price: 25 },
@@ -1823,37 +1852,45 @@ Conservative Combined: Tier (1.25x) × No Premium (1.0x) × No Bonus (1.0x) = 1.
         }
 
         // Calculations
-        function calculateCategory(category, volume, params) {
+        function calculateCategory(category, volume, params, totalSpotVol, totalPerpsVol) {
             if (volume <= 0) return { hype: 0, usd: 0, fees: 0 };
             const s3Total = TOTAL_SUPPLY * (params.s3Size / 100);
             const tierMult = TIER_MULTIPLIERS[params.tier];
-            let categoryPool, premium = 1, infraMult = 1;
+            let categoryPool, premium = 1, infraMult = 1, feeRate = 0;
 
             if (category === 'unit') {
                 categoryPool = s3Total * (params.spotAlloc / 100) * (params.unitShare / 100);
                 // More conservative: only apply 1.25x unit premium instead of 1.5x
                 premium = 1.25;
                 if (params.infraBonus) infraMult = 1.15; // Reduced from 1.2x
+                feeRate = getSpotFeeRate(totalSpotVol);
             } else if (category === 'native') {
                 categoryPool = s3Total * (params.spotAlloc / 100) * ((100 - params.unitShare) / 100);
+                feeRate = getSpotFeeRate(totalSpotVol);
             } else if (category === 'perps') {
                 categoryPool = s3Total * 0.48;
+                feeRate = getPerpsFeeRate(totalPerpsVol);
             } else {
                 // EVM: 14% of S3, using TVL-based share
                 // Note: This is highly speculative - TVL isn't a perfect metric
                 categoryPool = s3Total * 0.14;
+                feeRate = 0; // No fees for EVM TVL
             }
 
             const share = volume / POOL_VOLUMES[category];
             const hype = categoryPool * share * tierMult * premium * infraMult;
-            return { hype, usd: hype * params.hypePrice, fees: volume * FEE_RATES[category] };
+            return { hype, usd: hype * params.hypePrice, fees: volume * feeRate };
         }
 
         function calculateAll(params) {
-            const unit = calculateCategory('unit', params.unitVolume, params);
-            const native = calculateCategory('native', params.nativeVolume, params);
-            const perps = calculateCategory('perps', params.perpsVolume, params);
-            const evm = calculateCategory('evm', params.evmTVL, params);
+            // Calculate total spot and perps volume for fee tier determination
+            const totalSpotVol = params.unitVolume + params.nativeVolume;
+            const totalPerpsVol = params.perpsVolume;
+            
+            const unit = calculateCategory('unit', params.unitVolume, params, totalSpotVol, totalPerpsVol);
+            const native = calculateCategory('native', params.nativeVolume, params, totalSpotVol, totalPerpsVol);
+            const perps = calculateCategory('perps', params.perpsVolume, params, totalSpotVol, totalPerpsVol);
+            const evm = calculateCategory('evm', params.evmTVL, params, totalSpotVol, totalPerpsVol);
             const totalHype = unit.hype + native.hype + perps.hype + evm.hype;
             const totalUsd = unit.usd + native.usd + perps.usd + evm.usd;
             const totalFees = unit.fees + native.fees + perps.fees + evm.fees;
