@@ -1151,37 +1151,33 @@
                                 <div class="range-container">
                                     <div class="range-header">
                                         <span class="range-label">S3 Total Size</span>
-                                        <span class="range-value" id="s3SizeValue">7%</span>
+                                        <span class="range-value" id="s3SizeValue">6%</span>
                                     </div>
-                                    <input type="range" id="s3Size" min="4" max="12" value="7" step="0.5">
+                                    <input type="range" id="s3Size" min="4" max="8" step="0.5" value="6">
                                 </div>
-
                                 <div class="range-container">
                                     <div class="range-header">
                                         <span class="range-label">Spot % of S3</span>
-                                        <span class="range-value" id="spotAllocValue">16%</span>
+                                        <span class="range-value" id="spotAllocValue">15%</span>
                                     </div>
-                                    <input type="range" id="spotAlloc" min="8" max="28" value="16" step="1">
+                                    <input type="range" id="spotAlloc" min="10" max="20" step="1" value="15">
                                 </div>
-
                                 <div class="range-container">
                                     <div class="range-header">
                                         <span class="range-label">Unit % of Spot</span>
                                         <span class="range-value" id="unitShareValue">55%</span>
                                     </div>
-                                    <input type="range" id="unitShare" min="40" max="70" value="55" step="5">
+                                    <input type="range" id="unitShare" min="45" max="65" step="5" value="55">
                                 </div>
-
                                 <div class="range-container">
                                     <div class="range-header">
                                         <span class="range-label">HYPE Price</span>
                                         <span class="range-value" id="hypePriceValue">$35</span>
                                     </div>
-                                    <input type="range" id="hypePrice" min="15" max="80" value="35" step="1">
+                                    <input type="range" id="hypePrice" min="15" max="60" step="1" value="35">
                                 </div>
                             </div>
-
-                            <div class="pool-info" style="margin-top: 1rem;">
+                            <div class="pool-info">
                                 <div class="pool-item">
                                     <div class="pool-name">Unit Pool (filtered)</div>
                                     <div class="pool-vol">$30B</div>
@@ -1206,12 +1202,9 @@
                 <!-- Results Section -->
                 <div class="results-section">
                     <div class="card results-card">
-                        <h2 class="card-title">
-                            Estimated Allocation
-                        </h2>
-
                         <div class="result-main">
-                            <div class="result-label">Combined Value</div>
+                            <div class="result-label">Estimated Allocation</div>
+                            <div class="result-label" style="font-size: 0.7rem; margin-bottom: 0.5rem;">COMBINED VALUE</div>
                             <div class="result-value" id="totalUSD">$0</div>
                             <div class="result-hype" id="totalHYPE">~0 HYPE</div>
                         </div>
@@ -1219,31 +1212,19 @@
                         <div class="breakdown-section">
                             <div class="breakdown-title">Breakdown by Category</div>
                             <div class="breakdown-item">
-                                <div class="breakdown-cat">
-                                    <span class="breakdown-dot unit"></span>
-                                    Unit Spot
-                                </div>
+                                <div class="breakdown-cat"><span class="breakdown-dot unit"></span> Unit Spot</div>
                                 <div class="breakdown-value" id="unitResult">$0</div>
                             </div>
                             <div class="breakdown-item">
-                                <div class="breakdown-cat">
-                                    <span class="breakdown-dot native"></span>
-                                    Native Spot
-                                </div>
+                                <div class="breakdown-cat"><span class="breakdown-dot native"></span> Native Spot</div>
                                 <div class="breakdown-value" id="nativeResult">$0</div>
                             </div>
                             <div class="breakdown-item">
-                                <div class="breakdown-cat">
-                                    <span class="breakdown-dot perps"></span>
-                                    Perps
-                                </div>
+                                <div class="breakdown-cat"><span class="breakdown-dot perps"></span> Perps</div>
                                 <div class="breakdown-value" id="perpsResult">$0</div>
                             </div>
                             <div class="breakdown-item">
-                                <div class="breakdown-cat">
-                                    <span class="breakdown-dot evm"></span>
-                                    HyperEVM
-                                </div>
+                                <div class="breakdown-cat"><span class="breakdown-dot evm"></span> HyperEVM</div>
                                 <div class="breakdown-value" id="evmResult">$0</div>
                             </div>
                         </div>
@@ -1298,7 +1279,7 @@
             </div>
         </div>
 
-        <!-- Methodology Tab (now fully visible) -->
+        <!-- Methodology Tab -->
         <div class="tab-content" id="methodology-tab">
             <div class="methodology-page">
                 <!-- Donation box at top -->
@@ -1324,8 +1305,9 @@
 
                     <h3>Core Formula</h3>
                     <div class="formula-box">
-Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) × Tier Multiplier × Category Premium × Infrastructure Bonus
+Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multiplier × Infrastructure Bonus (if applicable)
                     </div>
+                    <p>Note: Previous versions included a "Unit Premium" multiplier. This has been removed as the quality difference between Unit and Native spot is already captured by the wash trading filters and allocation percentages.</p>
                 </div>
 
                 <div class="card">
@@ -1358,7 +1340,7 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                                 <td>Core Contributors</td>
                                 <td>238,000,000 HYPE</td>
                                 <td>23.8%</td>
-                                <td>Locked until Nov 2025, then 24mo vest</td>
+                                <td>Vesting started Nov 2025 (24mo linear)</td>
                             </tr>
                             <tr>
                                 <td>Hyper Foundation</td>
@@ -1376,44 +1358,41 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                     </table>
 
                     <div class="highlight-box">
-                        <p><strong>Key Insight:</strong> With 388.88M HYPE available for community emissions, Hyperliquid has substantial runway for S3 and future seasons. At 7% for S3, they would still retain ~32% for S4, S5, etc.</p>
+                        <p><strong>Key Insight:</strong> With 388.88M HYPE available for community emissions, Hyperliquid has substantial runway for S3 and future seasons. At 6% for S3, they would still retain ~33% for S4, S5, etc.</p>
                     </div>
                 </div>
 
                 <div class="card">
                     <h2>S3 Size Estimation</h2>
-                    <p>We estimate S3 will be 5-9% of total supply, with 7% as the base case.</p>
-
-                    <h3>Reasoning</h3>
-                    <ul>
-                        <li><strong>Competitive positioning:</strong> Jupiter S2 was ~$700M, dYdX genesis was ~$500M. Hyperliquid needs to remain competitive.</li>
-                        <li><strong>Team unlock timing:</strong> Nov 2025 team unlock creates sell pressure. A meaningful S3 can offset this narrative.</li>
-                        <li><strong>Dynamic sizing:</strong> Hyperliquid likely targets a notional USD value (~$2-3B) rather than fixed token amount.</li>
-                    </ul>
+                    <p>We estimate S3 will be 4-8% of total supply, with 6% as the base case. The actual size likely depends on HYPE price - the team probably targets a USD value for sell pressure management.</p>
 
                     <h3>Dynamic Pricing Model</h3>
+                    <p>If the team targets roughly $1.5-2B in notional value:</p>
                     <table class="data-table">
                         <thead>
                             <tr>
                                 <th>HYPE Price</th>
-                                <th>Target Notional</th>
+                                <th>Target ~$1.75B</th>
                                 <th>Implied S3 %</th>
                                 <th>HYPE Amount</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>$20</td><td>$2.5B</td><td>12.5%</td><td>125M</td></tr>
-                            <tr><td>$25</td><td>$2.5B</td><td>10%</td><td>100M</td></tr>
-                            <tr><td>$30</td><td>$2.5B</td><td>8.3%</td><td>83M</td></tr>
-                            <tr><td>$35</td><td>$2.5B</td><td>7.1%</td><td>71M</td></tr>
-                            <tr><td>$50</td><td>$2.5B</td><td>5%</td><td>50M</td></tr>
+                            <tr><td>$20</td><td>$1.6B</td><td>8%</td><td>80M</td></tr>
+                            <tr><td>$25</td><td>$1.75B</td><td>7%</td><td>70M</td></tr>
+                            <tr><td>$30</td><td>$1.8B</td><td>6%</td><td>60M</td></tr>
+                            <tr><td>$35</td><td>$1.75B</td><td>5%</td><td>50M</td></tr>
+                            <tr><td>$40</td><td>$1.6B</td><td>4%</td><td>40M</td></tr>
                         </tbody>
                     </table>
+
+                    <h3>Team Unlock Consideration</h3>
+                    <p>Team token vesting began November 2025 (~10M HYPE/month). This creates baseline sell pressure that may influence S3 timing and size. A larger S3 at lower prices vs. smaller S3 at higher prices achieves similar USD distribution while managing market impact.</p>
                 </div>
 
                 <div class="card">
                     <h2>Category Breakdown</h2>
-                    <p>S3 allocations will likely be split across multiple activity categories.</p>
+                    <p>S3 allocations will likely be split across multiple activity categories. This model uses the following base case:</p>
 
                     <table class="data-table">
                         <thead>
@@ -1426,60 +1405,101 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                         <tbody>
                             <tr>
                                 <td>Perps Trading</td>
-                                <td>45-50%</td>
-                                <td>Core revenue driver, largest user base</td>
+                                <td>55-60%</td>
+                                <td>~94% of revenue, core product, largest user base</td>
                             </tr>
                             <tr>
                                 <td>Spot Trading (Total)</td>
-                                <td>15-18%</td>
-                                <td>Strategic priority, infrastructure for HIP-3</td>
+                                <td>15%</td>
+                                <td>Strategic priority for HIP-3 and margin infrastructure</td>
                             </tr>
                             <tr>
                                 <td>→ Unit Spot</td>
-                                <td>55% of spot</td>
-                                <td>Cross-chain infrastructure, collateral backbone</td>
+                                <td>55% of spot (~8%)</td>
+                                <td>Collateral backbone, lower wash trading</td>
                             </tr>
                             <tr>
                                 <td>→ Native Spot</td>
-                                <td>45% of spot</td>
-                                <td>HYPE/PURR ecosystem engagement</td>
+                                <td>45% of spot (~7%)</td>
+                                <td>HYPE/PURR ecosystem, price discovery</td>
                             </tr>
                             <tr>
                                 <td>HyperEVM Activity</td>
-                                <td>12-15%</td>
-                                <td>Future growth vector, ecosystem expansion</td>
+                                <td>8-10%</td>
+                                <td>DeFi bootstrap, ecosystem expansion</td>
                             </tr>
                             <tr>
                                 <td>Staking/Loyalty</td>
-                                <td>8-10%</td>
+                                <td>5-7%</td>
                                 <td>Decentralization, long-term holders</td>
                             </tr>
                             <tr>
                                 <td>HIP-3 Deployers</td>
-                                <td>5-8%</td>
-                                <td>Bootstrap permissionless markets</td>
+                                <td>3-5%</td>
+                                <td>Bootstrap permissionless markets (timing dependent)</td>
                             </tr>
                             <tr>
                                 <td>HLP Providers</td>
-                                <td>4-6%</td>
+                                <td>4-5%</td>
                                 <td>Core liquidity infrastructure</td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <h3>Why Spot Gets 15-18% (vs ~5% of Revenue)</h3>
-                    <p>While spot trading generates only 5-10% of platform revenue, there are strategic reasons to over-index:</p>
+                    <h3>Why Spot Gets 15% (vs ~6% of Revenue)</h3>
+                    <p>While spot trading generates only ~6% of platform revenue, there are strategic reasons to allocate ~2.5x its revenue share:</p>
                     <ul>
-                        <li><strong>Infrastructure dependency:</strong> HIP-3 requires deep spot for hedging and settlement</li>
-                        <li><strong>Collateral integrity:</strong> Thin spot books = liquidation cascade risk</li>
-                        <li><strong>Marginal utility:</strong> Additional spot liquidity has higher marginal value than additional perps liquidity</li>
-                        <li><strong>Capital opportunity cost:</strong> Spot LPs lock real capital without leverage, requiring compensation</li>
+                        <li><strong>Collateral integrity:</strong> BLP and unified margin use Unit assets - thin spot books create liquidation cascade risk</li>
+                        <li><strong>Marginal utility:</strong> Additional spot liquidity has higher marginal value than additional perps liquidity (perps already deep)</li>
+                        <li><strong>Capital opportunity cost:</strong> Spot MMs lock real capital without leverage, requiring compensation vs. capital-efficient perps</li>
+                        <li><strong>Ecosystem balance:</strong> Hyperliquid wants to grow into a full L1, not just a perps DEX - spot is underdeveloped</li>
                     </ul>
                 </div>
 
                 <div class="card">
+                    <h2>Wash Trading Filters</h2>
+                    <p>Hyperliquid will likely filter significant portions of volume as wash trading, based on Genesis precedent.</p>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Estimated Filter Rate</th>
+                                <th>Rationale</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>HYPE/USDC</td>
+                                <td>60-75%</td>
+                                <td>Highest farming target, but some legitimate trading</td>
+                            </tr>
+                            <tr>
+                                <td>Native Spot (other)</td>
+                                <td>40-60%</td>
+                                <td>Moderate farming, smaller token pairs</td>
+                            </tr>
+                            <tr>
+                                <td>Unit Spot</td>
+                                <td>10-15%</td>
+                                <td>Requires real capital (bridged ETH/BTC), higher barrier</td>
+                            </tr>
+                            <tr>
+                                <td>Perps</td>
+                                <td>15-25%</td>
+                                <td>Some self-trading, but riskier to farm due to funding/liquidation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="highlight-box">
+                        <p><strong>Key Insight:</strong> The dramatic difference in filter rates (10-15% for Unit vs 60-75% for native HYPE) explains why Unit and Native spot end up with similar post-filter pools (~$30B each) despite very different raw volumes.</p>
+                    </div>
+                </div>
+
+                <div class="card">
                     <h2>Tier Multipliers</h2>
-                    <p>Based on Genesis precedent, allocations are likely tiered by percentile ranking.</p>
+                    <p>Based on Genesis precedent, allocations are likely tiered by percentile ranking within each category.</p>
 
                     <table class="data-table">
                         <thead>
@@ -1526,109 +1546,19 @@ Your HYPE = S3 Total × Category % × Sub-Pool % × (Your Volume / Pool Volume) 
                 </div>
 
                 <div class="card">
-                    <h2>Category Premiums & Bonuses (Speculative)</h2>
+                    <h2>Infrastructure Bonus (Speculative)</h2>
                     
                     <div class="warning-box">
-                        <p><strong>Note:</strong> The following premiums are speculative extrapolations based on game theory, not confirmed by Hyperliquid. They may not exist at all. Use conservatively.</p>
+                        <p><strong>Note:</strong> This bonus is speculative and may not exist. Use conservatively - it's disabled by default in the calculator.</p>
                     </div>
                     
-                    <h3>Unit Spot Premium: 1.0-1.5x (speculative)</h3>
-                    <p>Unit spot volume <em>may</em> be weighted higher than native spot because:</p>
+                    <p>Market makers providing liquidity on critical infrastructure pairs (UETH/USDC, UBTC/USDC) <em>may</em> receive additional weighting because:</p>
                     <ul>
-                        <li>Enables cross-chain deposits (BTC, ETH, SOL without wrapping)</li>
-                        <li>Critical for HIP-3 hedging and delta management</li>
-                        <li>Backbone of unified-margin collateral system</li>
-                        <li>Lower farming/wash trading rates than native spot</li>
+                        <li>These pairs are essential for BLP collateral valuation</li>
+                        <li>Required for efficient liquidations during volatility</li>
+                        <li>Enable unified margin system to function</li>
                     </ul>
-                    <p>However, there is no evidence this premium exists. Conservative estimates should use 1.0x.</p>
-
-                    <h3>Infrastructure Bonus: 1.0-1.2x (speculative)</h3>
-                    <p>May apply to critical infrastructure pairs like UETH/USDC, but again - this is not confirmed.</p>
-
-                    <div class="formula-box">
-Optimistic Combined: Tier (1.4x) × Unit Premium (1.5x) × Infra Bonus (1.2x) = 2.52x
-Conservative Combined: Tier (1.25x) × No Premium (1.0x) × No Bonus (1.0x) = 1.25x
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2>Wash Trading Filters</h2>
-                    <p>Hyperliquid will likely filter significant portions of volume as wash trading, based on Genesis precedent.</p>
-
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Estimated Filter Rate</th>
-                                <th>Rationale</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>HYPE/USDC</td>
-                                <td>60-75%</td>
-                                <td>Highest farming target, but some legitimate trading</td>
-                            </tr>
-                            <tr>
-                                <td>Native Spot (other)</td>
-                                <td>40-60%</td>
-                                <td>Moderate farming, smaller token pairs</td>
-                            </tr>
-                            <tr>
-                                <td>Unit Spot</td>
-                                <td>10-15%</td>
-                                <td>Requires real capital, higher barrier</td>
-                            </tr>
-                            <tr>
-                                <td>Perps</td>
-                                <td>15-25%</td>
-                                <td>Some self-trading, but riskier to farm</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h3>Detection Methods (Likely)</h3>
-                    <ul>
-                        <li>Self-matching detection (same wallet both sides)</li>
-                        <li>Circular trading patterns (A→B→C→A loops)</li>
-                        <li>Abnormal maker/taker ratios</li>
-                        <li>Fee-to-volume anomalies</li>
-                        <li>Timing pattern analysis</li>
-                        <li>Linked wallet clustering</li>
-                    </ul>
-
-                    <h3>Legitimacy Signals (What Helps You)</h3>
-                    <ul>
-                        <li>Real PNL variance (losses prove real counterparties)</li>
-                        <li>Consistent activity over time (not flash farming)</li>
-                        <li>High maker % with real spread capture</li>
-                        <li>Trading on infrastructure-critical pairs</li>
-                        <li>Reasonable spreads (not predatory)</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h2>HyperEVM Allocation (High Uncertainty)</h2>
-                    
-                    <div class="warning-box">
-                        <p><strong>Important:</strong> The HyperEVM allocation methodology is the most uncertain part of this model. Unlike trading volume (a flow), TVL is a stock (point-in-time). The approach below is speculative.</p>
-                    </div>
-
-                    <h3>Current Model Approach</h3>
-                    <p>The calculator uses time-weighted average TVL as the metric, with your share = (Your Avg TVL / Total EVM TVL). This is a rough approximation.</p>
-
-                    <h3>Alternative Approaches Hyperliquid Might Use</h3>
-                    <ul>
-                        <li><strong>Transaction count:</strong> Number of EVM transactions</li>
-                        <li><strong>Gas consumed:</strong> Total gas used across transactions</li>
-                        <li><strong>Protocol-specific:</strong> Activity in key dApps (KittenSwap, HyperLend, etc.)</li>
-                        <li><strong>NFT/domain holding:</strong> Hypers, .hl domains, etc.</li>
-                        <li><strong>Liquidity provision:</strong> LP positions across EVM DEXs</li>
-                        <li><strong>Staking derivatives:</strong> kHYPE, stHYPE positions</li>
-                    </ul>
-
-                    <h3>Why This Matters</h3>
-                    <p>If you're primarily an EVM user, your allocation estimate has much wider confidence intervals than spot/perps users. The 12-15% allocation to EVM is also speculative - it could be higher (if they want to bootstrap EVM) or lower (if they focus on core trading).</p>
+                    <p>If this bonus exists, we estimate it at 1.15x. However, there is no evidence this premium exists - conservative estimates should leave it disabled.</p>
                 </div>
 
                 <div class="card">
@@ -1649,7 +1579,7 @@ Conservative Combined: Tier (1.25x) × No Premium (1.0x) × No Bonus (1.0x) = 1.
                         <div class="info-card">
                             <div class="info-card-label">Perps Pool</div>
                             <div class="info-card-value">$2.5T</div>
-                            <div class="info-card-note">~$3.3T raw, 20% filtered</div>
+                            <div class="info-card-note">~$3.3T raw, 20-25% filtered</div>
                         </div>
                         <div class="info-card">
                             <div class="info-card-label">HyperEVM TVL</div>
@@ -1660,26 +1590,56 @@ Conservative Combined: Tier (1.25x) × No Premium (1.0x) × No Bonus (1.0x) = 1.
                 </div>
 
                 <div class="card">
-                    <h2>S3 Probability Assessment</h2>
-                    
-                    <h3>Will S3 Happen?</h3>
-                    <p><strong>Estimated probability: 70-80% by Q1 2026</strong></p>
+                    <h2>HyperEVM Allocation Uncertainty</h2>
+                    <p>The EVM allocation methodology is the most uncertain aspect of this model. Key questions:</p>
+                    <ul>
+                        <li><strong>Metric:</strong> Is it TVL-based, transaction-based, gas-spent, or protocol-specific?</li>
+                        <li><strong>S2 treatment:</strong> Was S2 supposed to be the "EVM season"? If so, has it already been distributed?</li>
+                        <li><strong>Double-dipping:</strong> Can EVM TVL that's also generating spot/perps volume count twice?</li>
+                    </ul>
+                    <p>We model 8-10% allocation to EVM as a bootstrap incentive, but confidence is low. EVM users should apply wider confidence intervals to their estimates.</p>
+                </div>
 
-                    <h3>Timing Estimate</h3>
+                <div class="card">
+                    <h2>Revenue Analysis</h2>
+                    <p>Understanding where Hyperliquid's revenue comes from helps contextualize allocation decisions.</p>
+                    
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th>Timing</th>
-                                <th>Probability</th>
+                                <th>Category</th>
+                                <th>Est. All-Time Volume</th>
+                                <th>Blended Fee Rate</th>
+                                <th>Est. Revenue</th>
+                                <th>% of Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>Q4 2025 snapshot, Q1 2026 claim</td><td>50%</td></tr>
-                            <tr><td>Q1 2026 snapshot, Q2 2026 claim</td><td>25%</td></tr>
-                            <tr><td>Delayed to H2 2026</td><td>20%</td></tr>
-                            <tr><td>Restructured (continuous emissions)</td><td>5%</td></tr>
+                            <tr>
+                                <td>Perps</td>
+                                <td>~$3.4T</td>
+                                <td>~0.022%</td>
+                                <td>~$748M</td>
+                                <td>94.4%</td>
+                            </tr>
+                            <tr>
+                                <td>Spot</td>
+                                <td>~$127B</td>
+                                <td>~0.035%</td>
+                                <td>~$45M</td>
+                                <td>5.6%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total</strong></td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td><strong>~$793M</strong></td>
+                                <td>100%</td>
+                            </tr>
                         </tbody>
                     </table>
+
+                    <p>For comparison, industry leaders like Binance generate roughly 15-25% of trading revenue from spot. Hyperliquid's 5.6% spot share reflects its origins as a perps-focused platform - the team likely wants to grow this ratio.</p>
                 </div>
 
                 <div class="card">
@@ -1689,39 +1649,39 @@ Conservative Combined: Tier (1.25x) × No Premium (1.0x) × No Bonus (1.0x) = 1.
                             <tr>
                                 <th>Factor</th>
                                 <th>Impact</th>
-                                <th>Uncertainty</th>
+                                <th>Range</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>S3 total size</td>
                                 <td>Very High</td>
-                                <td>Could be 4-12% of supply</td>
+                                <td>4-8% of supply (price dependent)</td>
                             </tr>
                             <tr>
                                 <td>Spot allocation %</td>
                                 <td>High</td>
-                                <td>Could be 10-25% of S3</td>
+                                <td>10-20% of S3</td>
                             </tr>
                             <tr>
-                                <td>Unit premium existence</td>
-                                <td>High</td>
-                                <td>Speculative - may be 1.0-2.0x or not exist</td>
+                                <td>Unit vs Native split</td>
+                                <td>Medium</td>
+                                <td>45-65% to Unit</td>
                             </tr>
                             <tr>
                                 <td>Wash trading filter rates</td>
-                                <td>Medium</td>
+                                <td>High</td>
                                 <td>Methodology unknown</td>
                             </tr>
                             <tr>
                                 <td>EVM allocation methodology</td>
-                                <td>High</td>
+                                <td>Very High</td>
                                 <td>TVL vs transactions vs other metrics</td>
                             </tr>
                             <tr>
                                 <td>Tier multiplier magnitude</td>
                                 <td>Medium</td>
-                                <td>Could be flatter or steeper than modeled</td>
+                                <td>Could be flatter or steeper</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1744,7 +1704,7 @@ Conservative Combined: Tier (1.25x) × No Premium (1.0x) × No Bonus (1.0x) = 1.
                     <h2>About This Model</h2>
                     <p>This calculator was developed by <a href="https://twitter.com/0xStrube" target="_blank" style="color: var(--accent-green);">@0xStrube</a> through independent analysis of Genesis airdrop patterns, platform metrics, tokenomics, competitive landscape, and game theory principles.</p>
                     <p><strong>Not affiliated with Hyperliquid.</strong> This is an independent community tool for educational purposes.</p>
-                    <p>Last updated: November 2025</p>
+                    <p>Last updated: December 2025 (v5)</p>
                     <p style="margin-top: 1rem;">Questions or feedback? DM <a href="https://twitter.com/0xStrube" target="_blank" style="color: var(--accent-green);">@0xStrube</a> on Twitter/X.</p>
                 </div>
 
@@ -1777,48 +1737,49 @@ Conservative Combined: Tier (1.25x) × No Premium (1.0x) × No Bonus (1.0x) = 1.
         const TOTAL_SUPPLY = 1_000_000_000;
         const TIER_MULTIPLIERS = { 'S': 1.75, 'A': 1.40, 'B': 1.15, 'C': 1.00 };
         const POOL_VOLUMES = { unit: 30e9, native: 30e9, perps: 2.5e12, evm: 2e9 };
-        // Fee tier thresholds and rates (maker rates, assuming most high-volume users are makers)
-// Based on Hyperliquid fee schedule - rates shown are WITHOUT staking discount
-const SPOT_FEE_TIERS = [
-    { maxVol: 10e6, rate: 0.0004 },      // Tier 0: ≤$10M -> 0.04% maker
-    { maxVol: 100e6, rate: 0.0003 },     // Tier 1: $10M-$100M -> 0.03% maker  
-    { maxVol: 500e6, rate: 0.0002 },     // Tier 2: $100M-$500M -> 0.02% maker
-    { maxVol: Infinity, rate: 0.0001 }   // Tier 3+: >$500M -> 0.01% maker
-];
-
-const PERPS_FEE_TIERS = [
-    { maxVol: 10e6, rate: 0.00015 },     // Tier 0: ≤$10M -> 0.015% maker
-    { maxVol: 100e6, rate: 0.00012 },    // Tier 1: $10M-$100M -> 0.012% maker
-    { maxVol: 500e6, rate: 0.00008 },    // Tier 2: $100M-$500M -> 0.008% maker
-    { maxVol: Infinity, rate: 0.00004 }  // Tier 3+: >$500M -> 0.004% maker
-];
-
-// Get fee rate based on volume
-function getSpotFeeRate(volume) {
-    for (const tier of SPOT_FEE_TIERS) {
-        if (volume <= tier.maxVol) return tier.rate;
-    }
-    return SPOT_FEE_TIERS[SPOT_FEE_TIERS.length - 1].rate;
-}
-
-function getPerpsFeeRate(volume) {
-    for (const tier of PERPS_FEE_TIERS) {
-        if (volume <= tier.maxVol) return tier.rate;
-    }
-    return PERPS_FEE_TIERS[PERPS_FEE_TIERS.length - 1].rate;
-}
-        const SCENARIOS = [
-            { name: 'Ultra Bear', tag: 'bear', s3: 10, price: 20 },
-            { name: 'Bear', tag: 'bear', s3: 8, price: 25 },
-            { name: 'Base', tag: 'base', s3: 7, price: 35, highlight: true },
-            { name: 'Bull', tag: 'bull', s3: 6, price: 50 },
-            { name: 'Ultra Bull', tag: 'bull', s3: 5, price: 60 }
+        
+        // Fee tier thresholds and rates (maker rates)
+        const SPOT_FEE_TIERS = [
+            { maxVol: 10e6, rate: 0.0004 },      // Tier 0: ≤$10M -> 0.04% maker
+            { maxVol: 100e6, rate: 0.0003 },     // Tier 1: $10M-$100M -> 0.03% maker  
+            { maxVol: 500e6, rate: 0.0002 },     // Tier 2: $100M-$500M -> 0.02% maker
+            { maxVol: Infinity, rate: 0.0001 }   // Tier 3+: >$500M -> 0.01% maker
         ];
 
-        // State - note infraBonus defaults to false now (more conservative)
+        const PERPS_FEE_TIERS = [
+            { maxVol: 10e6, rate: 0.00015 },     // Tier 0: ≤$10M -> 0.015% maker
+            { maxVol: 100e6, rate: 0.00012 },    // Tier 1: $10M-$100M -> 0.012% maker
+            { maxVol: 500e6, rate: 0.00008 },    // Tier 2: $100M-$500M -> 0.008% maker
+            { maxVol: Infinity, rate: 0.00004 }  // Tier 3+: >$500M -> 0.004% maker
+        ];
+
+        function getSpotFeeRate(volume) {
+            for (const tier of SPOT_FEE_TIERS) {
+                if (volume <= tier.maxVol) return tier.rate;
+            }
+            return SPOT_FEE_TIERS[SPOT_FEE_TIERS.length - 1].rate;
+        }
+
+        function getPerpsFeeRate(volume) {
+            for (const tier of PERPS_FEE_TIERS) {
+                if (volume <= tier.maxVol) return tier.rate;
+            }
+            return PERPS_FEE_TIERS[PERPS_FEE_TIERS.length - 1].rate;
+        }
+
+        // Updated scenarios with realistic price-dependent S3 sizes
+        const SCENARIOS = [
+            { name: 'Very Conservative', tag: 'bear', s3: 4, price: 25 },
+            { name: 'Conservative', tag: 'bear', s3: 5, price: 30 },
+            { name: 'Base Case', tag: 'base', s3: 6, price: 35, highlight: true },
+            { name: 'Optimistic', tag: 'bull', s3: 7, price: 40 },
+            { name: 'Very Optimistic', tag: 'bull', s3: 8, price: 50 }
+        ];
+
+        // State - UPDATED DEFAULTS: 6% S3, 15% spot, 55% unit share, NO unit premium
         let state = {
             unitVolume: 0, nativeVolume: 0, perpsVolume: 0, evmTVL: 0,
-            tier: 'A', infraBonus: false, s3Size: 7, spotAlloc: 16, unitShare: 55, hypePrice: 35
+            tier: 'A', infraBonus: false, s3Size: 6, spotAlloc: 15, unitShare: 55, hypePrice: 35
         };
 
         const $ = id => document.getElementById(id);
@@ -1851,39 +1812,37 @@ function getPerpsFeeRate(volume) {
             return num.toFixed(0);
         }
 
-        // Calculations
+        // Calculations - REMOVED UNIT PREMIUM
         function calculateCategory(category, volume, params, totalSpotVol, totalPerpsVol) {
             if (volume <= 0) return { hype: 0, usd: 0, fees: 0 };
             const s3Total = TOTAL_SUPPLY * (params.s3Size / 100);
             const tierMult = TIER_MULTIPLIERS[params.tier];
-            let categoryPool, premium = 1, infraMult = 1, feeRate = 0;
+            let categoryPool, infraMult = 1, feeRate = 0;
 
             if (category === 'unit') {
                 categoryPool = s3Total * (params.spotAlloc / 100) * (params.unitShare / 100);
-                // More conservative: only apply 1.25x unit premium instead of 1.5x
-                premium = 1.25;
-                if (params.infraBonus) infraMult = 1.15; // Reduced from 1.2x
+                // NO unit premium - quality difference captured by wash filters and allocation %
+                if (params.infraBonus) infraMult = 1.15;
                 feeRate = getSpotFeeRate(totalSpotVol);
             } else if (category === 'native') {
                 categoryPool = s3Total * (params.spotAlloc / 100) * ((100 - params.unitShare) / 100);
                 feeRate = getSpotFeeRate(totalSpotVol);
             } else if (category === 'perps') {
-                categoryPool = s3Total * 0.48;
+                // Perps gets ~57% of S3 (adjusted from methodology)
+                categoryPool = s3Total * 0.57;
                 feeRate = getPerpsFeeRate(totalPerpsVol);
             } else {
-                // EVM: 14% of S3, using TVL-based share
-                // Note: This is highly speculative - TVL isn't a perfect metric
-                categoryPool = s3Total * 0.14;
-                feeRate = 0; // No fees for EVM TVL
+                // EVM: ~9% of S3
+                categoryPool = s3Total * 0.09;
+                feeRate = 0;
             }
 
             const share = volume / POOL_VOLUMES[category];
-            const hype = categoryPool * share * tierMult * premium * infraMult;
+            const hype = categoryPool * share * tierMult * infraMult;
             return { hype, usd: hype * params.hypePrice, fees: volume * feeRate };
         }
 
         function calculateAll(params) {
-            // Calculate total spot and perps volume for fee tier determination
             const totalSpotVol = params.unitVolume + params.nativeVolume;
             const totalPerpsVol = params.perpsVolume;
             
