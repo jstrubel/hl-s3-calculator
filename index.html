@@ -644,6 +644,81 @@
         .stat-value.purple { color: var(--accent-purple); }
         .stat-value.yellow { color: var(--accent-yellow); }
 
+        /* Vesting Breakdown */
+        .vesting-breakdown {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .vesting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.4rem 0;
+        }
+
+        .vesting-row:not(:last-child) {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .vesting-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .vesting-label .icon {
+            font-size: 1rem;
+        }
+
+        .vesting-values {
+            text-align: right;
+        }
+
+        .vesting-usd {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .vesting-usd.instant { color: var(--accent-green); }
+        .vesting-usd.vested { color: var(--accent-yellow); }
+
+        .vesting-hype {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .vesting-monthly {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Vesting toggle group */
+        .vesting-toggle-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .vesting-toggle-group .toggle-btn {
+            flex: 1;
+            min-width: 80px;
+            text-align: center;
+            font-size: 0.75rem;
+            padding: 0.5rem 0.6rem;
+        }
+
+        .vesting-info {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+        }
+
         /* Scenario Table */
         .scenario-card {
             margin-top: 1rem;
@@ -1130,6 +1205,15 @@
                                 </div>
                             </div>
                             <div class="setting-group">
+                                <span class="setting-label">Vesting Structure</span>
+                                <div class="vesting-toggle-group" id="vestingToggle">
+                                    <button class="toggle-btn active" data-value="none">100% Instant</button>
+                                    <button class="toggle-btn" data-value="25-75">25/75 Vest</button>
+                                    <button class="toggle-btn" data-value="50-50">50/50 Vest</button>
+                                </div>
+                                <div class="vesting-info" id="vestingInfo">All tokens unlock at TGE</div>
+                            </div>
+                            <div class="setting-group">
                                 <label class="checkbox-label">
                                     <input type="checkbox" id="infraBonus">
                                     Infrastructure Bonus (speculative, see methodology)
@@ -1172,9 +1256,9 @@
                                 <div class="range-container">
                                     <div class="range-header">
                                         <span class="range-label">HYPE Price</span>
-                                        <span class="range-value" id="hypePriceValue">$35</span>
+                                        <span class="range-value" id="hypePriceValue">$30</span>
                                     </div>
-                                    <input type="range" id="hypePrice" min="15" max="60" step="1" value="35">
+                                    <input type="range" id="hypePrice" min="15" max="60" step="1" value="30">
                                 </div>
                             </div>
                             <div class="pool-info">
@@ -1204,12 +1288,37 @@
                     <div class="card results-card">
                         <div class="result-main">
                             <div class="result-label">Estimated Allocation</div>
-                            <div class="result-label" style="font-size: 0.7rem; margin-bottom: 0.5rem;">COMBINED VALUE</div>
+                            <div class="result-label" style="font-size: 0.7rem; margin-bottom: 0.5rem;">TOTAL VALUE</div>
                             <div class="result-value" id="totalUSD">$0</div>
                             <div class="result-hype" id="totalHYPE">~0 HYPE</div>
                         </div>
 
-                        <div class="breakdown-section">
+                        <!-- Vesting Breakdown -->
+                        <div class="vesting-breakdown" id="vestingBreakdown">
+                            <div class="vesting-row">
+                                <div class="vesting-label">
+                                    <span class="icon">⚡</span>
+                                    <span>Instant Unlock</span>
+                                </div>
+                                <div class="vesting-values">
+                                    <div class="vesting-usd instant" id="instantUSD">$0</div>
+                                    <div class="vesting-hype" id="instantHYPE">0 HYPE</div>
+                                </div>
+                            </div>
+                            <div class="vesting-row" id="vestedRow" style="display: none;">
+                                <div class="vesting-label">
+                                    <span class="icon">🔒</span>
+                                    <span>Vested (12mo linear)</span>
+                                </div>
+                                <div class="vesting-values">
+                                    <div class="vesting-usd vested" id="vestedUSD">$0</div>
+                                    <div class="vesting-hype" id="vestedHYPE">0 HYPE</div>
+                                    <div class="vesting-monthly" id="vestedMonthly"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="breakdown-section" style="margin-top: 1rem;">
                             <div class="breakdown-title">Breakdown by Category</div>
                             <div class="breakdown-item">
                                 <div class="breakdown-cat"><span class="breakdown-dot unit"></span> Unit Spot</div>
@@ -1388,6 +1497,52 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
 
                     <h3>Team Unlock Consideration</h3>
                     <p>Team token vesting began November 2025 (~10M HYPE/month). This creates baseline sell pressure that may influence S3 timing and size. A larger S3 at lower prices vs. smaller S3 at higher prices achieves similar USD distribution while managing market impact.</p>
+
+                    <h3>Vesting Structure Scenarios</h3>
+                    <p>Unlike Genesis (which was 100% instant), S3 may include vesting to manage sell pressure. This model explores three scenarios:</p>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Scenario</th>
+                                <th>Instant</th>
+                                <th>Vested</th>
+                                <th>Probability</th>
+                                <th>Rationale</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>No Vesting</td>
+                                <td>100%</td>
+                                <td>0%</td>
+                                <td>~40%</td>
+                                <td>Matches Genesis precedent, simpler, "fair launch" ethos</td>
+                            </tr>
+                            <tr>
+                                <td>50/50 Split</td>
+                                <td>50%</td>
+                                <td>50%</td>
+                                <td>~35%</td>
+                                <td>Balances liquidity needs with sell pressure management</td>
+                            </tr>
+                            <tr>
+                                <td>25/75 Split</td>
+                                <td>25%</td>
+                                <td>75%</td>
+                                <td>~20%</td>
+                                <td>Aggressive if larger S3 size (7-8%), aligns with team vesting</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <p><strong>Key Considerations:</strong></p>
+                    <ul>
+                        <li><strong>Sell Pressure:</strong> At 6% S3 with 40% sell rate, ~$720M pressure at $30. Vesting spreads this over 12 months.</li>
+                        <li><strong>Tax Implications:</strong> In many jurisdictions, vested tokens are taxable at grant price - this may affect user preference.</li>
+                        <li><strong>Portfolio Margin Synergy:</strong> Locked HYPE could serve as collateral in the upcoming portfolio margin system.</li>
+                        <li><strong>Optional Lock Bonus:</strong> Team may offer higher allocation for voluntary lock (e.g., 1.3x for 6mo, 1.5x for 12mo lock).</li>
+                    </ul>
                 </div>
 
                 <div class="card">
@@ -1704,7 +1859,7 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
                     <h2>About This Model</h2>
                     <p>This calculator was developed by <a href="https://twitter.com/0xStrube" target="_blank" style="color: var(--accent-green);">@0xStrube</a> through independent analysis of Genesis airdrop patterns, platform metrics, tokenomics, competitive landscape, and game theory principles.</p>
                     <p><strong>Not affiliated with Hyperliquid.</strong> This is an independent community tool for educational purposes.</p>
-                    <p>Last updated: December 2025 (v5)</p>
+                    <p>Last updated: December 2025 (v6 - added vesting scenarios)</p>
                     <p style="margin-top: 1rem;">Questions or feedback? DM <a href="https://twitter.com/0xStrube" target="_blank" style="color: var(--accent-green);">@0xStrube</a> on Twitter/X.</p>
                 </div>
 
@@ -1769,17 +1924,25 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
 
         // Updated scenarios with realistic price-dependent S3 sizes
         const SCENARIOS = [
-            { name: 'Very Conservative', tag: 'bear', s3: 4, price: 25 },
-            { name: 'Conservative', tag: 'bear', s3: 5, price: 30 },
-            { name: 'Base Case', tag: 'base', s3: 6, price: 35, highlight: true },
-            { name: 'Optimistic', tag: 'bull', s3: 7, price: 40 },
-            { name: 'Very Optimistic', tag: 'bull', s3: 8, price: 50 }
+            { name: 'Conservative', tag: 'bear', s3: 5, price: 28, vest: 'none' },
+            { name: 'Base (No Vest)', tag: 'base', s3: 6, price: 30, vest: 'none', highlight: true },
+            { name: 'Base (50/50)', tag: 'base', s3: 7, price: 30, vest: '50-50' },
+            { name: 'Large + Vest', tag: 'bull', s3: 8, price: 35, vest: '50-50' },
+            { name: 'Very Optimistic', tag: 'bull', s3: 8, price: 45, vest: 'none' }
         ];
+
+        // Vesting configs: [instantPct, vestedPct]
+        const VESTING_CONFIGS = {
+            'none': [100, 0],
+            '25-75': [25, 75],
+            '50-50': [50, 50]
+        };
 
         // State - UPDATED DEFAULTS: 6% S3, 15% spot, 55% unit share, NO unit premium
         let state = {
             unitVolume: 0, nativeVolume: 0, perpsVolume: 0, evmTVL: 0,
-            tier: 'A', infraBonus: false, s3Size: 6, spotAlloc: 15, unitShare: 55, hypePrice: 35
+            tier: 'A', infraBonus: false, s3Size: 6, spotAlloc: 15, unitShare: 55, hypePrice: 30,
+            vesting: 'none'
         };
 
         const $ = id => document.getElementById(id);
@@ -1860,6 +2023,29 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
             const r = calculateAll(state);
             $('totalUSD').textContent = formatUSD(r.totalUsd);
             $('totalHYPE').textContent = '~' + formatHYPE(r.totalHype) + ' HYPE';
+            
+            // Vesting breakdown
+            const vestConfig = VESTING_CONFIGS[state.vesting];
+            const instantPct = vestConfig[0] / 100;
+            const vestedPct = vestConfig[1] / 100;
+            
+            const instantHype = r.totalHype * instantPct;
+            const instantUsd = r.totalUsd * instantPct;
+            const vestedHype = r.totalHype * vestedPct;
+            const vestedUsd = r.totalUsd * vestedPct;
+            
+            $('instantUSD').textContent = formatUSD(instantUsd);
+            $('instantHYPE').textContent = formatHYPE(instantHype) + ' HYPE';
+            
+            if (vestedPct > 0) {
+                $('vestedRow').style.display = 'flex';
+                $('vestedUSD').textContent = formatUSD(vestedUsd);
+                $('vestedHYPE').textContent = formatHYPE(vestedHype) + ' HYPE';
+                $('vestedMonthly').textContent = '~' + formatHYPE(vestedHype / 12) + '/mo';
+            } else {
+                $('vestedRow').style.display = 'none';
+            }
+            
             $('unitResult').textContent = formatUSD(r.unit.usd);
             $('nativeResult').textContent = formatUSD(r.native.usd);
             $('perpsResult').textContent = formatUSD(r.perps.usd);
@@ -1881,9 +2067,14 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
         function updateScenarios() {
             $('scenarioBody').innerHTML = SCENARIOS.map(s => {
                 const r = calculateAll({ ...state, s3Size: s.s3, hypePrice: s.price });
+                const vestConfig = VESTING_CONFIGS[s.vest || 'none'];
+                const instantPct = vestConfig[0] / 100;
+                const instantVal = r.totalUsd * instantPct;
+                const vestLabel = s.vest === 'none' ? '' : ` (${vestConfig[0]}/${vestConfig[1]})`;
                 return `<tr class="${s.highlight ? 'highlight' : ''}">
                     <td><span class="tag ${s.tag}">${s.name}</span></td>
-                    <td>${s.s3}%</td><td>$${s.price}</td><td>${formatUSD(r.totalUsd)}</td></tr>`;
+                    <td>${s.s3}%${vestLabel}</td><td>$${s.price}</td>
+                    <td>${formatUSD(r.totalUsd)}${s.vest !== 'none' ? '<br><span style="font-size:0.65rem;color:var(--text-muted);">⚡' + formatUSD(instantVal) + '</span>' : ''}</td></tr>`;
             }).join('');
         }
 
@@ -1909,6 +2100,23 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
                     $('tierToggle').querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     state.tier = btn.dataset.value;
+                    updateResults();
+                });
+            });
+
+            // Vesting toggle
+            $('vestingToggle').querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    $('vestingToggle').querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    state.vesting = btn.dataset.value;
+                    // Update info text
+                    const infoTexts = {
+                        'none': 'All tokens unlock at TGE',
+                        '25-75': '25% at TGE, 75% vests over 12 months',
+                        '50-50': '50% at TGE, 50% vests over 12 months'
+                    };
+                    $('vestingInfo').textContent = infoTexts[state.vesting];
                     updateResults();
                 });
             });
