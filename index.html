@@ -65,6 +65,48 @@
             padding: 1.5rem;
         }
 
+        /* New Code Alert Banner */
+        .code-alert {
+            background: linear-gradient(135deg, rgba(0, 217, 146, 0.15), rgba(77, 163, 255, 0.1));
+            border: 1px solid var(--accent-green);
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .code-alert-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .code-alert-content {
+            flex: 1;
+        }
+
+        .code-alert-title {
+            font-weight: 600;
+            color: var(--accent-green);
+            margin-bottom: 0.25rem;
+        }
+
+        .code-alert-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .code-alert-tag {
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+        }
+
         /* Referral Banner */
         .referral-banner {
             background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-card));
@@ -243,6 +285,75 @@
             gap: 0.5rem;
         }
 
+        /* S3 Structure Selector */
+        .structure-selector {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .structure-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .structure-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .structure-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .structure-option {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .structure-option:hover {
+            border-color: var(--border-active);
+        }
+
+        .structure-option.active {
+            border-color: var(--accent-green);
+            background: var(--accent-green-dim);
+        }
+
+        .structure-option-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .structure-option-desc {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        .structure-option-prob {
+            font-size: 0.65rem;
+            color: var(--accent-green);
+            margin-top: 0.35rem;
+            font-weight: 500;
+        }
+
         /* Activity Input Grid */
         .activity-grid {
             display: grid;
@@ -401,6 +512,7 @@
 
         .toggle-btn:hover {
             border-color: var(--accent-green);
+            color: var(--text-primary);
         }
 
         .toggle-btn.active {
@@ -409,219 +521,212 @@
             color: var(--accent-green);
         }
 
-        .checkbox-label {
+        .checkbox-row {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .checkbox-row input[type="checkbox"] {
+            accent-color: var(--accent-green);
+            width: 16px;
+            height: 16px;
+        }
+
+        .checkbox-row label {
             font-size: 0.8rem;
             color: var(--text-secondary);
-            cursor: pointer;
-            padding: 0.5rem 0;
         }
 
-        .checkbox-label input {
-            accent-color: var(--accent-green);
-        }
-
-        /* Model Parameters */
-        .params-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        @media (max-width: 500px) {
-            .params-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .range-container {
-            background: var(--bg-tertiary);
-            border-radius: 8px;
-            padding: 0.75rem;
-        }
-
-        .range-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.4rem;
-        }
-
-        .range-label {
+        .info-note {
             font-size: 0.75rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+            font-style: italic;
         }
 
-        .range-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-green);
-            font-weight: 600;
-        }
-
-        input[type="range"] {
-            width: 100%;
-            height: 4px;
-            background: var(--bg-primary);
-            border-radius: 2px;
-            outline: none;
-            -webkit-appearance: none;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 14px;
-            height: 14px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 217, 146, 0.4);
-        }
-
-        /* Results Section */
-        .results-section {
+        /* Results Panel */
+        .results-panel {
             position: sticky;
             top: 1.5rem;
         }
 
-        .results-card {
-            background: linear-gradient(135deg, var(--bg-card), var(--bg-tertiary));
+        .total-result {
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-card));
             border: 1px solid var(--accent-green);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            margin-bottom: 1rem;
             box-shadow: var(--glow-green);
         }
 
-        .result-main {
-            text-align: center;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 1rem;
-        }
-
-        .result-label {
+        .total-label {
             font-size: 0.8rem;
             color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.35rem;
+            letter-spacing: 0.05em;
         }
 
-        .result-value {
+        .total-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--accent-green);
-            text-shadow: 0 0 30px rgba(0, 217, 146, 0.4);
+            margin: 0.25rem 0;
         }
 
-        .result-hype {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-top: 0.2rem;
-        }
-
-        /* CTA in results */
-        .results-cta {
-            background: var(--bg-tertiary);
-            border: 1px dashed var(--accent-green);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1rem;
-            text-align: center;
-        }
-
-        .results-cta p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.75rem;
-        }
-
-        .results-cta a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: var(--accent-green);
-            color: var(--bg-primary);
-            padding: 0.6rem 1.25rem;
-            border-radius: 6px;
-            font-weight: 600;
+        .total-hype {
             font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.2s;
+            color: var(--text-secondary);
         }
 
-        .results-cta a:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 217, 146, 0.3);
+        /* Vesting Breakdown */
+        .vesting-breakdown {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
         }
 
-        /* Category Breakdown */
-        .breakdown-section {
+        .vesting-item {
+            flex: 1;
+            text-align: center;
+            padding: 0.75rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+        }
+
+        .vesting-icon {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .vesting-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .vesting-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .vesting-hype {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        /* Retro vs Ongoing Breakdown */
+        .allocation-breakdown {
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            padding: 1rem;
             margin-bottom: 1rem;
         }
 
-        .breakdown-title {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .allocation-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .allocation-bar {
+            height: 8px;
+            background: var(--bg-primary);
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
             margin-bottom: 0.5rem;
         }
 
-        .breakdown-item {
+        .allocation-bar-retro {
+            background: var(--accent-green);
+            transition: width 0.3s;
+        }
+
+        .allocation-bar-ongoing {
+            background: var(--accent-blue);
+            transition: width 0.3s;
+        }
+
+        .allocation-legend {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid var(--border-color);
+            font-size: 0.7rem;
         }
 
-        .breakdown-item:last-child {
-            border-bottom: none;
-        }
-
-        .breakdown-cat {
+        .allocation-legend-item {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
+            gap: 0.35rem;
         }
 
-        .breakdown-dot {
+        .allocation-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
         }
 
-        .breakdown-dot.unit { background: var(--accent-green); }
-        .breakdown-dot.native { background: var(--accent-purple); }
-        .breakdown-dot.perps { background: var(--accent-blue); }
-        .breakdown-dot.evm { background: var(--accent-orange); }
+        .allocation-dot.retro { background: var(--accent-green); }
+        .allocation-dot.ongoing { background: var(--accent-blue); }
 
-        .breakdown-value {
+        /* Category Results */
+        .category-results {
+            margin-top: 1rem;
+        }
+
+        .category-title {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .category-name {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .category-value {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
             color: var(--text-primary);
         }
 
-        .breakdown-value.zero {
+        .category-value.zero {
             color: var(--text-muted);
         }
 
         /* Stats Grid */
         .stats-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
             margin-top: 1rem;
         }
 
-        .stat-item {
+        .stat-box {
             background: var(--bg-tertiary);
             border-radius: 8px;
-            padding: 0.75rem;
+            padding: 0.6rem;
             text-align: center;
         }
 
@@ -629,149 +734,242 @@
             font-size: 0.65rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.2rem;
         }
 
         .stat-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .stat-value.green { color: var(--accent-green); }
-        .stat-value.blue { color: var(--accent-blue); }
-        .stat-value.purple { color: var(--accent-purple); }
-        .stat-value.yellow { color: var(--accent-yellow); }
-
-        /* Vesting Breakdown */
-        .vesting-breakdown {
-            background: var(--bg-tertiary);
-            border-radius: 8px;
-            padding: 0.75rem;
-            margin-top: 0.75rem;
-        }
-
-        .vesting-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.4rem 0;
-        }
-
-        .vesting-row:not(:last-child) {
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .vesting-label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
-        }
-
-        .vesting-label .icon {
-            font-size: 1rem;
-        }
-
-        .vesting-values {
-            text-align: right;
-        }
-
-        .vesting-usd {
-            font-family: 'JetBrains Mono', monospace;
             font-size: 0.9rem;
             font-weight: 600;
+            color: var(--text-primary);
         }
 
-        .vesting-usd.instant { color: var(--accent-green); }
-        .vesting-usd.vested { color: var(--accent-yellow); }
-
-        .vesting-hype {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-        }
-
-        .vesting-monthly {
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        /* Vesting toggle group */
-        .vesting-toggle-group {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .vesting-toggle-group .toggle-btn {
-            flex: 1;
-            min-width: 80px;
-            text-align: center;
-            font-size: 0.75rem;
-            padding: 0.5rem 0.6rem;
-        }
-
-        .vesting-info {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-top: 0.4rem;
-        }
-
-        /* Scenario Table */
-        .scenario-card {
+        /* Scenarios Table */
+        .scenarios-card {
             margin-top: 1rem;
         }
 
-        .scenario-table {
+        .scenarios-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.8rem;
         }
 
-        .scenario-table th {
+        .scenarios-table th {
             text-align: left;
             padding: 0.5rem;
-            background: var(--bg-tertiary);
             color: var(--text-muted);
             font-weight: 500;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .scenario-table td {
+        .scenarios-table td {
             padding: 0.5rem;
             border-bottom: 1px solid var(--border-color);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
         }
 
-        .scenario-table tr:hover {
-            background: var(--bg-tertiary);
+        .scenarios-table tr:last-child td {
+            border-bottom: none;
         }
 
-        .scenario-table tr.highlight {
+        .scenarios-table tr.highlight {
             background: var(--accent-green-dim);
         }
 
-        .scenario-table tr.highlight td {
-            color: var(--accent-green);
-            font-weight: 600;
-        }
-
         .tag {
-            display: inline-block;
-            padding: 0.15rem 0.4rem;
+            font-size: 0.65rem;
+            padding: 0.2rem 0.4rem;
             border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .tag.bear { background: rgba(255, 71, 87, 0.2); color: var(--accent-red); }
         .tag.base { background: var(--accent-green-dim); color: var(--accent-green); }
         .tag.bull { background: rgba(77, 163, 255, 0.2); color: var(--accent-blue); }
+
+        /* Parameters Collapsible */
+        .params-section {
+            margin-top: 1rem;
+        }
+
+        .params-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .params-header:hover {
+            border-color: var(--border-active);
+        }
+
+        .params-header-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .params-chevron {
+            transition: transform 0.2s;
+        }
+
+        .params-header.open .params-chevron {
+            transform: rotate(180deg);
+        }
+
+        .params-content {
+            display: none;
+            padding: 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .params-content.open {
+            display: block;
+        }
+
+        .param-row {
+            margin-bottom: 1rem;
+        }
+
+        .param-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .param-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.4rem;
+        }
+
+        .param-value {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-green);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: var(--bg-primary);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Methodology Tab Styles */
+        .methodology-content {
+            max-width: 800px;
+        }
+
+        .methodology-content h2 {
+            font-size: 1.25rem;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .methodology-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .methodology-content p {
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .methodology-content ul {
+            color: var(--text-secondary);
+            margin-left: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .methodology-content li {
+            margin-bottom: 0.35rem;
+            font-size: 0.9rem;
+        }
+
+        .methodology-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+
+        .methodology-content th,
+        .methodology-content td {
+            padding: 0.6rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .methodology-content th {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .methodology-content strong {
+            color: var(--text-primary);
+        }
+
+        .methodology-content a {
+            color: var(--accent-green);
+        }
+
+        /* New Code Findings Section */
+        .code-findings {
+            background: linear-gradient(135deg, var(--bg-tertiary), rgba(0, 217, 146, 0.05));
+            border: 1px solid var(--accent-green);
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-findings h3 {
+            color: var(--accent-green);
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .code-findings ul {
+            margin-left: 1rem;
+        }
+
+        .code-findings li {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .code-findings code {
+            background: var(--bg-primary);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-green);
+        }
 
         /* Donation Box */
         .donation-box {
@@ -779,13 +977,12 @@
             border: 1px solid var(--border-color);
             border-radius: 10px;
             padding: 1.25rem;
-            margin: 1.5rem 0;
+            margin-top: 1.5rem;
             text-align: center;
         }
 
         .donation-box h3 {
             font-size: 1rem;
-            color: var(--text-primary);
             margin-bottom: 0.5rem;
         }
 
@@ -796,287 +993,85 @@
         }
 
         .wallet-box {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 0.75rem 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            flex-wrap: wrap;
+            padding: 0.75rem;
         }
 
         .wallet-info {
+            flex: 1;
             text-align: left;
         }
 
         .wallet-label {
             font-size: 0.7rem;
             color: var(--text-muted);
-            margin-bottom: 0.15rem;
         }
 
         .wallet-address {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem;
-            color: var(--accent-green);
+            color: var(--text-primary);
             word-break: break-all;
         }
 
         .copy-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            border: none;
             border-radius: 6px;
-            padding: 0.4rem 0.75rem;
+            padding: 0.5rem 1rem;
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
         }
 
         .copy-btn:hover {
-            border-color: var(--accent-green);
-            color: var(--accent-green);
+            transform: translateY(-1px);
         }
 
         .copy-btn.copied {
-            background: var(--accent-green-dim);
-            border-color: var(--accent-green);
-            color: var(--accent-green);
-        }
-
-        /* Methodology Page Styles */
-        .methodology-page {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .methodology-page .card {
-            margin-bottom: 1.5rem;
-        }
-
-        .methodology-page h2 {
-            color: var(--accent-green);
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .methodology-page h3 {
-            color: var(--text-primary);
-            font-size: 1rem;
-            margin: 1.25rem 0 0.5rem;
-        }
-
-        .methodology-page p {
-            color: var(--text-secondary);
-            margin-bottom: 0.75rem;
-            line-height: 1.7;
-        }
-
-        .methodology-page ul {
-            color: var(--text-secondary);
-            margin: 0.75rem 0;
-            padding-left: 1.5rem;
-        }
-
-        .methodology-page li {
-            margin-bottom: 0.5rem;
-        }
-
-        .formula-box {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            overflow-x: auto;
-            color: var(--accent-green);
-        }
-
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            font-size: 0.85rem;
-        }
-
-        .data-table th {
-            background: var(--bg-tertiary);
-            padding: 0.75rem;
-            text-align: left;
-            font-weight: 600;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .data-table td {
-            padding: 0.75rem;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-secondary);
-        }
-
-        .data-table tr:hover {
-            background: var(--bg-tertiary);
-        }
-
-        .highlight-box {
-            background: var(--accent-green-dim);
-            border: 1px solid var(--accent-green);
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-
-        .highlight-box p {
-            color: var(--text-primary);
-            margin: 0;
-        }
-
-        .warning-box {
-            background: rgba(255, 71, 87, 0.1);
-            border: 1px solid rgba(255, 71, 87, 0.3);
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-
-        .warning-box p {
-            color: var(--accent-red);
-            margin: 0;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .info-card {
-            background: var(--bg-tertiary);
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .info-card-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.25rem;
-        }
-
-        .info-card-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--accent-green);
-        }
-
-        .info-card-note {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 0.25rem;
-        }
-
-        /* Collapsible */
-        .collapsible-header {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .collapsible-header .arrow {
-            transition: transform 0.2s;
-        }
-
-        .collapsible-header.open .arrow {
-            transform: rotate(180deg);
-        }
-
-        .collapsible-content {
-            display: none;
-            padding-top: 1rem;
-        }
-
-        .collapsible-content.open {
-            display: block;
-        }
-
-        /* Pool info */
-        .pool-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 0.5rem;
-            margin: 0.75rem 0;
-        }
-
-        .pool-item {
-            background: var(--bg-tertiary);
-            border-radius: 6px;
-            padding: 0.6rem;
-            text-align: center;
-        }
-
-        .pool-name {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-bottom: 0.15rem;
-        }
-
-        .pool-vol {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-green);
+            background: var(--accent-blue);
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 2rem 0;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            border-top: 1px solid var(--border-color);
             margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
         footer a {
             color: var(--accent-green);
             text-decoration: none;
         }
-
-        /* Mobile adjustments */
-        @media (max-width: 600px) {
-            .referral-banner {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .wallet-box {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .wallet-info {
-                text-align: center;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- New Code Alert -->
+        <div class="code-alert">
+            <div class="code-alert-icon">🔍</div>
+            <div class="code-alert-content">
+                <div class="code-alert-title">New Code Findings <span class="code-alert-tag">Dec 30, 2025</span></div>
+                <div class="code-alert-text">Frontend code inspection reveals: weekly distribution infrastructure, 2026 sybil detection logic, 72-hour processing window, and retroactive date checks. Model updated to reflect these findings.</div>
+            </div>
+        </div>
+
         <!-- Referral Banner -->
         <div class="referral-banner">
             <div class="referral-text">
-                <span>New to Hyperliquid? Get <span class="referral-highlight">fee discounts</span> when you sign up with our referral</span>
+                <span>New to Hyperliquid?</span>
+                <span class="referral-highlight">Get fee discounts when you sign up with our referral</span>
             </div>
             <a href="https://app.hyperliquid.xyz/join/STRUBE" target="_blank" class="referral-btn">
                 Join Hyperliquid →
@@ -1086,33 +1081,65 @@
         <header>
             <div class="logo">
                 <div class="logo-icon">HL</div>
-                <h1>S3 Airdrop Estimator</h1>
             </div>
+            <h1>S3 Airdrop Estimator</h1>
             <p class="subtitle">Independent model for estimating potential Hyperliquid Season 3 allocations</p>
             <div class="disclaimer-banner">
                 Speculative model only. Actual S3 mechanics are unknown. Not financial advice.
             </div>
         </header>
 
-        <!-- Navigation Tabs -->
+        <!-- Navigation -->
         <div class="nav-tabs">
-            <button class="nav-tab active" data-tab="calculator">Calculator</button>
-            <button class="nav-tab" data-tab="methodology">Full S3 Methodology</button>
+            <button class="nav-tab active" data-tab="calculator">
+                <span>⚡</span> Calculator
+            </button>
+            <button class="nav-tab" data-tab="methodology">
+                <span>📊</span> Full S3 Methodology
+            </button>
         </div>
 
         <!-- Calculator Tab -->
-        <div class="tab-content active" id="calculator-tab">
+        <div id="calculator-tab" class="tab-content active">
             <div class="main-grid">
-                <!-- Input Section -->
-                <div class="input-section">
+                <div class="left-column">
+                    <!-- S3 Structure Selector -->
                     <div class="card">
-                        <h2 class="card-title">
-                            Your Activity
-                        </h2>
-                        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">Enter your volume for each category</p>
+                        <div class="card-title">
+                            <span>🎯</span> S3 Structure Scenario
+                        </div>
+                        <div class="structure-selector">
+                            <div class="structure-title">
+                                <span>📋</span> Select expected S3 distribution model
+                            </div>
+                            <div class="structure-options">
+                                <div class="structure-option" data-structure="balanced">
+                                    <div class="structure-option-name">Balanced</div>
+                                    <div class="structure-option-desc">5% retro + 5% ongoing weekly</div>
+                                    <div class="structure-option-prob">35% probability</div>
+                                </div>
+                                <div class="structure-option active" data-structure="retro-heavy">
+                                    <div class="structure-option-name">Retro-Heavy</div>
+                                    <div class="structure-option-desc">8% retro + 2% ongoing</div>
+                                    <div class="structure-option-prob">25% probability</div>
+                                </div>
+                                <div class="structure-option" data-structure="all-retro">
+                                    <div class="structure-option-name">All Retroactive</div>
+                                    <div class="structure-option-desc">8% retro only, S4 later</div>
+                                    <div class="structure-option-prob">20% probability</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activity Inputs -->
+                    <div class="card">
+                        <div class="card-title">
+                            <span>📈</span> Your Activity
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem;">Enter your volume for each category</p>
 
                         <div class="activity-grid">
-                            <!-- Unit Spot -->
                             <div class="activity-card" id="unitSpotCard">
                                 <div class="activity-header">
                                     <div class="activity-icon unit">U</div>
@@ -1125,14 +1152,13 @@
                                     <div class="input-row">
                                         <label>Volume</label>
                                         <div class="input-wrapper">
-                                            <input type="number" id="unitVolume" value="0" min="0" step="1000000">
+                                            <input type="number" id="unitVolume" placeholder="0" min="0">
                                             <span class="input-suffix">USD</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Native Spot -->
                             <div class="activity-card" id="nativeSpotCard">
                                 <div class="activity-header">
                                     <div class="activity-icon native">N</div>
@@ -1145,14 +1171,13 @@
                                     <div class="input-row">
                                         <label>Volume</label>
                                         <div class="input-wrapper">
-                                            <input type="number" id="nativeVolume" value="0" min="0" step="1000000">
+                                            <input type="number" id="nativeVolume" placeholder="0" min="0">
                                             <span class="input-suffix">USD</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Perps -->
                             <div class="activity-card" id="perpsCard">
                                 <div class="activity-header">
                                     <div class="activity-icon perps">P</div>
@@ -1165,14 +1190,13 @@
                                     <div class="input-row">
                                         <label>Volume</label>
                                         <div class="input-wrapper">
-                                            <input type="number" id="perpsVolume" value="0" min="0" step="1000000">
+                                            <input type="number" id="perpsVolume" placeholder="0" min="0">
                                             <span class="input-suffix">USD</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- HyperEVM -->
                             <div class="activity-card" id="evmCard">
                                 <div class="activity-header">
                                     <div class="activity-icon evm">E</div>
@@ -1185,15 +1209,16 @@
                                     <div class="input-row">
                                         <label>Avg TVL</label>
                                         <div class="input-wrapper">
-                                            <input type="number" id="evmTVL" value="0" min="0" step="1000">
+                                            <input type="number" id="evmTVL" placeholder="0" min="0">
                                             <span class="input-suffix">USD</span>
                                         </div>
                                     </div>
                                 </div>
-                                <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem;">Note: EVM allocation methodology is highly uncertain. See methodology for details.</p>
+                                <p class="info-note">Note: EVM allocation methodology is highly uncertain. See methodology for details.</p>
                             </div>
                         </div>
 
+                        <!-- Tier Selection -->
                         <div class="settings-row">
                             <div class="setting-group">
                                 <span class="setting-label">Your Estimated Tier</span>
@@ -1206,463 +1231,274 @@
                             </div>
                             <div class="setting-group">
                                 <span class="setting-label">Vesting Structure</span>
-                                <div class="vesting-toggle-group" id="vestingToggle">
+                                <div class="toggle-group" id="vestingToggle">
                                     <button class="toggle-btn active" data-value="none">100% Instant</button>
                                     <button class="toggle-btn" data-value="25-75">25/75 Vest</button>
                                     <button class="toggle-btn" data-value="50-50">50/50 Vest</button>
                                 </div>
-                                <div class="vesting-info" id="vestingInfo">All tokens unlock at TGE</div>
                             </div>
-                            <div class="setting-group">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" id="infraBonus">
-                                    Infrastructure Bonus (speculative, see methodology)
-                                </label>
-                            </div>
+                        </div>
+                        <p class="info-note" id="vestingInfo">All tokens unlock at TGE</p>
+
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="infraBonus">
+                            <label for="infraBonus">Infrastructure Bonus (speculative, see methodology)</label>
                         </div>
                     </div>
 
                     <!-- Model Parameters -->
-                    <div class="card" style="margin-top: 1rem;">
-                        <div class="collapsible-header" id="paramsHeader">
-                            <h2 class="card-title" style="margin-bottom: 0;">
-                                Model Parameters
-                            </h2>
-                            <span class="arrow">▼</span>
+                    <div class="params-section">
+                        <div class="params-header" id="paramsHeader">
+                            <span class="params-header-title">
+                                <span>⚙️</span> Model Parameters
+                            </span>
+                            <span class="params-chevron">▼</span>
                         </div>
-                        <div class="collapsible-content" id="paramsContent">
-                            <div class="params-grid">
-                                <div class="range-container">
-                                    <div class="range-header">
-                                        <span class="range-label">S3 Total Size</span>
-                                        <span class="range-value" id="s3SizeValue">6%</span>
-                                    </div>
-                                    <input type="range" id="s3Size" min="4" max="8" step="0.5" value="6">
+                        <div class="params-content" id="paramsContent">
+                            <div class="param-row">
+                                <div class="param-label">
+                                    <span>S3 Total Size</span>
+                                    <span class="param-value" id="s3SizeValue">10%</span>
                                 </div>
-                                <div class="range-container">
-                                    <div class="range-header">
-                                        <span class="range-label">Spot % of S3</span>
-                                        <span class="range-value" id="spotAllocValue">15%</span>
-                                    </div>
-                                    <input type="range" id="spotAlloc" min="10" max="20" step="1" value="15">
-                                </div>
-                                <div class="range-container">
-                                    <div class="range-header">
-                                        <span class="range-label">Unit % of Spot</span>
-                                        <span class="range-value" id="unitShareValue">55%</span>
-                                    </div>
-                                    <input type="range" id="unitShare" min="45" max="65" step="5" value="55">
-                                </div>
-                                <div class="range-container">
-                                    <div class="range-header">
-                                        <span class="range-label">HYPE Price</span>
-                                        <span class="range-value" id="hypePriceValue">$30</span>
-                                    </div>
-                                    <input type="range" id="hypePrice" min="15" max="60" step="1" value="30">
-                                </div>
+                                <input type="range" id="s3Size" min="4" max="15" value="10" step="1">
                             </div>
-                            <div class="pool-info">
-                                <div class="pool-item">
-                                    <div class="pool-name">Unit Pool (filtered)</div>
-                                    <div class="pool-vol">$30B</div>
+                            <div class="param-row">
+                                <div class="param-label">
+                                    <span>Spot % of Retroactive</span>
+                                    <span class="param-value" id="spotAllocValue">18%</span>
                                 </div>
-                                <div class="pool-item">
-                                    <div class="pool-name">Native Pool (filtered)</div>
-                                    <div class="pool-vol">$30B</div>
-                                </div>
-                                <div class="pool-item">
-                                    <div class="pool-name">Perps Pool (filtered)</div>
-                                    <div class="pool-vol">$2.5T</div>
-                                </div>
-                                <div class="pool-item">
-                                    <div class="pool-name">EVM Avg TVL</div>
-                                    <div class="pool-vol">$2B</div>
-                                </div>
+                                <input type="range" id="spotAlloc" min="10" max="25" value="18" step="1">
                             </div>
+                            <div class="param-row">
+                                <div class="param-label">
+                                    <span>Unit % of Spot</span>
+                                    <span class="param-value" id="unitShareValue">55%</span>
+                                </div>
+                                <input type="range" id="unitShare" min="40" max="70" value="55" step="5">
+                            </div>
+                            <div class="param-row">
+                                <div class="param-label">
+                                    <span>HYPE Price</span>
+                                    <span class="param-value" id="hypePriceValue">$28</span>
+                                </div>
+                                <input type="range" id="hypePrice" min="20" max="50" value="28" step="1">
+                            </div>
+                            <p class="info-note">
+                                Pool Estimates: Unit $30B | Native $30B | Perps $2.5T | EVM TVL $2B
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Results Section -->
-                <div class="results-section">
-                    <div class="card results-card">
-                        <div class="result-main">
-                            <div class="result-label">Estimated Allocation</div>
-                            <div class="result-label" style="font-size: 0.7rem; margin-bottom: 0.5rem;">TOTAL VALUE</div>
-                            <div class="result-value" id="totalUSD">$0</div>
-                            <div class="result-hype" id="totalHYPE">~0 HYPE</div>
-                        </div>
+                <!-- Results Panel -->
+                <div class="right-column">
+                    <div class="results-panel">
+                        <div class="card">
+                            <div class="total-result">
+                                <div class="total-label">Estimated Allocation</div>
+                                <div class="total-label" style="font-size: 0.7rem; margin-top: 0.25rem;">TOTAL VALUE</div>
+                                <div class="total-value" id="totalUSD">$0</div>
+                                <div class="total-hype" id="totalHYPE">~0 HYPE</div>
 
-                        <!-- Vesting Breakdown -->
-                        <div class="vesting-breakdown" id="vestingBreakdown">
-                            <div class="vesting-row">
-                                <div class="vesting-label">
-                                    <span class="icon">⚡</span>
-                                    <span>Instant Unlock</span>
-                                </div>
-                                <div class="vesting-values">
-                                    <div class="vesting-usd instant" id="instantUSD">$0</div>
-                                    <div class="vesting-hype" id="instantHYPE">0 HYPE</div>
-                                </div>
-                            </div>
-                            <div class="vesting-row" id="vestedRow" style="display: none;">
-                                <div class="vesting-label">
-                                    <span class="icon">🔒</span>
-                                    <span>Vested (12mo linear)</span>
-                                </div>
-                                <div class="vesting-values">
-                                    <div class="vesting-usd vested" id="vestedUSD">$0</div>
-                                    <div class="vesting-hype" id="vestedHYPE">0 HYPE</div>
-                                    <div class="vesting-monthly" id="vestedMonthly"></div>
+                                <div class="vesting-breakdown">
+                                    <div class="vesting-item">
+                                        <div class="vesting-icon">⚡</div>
+                                        <div class="vesting-label">Instant Unlock</div>
+                                        <div class="vesting-value" id="instantUSD">$0</div>
+                                        <div class="vesting-hype" id="instantHYPE">0 HYPE</div>
+                                    </div>
+                                    <div class="vesting-item" id="vestedRow">
+                                        <div class="vesting-icon">🔒</div>
+                                        <div class="vesting-label">Vested (12mo linear)</div>
+                                        <div class="vesting-value" id="vestedUSD">$0</div>
+                                        <div class="vesting-hype" id="vestedHYPE">0 HYPE</div>
+                                    </div>
                                 </div>
                             </div>
+
+                            <!-- Retro vs Ongoing Breakdown -->
+                            <div class="allocation-breakdown">
+                                <div class="allocation-title">Retroactive vs Ongoing Split</div>
+                                <div class="allocation-bar">
+                                    <div class="allocation-bar-retro" id="retroBar" style="width: 80%;"></div>
+                                    <div class="allocation-bar-ongoing" id="ongoingBar" style="width: 20%;"></div>
+                                </div>
+                                <div class="allocation-legend">
+                                    <div class="allocation-legend-item">
+                                        <div class="allocation-dot retro"></div>
+                                        <span id="retroLabel">Retroactive: 8%</span>
+                                    </div>
+                                    <div class="allocation-legend-item">
+                                        <div class="allocation-dot ongoing"></div>
+                                        <span id="ongoingLabel">Ongoing: 2%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="category-results">
+                                <div class="category-title">Breakdown by Category</div>
+                                <div class="category-item">
+                                    <span class="category-name">Unit Spot</span>
+                                    <span class="category-value" id="unitResult">$0</span>
+                                </div>
+                                <div class="category-item">
+                                    <span class="category-name">Native Spot</span>
+                                    <span class="category-value" id="nativeResult">$0</span>
+                                </div>
+                                <div class="category-item">
+                                    <span class="category-name">Perps</span>
+                                    <span class="category-value" id="perpsResult">$0</span>
+                                </div>
+                                <div class="category-item">
+                                    <span class="category-name">HyperEVM</span>
+                                    <span class="category-value" id="evmResult">$0</span>
+                                </div>
+                            </div>
+
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <div class="stat-label">Total HYPE</div>
+                                    <div class="stat-value" id="statHype">0</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-label">Tier Multiplier</div>
+                                    <div class="stat-value" id="statTier">1.3x</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-label">Est. Fees Paid</div>
+                                    <div class="stat-value" id="statFees">$0</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-label">ROI</div>
+                                    <div class="stat-value" id="statROI">0x</div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="breakdown-section" style="margin-top: 1rem;">
-                            <div class="breakdown-title">Breakdown by Category</div>
-                            <div class="breakdown-item">
-                                <div class="breakdown-cat"><span class="breakdown-dot unit"></span> Unit Spot</div>
-                                <div class="breakdown-value" id="unitResult">$0</div>
+                        <!-- Scenarios -->
+                        <div class="card scenarios-card">
+                            <div class="card-title">
+                                <span>📊</span> Scenarios
                             </div>
-                            <div class="breakdown-item">
-                                <div class="breakdown-cat"><span class="breakdown-dot native"></span> Native Spot</div>
-                                <div class="breakdown-value" id="nativeResult">$0</div>
-                            </div>
-                            <div class="breakdown-item">
-                                <div class="breakdown-cat"><span class="breakdown-dot perps"></span> Perps</div>
-                                <div class="breakdown-value" id="perpsResult">$0</div>
-                            </div>
-                            <div class="breakdown-item">
-                                <div class="breakdown-cat"><span class="breakdown-dot evm"></span> HyperEVM</div>
-                                <div class="breakdown-value" id="evmResult">$0</div>
-                            </div>
+                            <table class="scenarios-table">
+                                <thead>
+                                    <tr>
+                                        <th>Scenario</th>
+                                        <th>S3</th>
+                                        <th>Price</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="scenarioBody">
+                                </tbody>
+                            </table>
                         </div>
 
-                        <div class="stats-grid">
-                            <div class="stat-item">
-                                <div class="stat-label">Total HYPE</div>
-                                <div class="stat-value green" id="statHype">0</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label">Tier Multiplier</div>
-                                <div class="stat-value blue" id="statTier">1.4x</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label">Est. Fees Paid</div>
-                                <div class="stat-value purple" id="statFees">$0</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-label">ROI</div>
-                                <div class="stat-value yellow" id="statROI">0x</div>
+                        <div class="donation-box">
+                            <h3>Found this useful?</h3>
+                            <p>This model took significant research to build. If it helped you, consider supporting future updates.</p>
+                            <div class="wallet-box">
+                                <div class="wallet-info">
+                                    <div class="wallet-label">USDC on Arbitrum / HyperEVM</div>
+                                    <div class="wallet-address">0x885145521348c8d15c6e07a3e0b2982c00839f38</div>
+                                </div>
+                                <button class="copy-btn" onclick="copyAddress()">Copy</button>
                             </div>
                         </div>
-
-                        <!-- CTA -->
-                        <div class="results-cta">
-                            <p>Don't have a Hyperliquid account yet? Start earning towards S3:</p>
-                            <a href="https://app.hyperliquid.xyz/join/STRUBE" target="_blank">
-                                Join Hyperliquid with Fee Discount →
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Scenario Table -->
-                    <div class="card scenario-card">
-                        <h2 class="card-title">
-                            Scenarios
-                        </h2>
-                        <table class="scenario-table">
-                            <thead>
-                                <tr>
-                                    <th>Scenario</th>
-                                    <th>S3</th>
-                                    <th>Price</th>
-                                    <th>Value</th>
-                                </tr>
-                            </thead>
-                            <tbody id="scenarioBody">
-                            </tbody>
-                        </table>
                     </div>
                 </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Don't have a Hyperliquid account yet? Start earning towards S3:</p>
+                <a href="https://app.hyperliquid.xyz/join/STRUBE" target="_blank" class="referral-btn" style="margin-top: 0.75rem;">
+                    Join Hyperliquid with Fee Discount →
+                </a>
             </div>
         </div>
 
         <!-- Methodology Tab -->
-        <div class="tab-content" id="methodology-tab">
-            <div class="methodology-page">
-                <!-- Donation box at top -->
-                <div class="donation-box">
-                    <h3>Found this useful?</h3>
-                    <p>This model took significant research to build. If it helped you, consider supporting future updates.</p>
-                    <div class="wallet-box">
-                        <div class="wallet-info">
-                            <div class="wallet-label">USDC on Arbitrum / HyperEVM</div>
-                            <div class="wallet-address" id="walletAddress">0x885145521348c8d15c6e07a3e0b2982c00839f38</div>
-                        </div>
-                        <button class="copy-btn" id="copyBtn" onclick="copyAddress()">Copy</button>
-                    </div>
+        <div id="methodology-tab" class="tab-content">
+            <div class="methodology-content">
+                <!-- New Code Findings -->
+                <div class="code-findings">
+                    <h3>🔍 New Code Findings (Dec 30, 2025)</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.75rem;">
+                        Recent frontend code inspection by @0xKmafia revealed significant S3 infrastructure:
+                    </p>
+                    <ul>
+                        <li><strong>Weekly Distribution Logic:</strong> Code shows <code>week: { value: c, element: x }</code> structure suggesting ongoing weekly rewards</li>
+                        <li><strong>2026 Sybil Function:</strong> <code>return 2026 === t.getFullYear()</code> - special sybil review for 2026 activity</li>
+                        <li><strong>72-Hour Processing:</strong> <code>tributed.within.72.hours</code> - tokens distributed within 72 hours of announcement</li>
+                        <li><strong>Retroactive Date Checks:</strong> <code>n.includes("2023-02") || n.includes("2024-10")</code> - historical activity evaluation</li>
+                        <li><strong>Sybil Detection Messages:</strong> "No sybil behavior detected. Points are not slashed." / "Sybil behavior detected, final points will be multiplied..."</li>
+                        <li><strong>Placeholder Date:</strong> <code>mostRecentDistributionStartDate: "2030-01-01"</code> - far-future placeholder indicating no distribution yet</li>
+                    </ul>
                 </div>
 
                 <div class="card">
                     <h2>Model Overview</h2>
-                    <p>This calculator provides an independent estimate of potential Hyperliquid Season 3 (S3) airdrop allocations. The model is based on analysis of the Genesis airdrop precedent, current platform metrics, game theory, and incentive design principles.</p>
-                    
-                    <div class="warning-box">
-                        <p><strong>Important:</strong> This is a speculative model. Actual S3 mechanics are unknown and may differ significantly from these estimates. This is not financial advice.</p>
-                    </div>
+                    <p>This calculator provides an independent estimate of potential Hyperliquid Season 3 (S3) airdrop allocations. The model is based on analysis of the Genesis airdrop precedent, current platform metrics, game theory, incentive design principles, and <strong>new frontend code findings</strong>.</p>
+                    <p><strong>Important:</strong> This is a speculative model. Actual S3 mechanics are unknown and may differ significantly from these estimates. This is not financial advice.</p>
 
                     <h3>Core Formula</h3>
-                    <div class="formula-box">
-Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multiplier × Infrastructure Bonus (if applicable)
-                    </div>
-                    <p>Note: Previous versions included a "Unit Premium" multiplier. This has been removed as the quality difference between Unit and Native spot is already captured by the wash trading filters and allocation percentages.</p>
+                    <p><code>Your HYPE = Retroactive Pool × Category % × (Your Volume / Pool Volume) × Tier Multiplier × Infrastructure Bonus (if applicable)</code></p>
                 </div>
 
                 <div class="card">
-                    <h2>HYPE Tokenomics</h2>
-                    <p>Understanding the token distribution is critical for estimating S3 size.</p>
+                    <h2>S3 Structure Scenarios</h2>
+                    <p>Based on the new code findings showing both retroactive date checks AND weekly distribution infrastructure, we model three likely scenarios:</p>
                     
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Allocation</th>
-                                <th>Amount</th>
-                                <th>% of Supply</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Future Emissions & Community</td>
-                                <td>388,880,000 HYPE</td>
-                                <td>38.888%</td>
-                                <td>Available for S3+</td>
-                            </tr>
-                            <tr>
-                                <td>Genesis Distribution</td>
-                                <td>310,000,000 HYPE</td>
-                                <td>31.0%</td>
-                                <td>Distributed Nov 29, 2024</td>
-                            </tr>
-                            <tr>
-                                <td>Core Contributors</td>
-                                <td>238,000,000 HYPE</td>
-                                <td>23.8%</td>
-                                <td>Vesting started Nov 2025 (24mo linear)</td>
-                            </tr>
-                            <tr>
-                                <td>Hyper Foundation</td>
-                                <td>60,000,000 HYPE</td>
-                                <td>6.0%</td>
-                                <td>Foundation treasury</td>
-                            </tr>
-                            <tr>
-                                <td>Community Grants</td>
-                                <td>3,000,000 HYPE</td>
-                                <td>0.3%</td>
-                                <td>Ongoing</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="highlight-box">
-                        <p><strong>Key Insight:</strong> With 388.88M HYPE available for community emissions, Hyperliquid has substantial runway for S3 and future seasons. At 6% for S3, they would still retain ~33% for S4, S5, etc.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2>S3 Size Estimation</h2>
-                    <p>We estimate S3 will be 4-8% of total supply, with 6% as the base case. The actual size likely depends on HYPE price - the team probably targets a USD value for sell pressure management.</p>
-
-                    <h3>Dynamic Pricing Model</h3>
-                    <p>If the team targets roughly $1.5-2B in notional value:</p>
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>HYPE Price</th>
-                                <th>Target ~$1.75B</th>
-                                <th>Implied S3 %</th>
-                                <th>HYPE Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>$20</td><td>$1.6B</td><td>8%</td><td>80M</td></tr>
-                            <tr><td>$25</td><td>$1.75B</td><td>7%</td><td>70M</td></tr>
-                            <tr><td>$30</td><td>$1.8B</td><td>6%</td><td>60M</td></tr>
-                            <tr><td>$35</td><td>$1.75B</td><td>5%</td><td>50M</td></tr>
-                            <tr><td>$40</td><td>$1.6B</td><td>4%</td><td>40M</td></tr>
-                        </tbody>
-                    </table>
-
-                    <h3>Team Unlock Consideration</h3>
-                    <p>Team token vesting began November 2025 (~10M HYPE/month). This creates baseline sell pressure that may influence S3 timing and size. A larger S3 at lower prices vs. smaller S3 at higher prices achieves similar USD distribution while managing market impact.</p>
-
-                    <h3>Vesting Structure Scenarios</h3>
-                    <p>Unlike Genesis (which was 100% instant), S3 may include vesting to manage sell pressure. This model explores three scenarios:</p>
-                    
-                    <table class="data-table">
+                    <table>
                         <thead>
                             <tr>
                                 <th>Scenario</th>
-                                <th>Instant</th>
-                                <th>Vested</th>
+                                <th>Total S3</th>
+                                <th>Retroactive</th>
+                                <th>Ongoing</th>
                                 <th>Probability</th>
-                                <th>Rationale</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>No Vesting</td>
-                                <td>100%</td>
-                                <td>0%</td>
-                                <td>~40%</td>
-                                <td>Matches Genesis precedent, simpler, "fair launch" ethos</td>
+                                <td><strong>Balanced</strong></td>
+                                <td>10%</td>
+                                <td>5% (50M HYPE)</td>
+                                <td>5% weekly (50M HYPE)</td>
+                                <td>35%</td>
                             </tr>
                             <tr>
-                                <td>50/50 Split</td>
-                                <td>50%</td>
-                                <td>50%</td>
-                                <td>~35%</td>
-                                <td>Balances liquidity needs with sell pressure management</td>
-                            </tr>
-                            <tr>
-                                <td>25/75 Split</td>
+                                <td><strong>Retro-Heavy</strong></td>
+                                <td>10%</td>
+                                <td>8% (80M HYPE)</td>
+                                <td>2% weekly (20M HYPE)</td>
                                 <td>25%</td>
-                                <td>75%</td>
-                                <td>~20%</td>
-                                <td>Aggressive if larger S3 size (7-8%), aligns with team vesting</td>
+                            </tr>
+                            <tr>
+                                <td><strong>All Retroactive</strong></td>
+                                <td>8%</td>
+                                <td>8% (80M HYPE)</td>
+                                <td>0% (S4 announced later)</td>
+                                <td>20%</td>
                             </tr>
                         </tbody>
                     </table>
                     
-                    <p><strong>Key Considerations:</strong></p>
-                    <ul>
-                        <li><strong>Sell Pressure:</strong> At 6% S3 with 40% sell rate, ~$720M pressure at $30. Vesting spreads this over 12 months.</li>
-                        <li><strong>Tax Implications:</strong> In many jurisdictions, vested tokens are taxable at grant price - this may affect user preference.</li>
-                        <li><strong>Portfolio Margin Synergy:</strong> Locked HYPE could serve as collateral in the upcoming portfolio margin system.</li>
-                        <li><strong>Optional Lock Bonus:</strong> Team may offer higher allocation for voluntary lock (e.g., 1.3x for 6mo, 1.5x for 12mo lock).</li>
-                    </ul>
+                    <p>The weekly distribution code suggests they've built infrastructure for ongoing rewards, making the "Balanced" scenario most likely. However, Hyperliquid's track record of surprise drops (like Genesis) means "All Retroactive" remains plausible.</p>
                 </div>
 
                 <div class="card">
-                    <h2>Category Breakdown</h2>
-                    <p>S3 allocations will likely be split across multiple activity categories. This model uses the following base case:</p>
-
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>% of S3</th>
-                                <th>Rationale</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Perps Trading</td>
-                                <td>55-60%</td>
-                                <td>~94% of revenue, core product, largest user base</td>
-                            </tr>
-                            <tr>
-                                <td>Spot Trading (Total)</td>
-                                <td>15%</td>
-                                <td>Strategic priority for HIP-3 and margin infrastructure</td>
-                            </tr>
-                            <tr>
-                                <td>→ Unit Spot</td>
-                                <td>55% of spot (~8%)</td>
-                                <td>Collateral backbone, lower wash trading</td>
-                            </tr>
-                            <tr>
-                                <td>→ Native Spot</td>
-                                <td>45% of spot (~7%)</td>
-                                <td>HYPE/PURR ecosystem, price discovery</td>
-                            </tr>
-                            <tr>
-                                <td>HyperEVM Activity</td>
-                                <td>8-10%</td>
-                                <td>DeFi bootstrap, ecosystem expansion</td>
-                            </tr>
-                            <tr>
-                                <td>Staking/Loyalty</td>
-                                <td>5-7%</td>
-                                <td>Decentralization, long-term holders</td>
-                            </tr>
-                            <tr>
-                                <td>HIP-3 Deployers</td>
-                                <td>3-5%</td>
-                                <td>Bootstrap permissionless markets (timing dependent)</td>
-                            </tr>
-                            <tr>
-                                <td>HLP Providers</td>
-                                <td>4-5%</td>
-                                <td>Core liquidity infrastructure</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h3>Why Spot Gets 15% (vs ~6% of Revenue)</h3>
-                    <p>While spot trading generates only ~6% of platform revenue, there are strategic reasons to allocate ~2.5x its revenue share:</p>
-                    <ul>
-                        <li><strong>Collateral integrity:</strong> BLP and unified margin use Unit assets - thin spot books create liquidation cascade risk</li>
-                        <li><strong>Marginal utility:</strong> Additional spot liquidity has higher marginal value than additional perps liquidity (perps already deep)</li>
-                        <li><strong>Capital opportunity cost:</strong> Spot MMs lock real capital without leverage, requiring compensation vs. capital-efficient perps</li>
-                        <li><strong>Ecosystem balance:</strong> Hyperliquid wants to grow into a full L1, not just a perps DEX - spot is underdeveloped</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h2>Wash Trading Filters</h2>
-                    <p>Hyperliquid will likely filter significant portions of volume as wash trading, based on Genesis precedent.</p>
-
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Estimated Filter Rate</th>
-                                <th>Rationale</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>HYPE/USDC</td>
-                                <td>60-75%</td>
-                                <td>Highest farming target, but some legitimate trading</td>
-                            </tr>
-                            <tr>
-                                <td>Native Spot (other)</td>
-                                <td>40-60%</td>
-                                <td>Moderate farming, smaller token pairs</td>
-                            </tr>
-                            <tr>
-                                <td>Unit Spot</td>
-                                <td>10-15%</td>
-                                <td>Requires real capital (bridged ETH/BTC), higher barrier</td>
-                            </tr>
-                            <tr>
-                                <td>Perps</td>
-                                <td>15-25%</td>
-                                <td>Some self-trading, but riskier to farm due to funding/liquidation</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="highlight-box">
-                        <p><strong>Key Insight:</strong> The dramatic difference in filter rates (10-15% for Unit vs 60-75% for native HYPE) explains why Unit and Native spot end up with similar post-filter pools (~$30B each) despite very different raw volumes.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2>Tier Multipliers</h2>
-                    <p>Based on Genesis precedent, allocations are likely tiered by percentile ranking within each category.</p>
-
-                    <table class="data-table">
+                    <h2>Revised Tier Multipliers</h2>
+                    <p>Genesis was surprisingly egalitarian - multipliers were flatter than most airdrops. Based on the new sybil detection logic showing emphasis on quality over quantity, we've revised multipliers downward:</p>
+                    
+                    <table>
                         <thead>
                             <tr>
                                 <th>Tier</th>
                                 <th>Percentile</th>
-                                <th>Multiplier</th>
-                                <th>Description</th>
+                                <th>Old Multiplier</th>
+                                <th>New Multiplier</th>
+                                <th>Rationale</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1670,200 +1506,141 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
                                 <td><strong>S</strong></td>
                                 <td>Top 0.5%</td>
                                 <td>1.75x</td>
-                                <td>Institutional MMs, mega-whales</td>
+                                <td>1.45x</td>
+                                <td>Whales get premium but capped</td>
                             </tr>
                             <tr>
                                 <td><strong>A</strong></td>
                                 <td>Top 2%</td>
                                 <td>1.40x</td>
-                                <td>High-volume consistent traders</td>
+                                <td>1.30x</td>
+                                <td>Still rewarded, less dramatically</td>
                             </tr>
                             <tr>
                                 <td><strong>B</strong></td>
                                 <td>Top 10%</td>
                                 <td>1.15x</td>
-                                <td>Active power users</td>
+                                <td>1.12x</td>
+                                <td>Modest bump for active users</td>
                             </tr>
                             <tr>
                                 <td><strong>C</strong></td>
                                 <td>Top 50%</td>
                                 <td>1.00x</td>
-                                <td>Regular users (baseline)</td>
-                            </tr>
-                            <tr>
-                                <td><strong>D</strong></td>
-                                <td>Bottom 50%</td>
-                                <td>0.75x</td>
-                                <td>Casual/minimal users</td>
+                                <td>1.00x</td>
+                                <td>Baseline unchanged</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <div class="card">
-                    <h2>Infrastructure Bonus (Speculative)</h2>
+                    <h2>Category Breakdown (Retroactive Pool)</h2>
+                    <p>Allocations for the retroactive component:</p>
                     
-                    <div class="warning-box">
-                        <p><strong>Note:</strong> This bonus is speculative and may not exist. Use conservatively - it's disabled by default in the calculator.</p>
-                    </div>
-                    
-                    <p>Market makers providing liquidity on critical infrastructure pairs (UETH/USDC, UBTC/USDC) <em>may</em> receive additional weighting because:</p>
-                    <ul>
-                        <li>These pairs are essential for BLP collateral valuation</li>
-                        <li>Required for efficient liquidations during volatility</li>
-                        <li>Enable unified margin system to function</li>
-                    </ul>
-                    <p>If this bonus exists, we estimate it at 1.15x. However, there is no evidence this premium exists - conservative estimates should leave it disabled.</p>
-                </div>
-
-                <div class="card">
-                    <h2>Pool Volume Estimates</h2>
-                    <p>These are the estimated qualified volumes after wash trading filters.</p>
-
-                    <div class="info-grid">
-                        <div class="info-card">
-                            <div class="info-card-label">Unit Spot Pool</div>
-                            <div class="info-card-value">$30B</div>
-                            <div class="info-card-note">~$34B raw, 10-15% filtered</div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-card-label">Native Spot Pool</div>
-                            <div class="info-card-value">$30B</div>
-                            <div class="info-card-note">~$80B raw, 60-65% filtered</div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-card-label">Perps Pool</div>
-                            <div class="info-card-value">$2.5T</div>
-                            <div class="info-card-note">~$3.3T raw, 20-25% filtered</div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-card-label">HyperEVM TVL</div>
-                            <div class="info-card-value">$2B</div>
-                            <div class="info-card-note">Time-weighted average</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h2>HyperEVM Allocation Uncertainty</h2>
-                    <p>The EVM allocation methodology is the most uncertain aspect of this model. Key questions:</p>
-                    <ul>
-                        <li><strong>Metric:</strong> Is it TVL-based, transaction-based, gas-spent, or protocol-specific?</li>
-                        <li><strong>S2 treatment:</strong> Was S2 supposed to be the "EVM season"? If so, has it already been distributed?</li>
-                        <li><strong>Double-dipping:</strong> Can EVM TVL that's also generating spot/perps volume count twice?</li>
-                    </ul>
-                    <p>We model 8-10% allocation to EVM as a bootstrap incentive, but confidence is low. EVM users should apply wider confidence intervals to their estimates.</p>
-                </div>
-
-                <div class="card">
-                    <h2>Revenue Analysis</h2>
-                    <p>Understanding where Hyperliquid's revenue comes from helps contextualize allocation decisions.</p>
-                    
-                    <table class="data-table">
+                    <table>
                         <thead>
                             <tr>
                                 <th>Category</th>
-                                <th>Est. All-Time Volume</th>
-                                <th>Blended Fee Rate</th>
-                                <th>Est. Revenue</th>
-                                <th>% of Total</th>
+                                <th>% of Retro</th>
+                                <th>Rationale</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Perps</td>
-                                <td>~$3.4T</td>
-                                <td>~0.022%</td>
-                                <td>~$748M</td>
-                                <td>94.4%</td>
+                                <td><strong>Perps Trading</strong></td>
+                                <td>55%</td>
+                                <td>~94% of revenue, core product</td>
                             </tr>
                             <tr>
-                                <td>Spot</td>
-                                <td>~$127B</td>
-                                <td>~0.035%</td>
-                                <td>~$45M</td>
-                                <td>5.6%</td>
+                                <td><strong>Spot Trading (Total)</strong></td>
+                                <td>18%</td>
+                                <td>Strategic priority, higher than revenue share</td>
                             </tr>
                             <tr>
-                                <td><strong>Total</strong></td>
-                                <td>—</td>
-                                <td>—</td>
-                                <td><strong>~$793M</strong></td>
-                                <td>100%</td>
+                                <td>→ Unit Spot</td>
+                                <td>55% of spot (~10%)</td>
+                                <td>Collateral backbone, lower wash trading</td>
+                            </tr>
+                            <tr>
+                                <td>→ Native Spot</td>
+                                <td>45% of spot (~8%)</td>
+                                <td>HYPE/PURR ecosystem</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HyperEVM</strong></td>
+                                <td>10%</td>
+                                <td>DeFi bootstrap incentive</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Staking/Loyalty</strong></td>
+                                <td>12%</td>
+                                <td>Long-term holder rewards</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HLP/Other</strong></td>
+                                <td>5%</td>
+                                <td>Liquidity infrastructure</td>
                             </tr>
                         </tbody>
                     </table>
-
-                    <p>For comparison, industry leaders like Binance generate roughly 15-25% of trading revenue from spot. Hyperliquid's 5.6% spot share reflects its origins as a perps-focused platform - the team likely wants to grow this ratio.</p>
                 </div>
 
                 <div class="card">
-                    <h2>Key Uncertainties</h2>
-                    <table class="data-table">
+                    <h2>Wash Trading Filters</h2>
+                    <p>Estimated filter rates based on Genesis precedent:</p>
+                    
+                    <table>
                         <thead>
                             <tr>
-                                <th>Factor</th>
-                                <th>Impact</th>
-                                <th>Range</th>
+                                <th>Category</th>
+                                <th>Filter Rate</th>
+                                <th>Rationale</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>S3 total size</td>
-                                <td>Very High</td>
-                                <td>4-8% of supply (price dependent)</td>
+                                <td>Unit Spot</td>
+                                <td>10-15%</td>
+                                <td>Requires real capital, high barrier</td>
                             </tr>
                             <tr>
-                                <td>Spot allocation %</td>
-                                <td>High</td>
-                                <td>10-20% of S3</td>
+                                <td>Native Spot (HYPE)</td>
+                                <td>60-75%</td>
+                                <td>Highest farming target</td>
                             </tr>
                             <tr>
-                                <td>Unit vs Native split</td>
-                                <td>Medium</td>
-                                <td>45-65% to Unit</td>
+                                <td>Native Spot (other)</td>
+                                <td>40-60%</td>
+                                <td>Moderate farming</td>
                             </tr>
                             <tr>
-                                <td>Wash trading filter rates</td>
-                                <td>High</td>
-                                <td>Methodology unknown</td>
-                            </tr>
-                            <tr>
-                                <td>EVM allocation methodology</td>
-                                <td>Very High</td>
-                                <td>TVL vs transactions vs other metrics</td>
-                            </tr>
-                            <tr>
-                                <td>Tier multiplier magnitude</td>
-                                <td>Medium</td>
-                                <td>Could be flatter or steeper</td>
+                                <td>Perps</td>
+                                <td>15-25%</td>
+                                <td>Riskier to farm (funding/liquidation)</td>
                             </tr>
                         </tbody>
                     </table>
-
-                    <div class="warning-box">
-                        <p><strong>Confidence Range:</strong> For any individual estimate, the actual outcome could realistically be 0.3x to 3x the calculated value.</p>
-                    </div>
                 </div>
 
                 <div class="card">
                     <h2>Data Sources</h2>
                     <ul>
-                        <li><a href="https://unit.hyperdash.info" target="_blank" style="color: var(--accent-green);">unit.hyperdash.info</a> - Unit spot volume tracking</li>
-                        <li><a href="https://app.artemis.xyz" target="_blank" style="color: var(--accent-green);">Artemis</a> - Cross-platform volume comparison</li>
-                        <li><a href="https://stats.hyperliquid.xyz" target="_blank" style="color: var(--accent-green);">Hyperliquid Stats</a> - Official platform metrics</li>
+                        <li><a href="https://unit.hyperdash.info" target="_blank">unit.hyperdash.info</a> - Unit spot volume tracking</li>
+                        <li><a href="https://app.artemis.xyz" target="_blank">Artemis</a> - Cross-platform volume comparison</li>
+                        <li><a href="https://stats.hyperliquid.xyz" target="_blank">Hyperliquid Stats</a> - Official platform metrics</li>
+                        <li><a href="https://twitter.com/0xKmafia" target="_blank">@0xKmafia</a> - Frontend code analysis</li>
                     </ul>
                 </div>
 
                 <div class="card">
                     <h2>About This Model</h2>
-                    <p>This calculator was developed by <a href="https://twitter.com/0xStrube" target="_blank" style="color: var(--accent-green);">@0xStrube</a> through independent analysis of Genesis airdrop patterns, platform metrics, tokenomics, competitive landscape, and game theory principles.</p>
+                    <p>This calculator was developed by <a href="https://twitter.com/0xStrube" target="_blank">@0xStrube</a> through independent analysis of Genesis airdrop patterns, platform metrics, tokenomics, competitive landscape, and game theory principles.</p>
                     <p><strong>Not affiliated with Hyperliquid.</strong> This is an independent community tool for educational purposes.</p>
-                    <p>Last updated: December 2025 (v6 - added vesting scenarios)</p>
-                    <p style="margin-top: 1rem;">Questions or feedback? DM <a href="https://twitter.com/0xStrube" target="_blank" style="color: var(--accent-green);">@0xStrube</a> on Twitter/X.</p>
+                    <p>Last updated: December 2025 (v7 - added S3 structure scenarios, revised multipliers, code findings)</p>
+                    <p style="margin-top: 1rem;">Questions or feedback? DM <a href="https://twitter.com/0xStrube" target="_blank">@0xStrube</a> on Twitter/X.</p>
                 </div>
 
-                <!-- Donation box at bottom -->
                 <div class="donation-box">
                     <h3>Support This Project</h3>
                     <p>If this model helped inform your strategy, consider a donation to support continued research and updates.</p>
@@ -1890,22 +1667,32 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
     <script>
         // Constants
         const TOTAL_SUPPLY = 1_000_000_000;
-        const TIER_MULTIPLIERS = { 'S': 1.75, 'A': 1.40, 'B': 1.15, 'C': 1.00 };
+        
+        // REVISED tier multipliers (flatter based on Genesis analysis and sybil code)
+        const TIER_MULTIPLIERS = { 'S': 1.45, 'A': 1.30, 'B': 1.12, 'C': 1.00 };
+        
         const POOL_VOLUMES = { unit: 30e9, native: 30e9, perps: 2.5e12, evm: 2e9 };
+        
+        // S3 Structure configurations
+        const STRUCTURE_CONFIGS = {
+            'balanced': { total: 10, retro: 5, ongoing: 5, retroPct: 50 },
+            'retro-heavy': { total: 10, retro: 8, ongoing: 2, retroPct: 80 },
+            'all-retro': { total: 8, retro: 8, ongoing: 0, retroPct: 100 }
+        };
         
         // Fee tier thresholds and rates (maker rates)
         const SPOT_FEE_TIERS = [
-            { maxVol: 10e6, rate: 0.0004 },      // Tier 0: ≤$10M -> 0.04% maker
-            { maxVol: 100e6, rate: 0.0003 },     // Tier 1: $10M-$100M -> 0.03% maker  
-            { maxVol: 500e6, rate: 0.0002 },     // Tier 2: $100M-$500M -> 0.02% maker
-            { maxVol: Infinity, rate: 0.0001 }   // Tier 3+: >$500M -> 0.01% maker
+            { maxVol: 10e6, rate: 0.0004 },
+            { maxVol: 100e6, rate: 0.0003 },
+            { maxVol: 500e6, rate: 0.0002 },
+            { maxVol: Infinity, rate: 0.0001 }
         ];
 
         const PERPS_FEE_TIERS = [
-            { maxVol: 10e6, rate: 0.00015 },     // Tier 0: ≤$10M -> 0.015% maker
-            { maxVol: 100e6, rate: 0.00012 },    // Tier 1: $10M-$100M -> 0.012% maker
-            { maxVol: 500e6, rate: 0.00008 },    // Tier 2: $100M-$500M -> 0.008% maker
-            { maxVol: Infinity, rate: 0.00004 }  // Tier 3+: >$500M -> 0.004% maker
+            { maxVol: 10e6, rate: 0.00015 },
+            { maxVol: 100e6, rate: 0.00012 },
+            { maxVol: 500e6, rate: 0.00008 },
+            { maxVol: Infinity, rate: 0.00004 }
         ];
 
         function getSpotFeeRate(volume) {
@@ -1922,13 +1709,12 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
             return PERPS_FEE_TIERS[PERPS_FEE_TIERS.length - 1].rate;
         }
 
-        // Updated scenarios with realistic price-dependent S3 sizes
+        // Updated scenarios reflecting new analysis
         const SCENARIOS = [
-            { name: 'Conservative', tag: 'bear', s3: 5, price: 28, vest: 'none' },
-            { name: 'Base (No Vest)', tag: 'base', s3: 6, price: 30, vest: 'none', highlight: true },
-            { name: 'Base (50/50)', tag: 'base', s3: 7, price: 30, vest: '50-50' },
-            { name: 'Large + Vest', tag: 'bull', s3: 8, price: 35, vest: '50-50' },
-            { name: 'Very Optimistic', tag: 'bull', s3: 8, price: 45, vest: 'none' }
+            { name: 'Conservative', tag: 'bear', s3: 6, price: 24, vest: 'none', structure: 'balanced' },
+            { name: 'Base Case', tag: 'base', s3: 10, price: 28, vest: 'none', structure: 'retro-heavy', highlight: true },
+            { name: 'Optimistic', tag: 'bull', s3: 10, price: 35, vest: 'none', structure: 'all-retro' },
+            { name: 'Bull + Vest', tag: 'bull', s3: 12, price: 40, vest: '50-50', structure: 'retro-heavy' }
         ];
 
         // Vesting configs: [instantPct, vestedPct]
@@ -1938,11 +1724,13 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
             '50-50': [50, 50]
         };
 
-        // State - UPDATED DEFAULTS: 6% S3, 15% spot, 55% unit share, NO unit premium
+        // State
         let state = {
             unitVolume: 0, nativeVolume: 0, perpsVolume: 0, evmTVL: 0,
-            tier: 'A', infraBonus: false, s3Size: 6, spotAlloc: 15, unitShare: 55, hypePrice: 30,
-            vesting: 'none'
+            tier: 'A', infraBonus: false, 
+            s3Size: 10, spotAlloc: 18, unitShare: 55, hypePrice: 28,
+            vesting: 'none',
+            structure: 'retro-heavy'
         };
 
         const $ = id => document.getElementById(id);
@@ -1975,28 +1763,31 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
             return num.toFixed(0);
         }
 
-        // Calculations - REMOVED UNIT PREMIUM
+        // Calculations - uses RETROACTIVE pool only for user allocation
         function calculateCategory(category, volume, params, totalSpotVol, totalPerpsVol) {
             if (volume <= 0) return { hype: 0, usd: 0, fees: 0 };
-            const s3Total = TOTAL_SUPPLY * (params.s3Size / 100);
+            
+            const structureConfig = STRUCTURE_CONFIGS[params.structure];
+            const retroPool = TOTAL_SUPPLY * (structureConfig.retro / 100);
+            
             const tierMult = TIER_MULTIPLIERS[params.tier];
             let categoryPool, infraMult = 1, feeRate = 0;
 
             if (category === 'unit') {
-                categoryPool = s3Total * (params.spotAlloc / 100) * (params.unitShare / 100);
-                // NO unit premium - quality difference captured by wash filters and allocation %
+                // Unit gets 55% of the 18% spot allocation of the retroactive pool
+                categoryPool = retroPool * (params.spotAlloc / 100) * (params.unitShare / 100);
                 if (params.infraBonus) infraMult = 1.15;
                 feeRate = getSpotFeeRate(totalSpotVol);
             } else if (category === 'native') {
-                categoryPool = s3Total * (params.spotAlloc / 100) * ((100 - params.unitShare) / 100);
+                categoryPool = retroPool * (params.spotAlloc / 100) * ((100 - params.unitShare) / 100);
                 feeRate = getSpotFeeRate(totalSpotVol);
             } else if (category === 'perps') {
-                // Perps gets ~57% of S3 (adjusted from methodology)
-                categoryPool = s3Total * 0.57;
+                // Perps gets 55% of retroactive pool
+                categoryPool = retroPool * 0.55;
                 feeRate = getPerpsFeeRate(totalPerpsVol);
             } else {
-                // EVM: ~9% of S3
-                categoryPool = s3Total * 0.09;
+                // EVM: 10% of retroactive pool
+                categoryPool = retroPool * 0.10;
                 feeRate = 0;
             }
 
@@ -2041,10 +1832,17 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
                 $('vestedRow').style.display = 'flex';
                 $('vestedUSD').textContent = formatUSD(vestedUsd);
                 $('vestedHYPE').textContent = formatHYPE(vestedHype) + ' HYPE';
-                $('vestedMonthly').textContent = '~' + formatHYPE(vestedHype / 12) + '/mo';
             } else {
                 $('vestedRow').style.display = 'none';
             }
+            
+            // Update allocation breakdown bar
+            const structureConfig = STRUCTURE_CONFIGS[state.structure];
+            const retroPct = structureConfig.retroPct;
+            $('retroBar').style.width = retroPct + '%';
+            $('ongoingBar').style.width = (100 - retroPct) + '%';
+            $('retroLabel').textContent = `Retroactive: ${structureConfig.retro}%`;
+            $('ongoingLabel').textContent = `Ongoing: ${structureConfig.ongoing}%`;
             
             $('unitResult').textContent = formatUSD(r.unit.usd);
             $('nativeResult').textContent = formatUSD(r.native.usd);
@@ -2066,7 +1864,13 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
 
         function updateScenarios() {
             $('scenarioBody').innerHTML = SCENARIOS.map(s => {
-                const r = calculateAll({ ...state, s3Size: s.s3, hypePrice: s.price });
+                const scenarioState = { 
+                    ...state, 
+                    s3Size: s.s3, 
+                    hypePrice: s.price,
+                    structure: s.structure || state.structure
+                };
+                const r = calculateAll(scenarioState);
                 const vestConfig = VESTING_CONFIGS[s.vest || 'none'];
                 const instantPct = vestConfig[0] / 100;
                 const instantVal = r.totalUsd * instantPct;
@@ -2086,6 +1890,23 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
                     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
                     tab.classList.add('active');
                     $(tab.dataset.tab + '-tab').classList.add('active');
+                });
+            });
+
+            // Structure selector
+            document.querySelectorAll('.structure-option').forEach(opt => {
+                opt.addEventListener('click', () => {
+                    document.querySelectorAll('.structure-option').forEach(o => o.classList.remove('active'));
+                    opt.classList.add('active');
+                    state.structure = opt.dataset.structure;
+                    
+                    // Update s3Size slider to match structure
+                    const config = STRUCTURE_CONFIGS[state.structure];
+                    state.s3Size = config.total;
+                    $('s3Size').value = config.total;
+                    $('s3SizeValue').textContent = config.total + '%';
+                    
+                    updateResults();
                 });
             });
 
@@ -2110,7 +1931,6 @@ Your HYPE = S3 Total × Category % × (Your Volume / Pool Volume) × Tier Multip
                     $('vestingToggle').querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     state.vesting = btn.dataset.value;
-                    // Update info text
                     const infoTexts = {
                         'none': 'All tokens unlock at TGE',
                         '25-75': '25% at TGE, 75% vests over 12 months',
